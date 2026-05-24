@@ -249,6 +249,8 @@ common:
     url: https://golioth.io/pricing
   - type: LinkedIn
     url: https://www.linkedin.com/company/golioth/
+  - type: LLMsTxt
+    url: https://docs.golioth.io/llms.txt
 integrations:
   - name: Zephyr RTOS
   - name: nRF Connect SDK
