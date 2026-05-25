@@ -1,0 +1,36 @@
+{
+  "operation": "createDevice",
+  "api": "Golioth Management API",
+  "request": {
+    "method": "POST",
+    "url": "https://api.golioth.io/v1/projects/{projectId}/devices",
+    "headers": {
+      "x-api-key": "gAPI_xxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "kitchen-sensor-01",
+      "hardwareIds": ["302F8C5C7E10"],
+      "tagIds": ["tag_sensors"],
+      "enabled": true
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": {
+        "id": "642d8b1c8a5d9c0001abcd23",
+        "projectId": "61f8a3c14c5e1a0001a1b2c3",
+        "name": "kitchen-sensor-01",
+        "hardwareIds": ["302F8C5C7E10"],
+        "tagIds": ["tag_sensors"],
+        "enabled": true,
+        "createdAt": "2026-05-25T16:12:43Z",
+        "updatedAt": "2026-05-25T16:12:43Z"
+      }
+    }
+  }
+}

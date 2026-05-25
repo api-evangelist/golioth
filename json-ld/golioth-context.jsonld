@@ -1,0 +1,169 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "golioth": "https://api.golioth.io/v1/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+
+    "Project": {
+      "@id": "golioth:Project",
+      "@context": {
+        "id": {"@id": "golioth:Project/id", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"},
+        "organizationId": {"@id": "golioth:Project/organizationId", "@type": "xsd:string"},
+        "createdAt": {"@id": "dcterms:created", "@type": "xsd:dateTime"},
+        "updatedAt": {"@id": "dcterms:modified", "@type": "xsd:dateTime"}
+      }
+    },
+
+    "Device": {
+      "@id": "golioth:Device",
+      "@context": {
+        "id": {"@id": "golioth:Device/id", "@type": "xsd:string"},
+        "projectId": {"@id": "golioth:Device/projectId", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"},
+        "hardwareIds": {"@id": "golioth:Device/hardwareIds", "@container": "@list"},
+        "tagIds": {"@id": "golioth:Device/tagIds", "@container": "@list"},
+        "blueprintId": {"@id": "golioth:Device/blueprintId", "@type": "xsd:string"},
+        "enabled": {"@id": "golioth:Device/enabled", "@type": "xsd:boolean"},
+        "lastReport": {"@id": "golioth:Device/lastReport", "@type": "xsd:dateTime"},
+        "createdAt": {"@id": "dcterms:created", "@type": "xsd:dateTime"},
+        "updatedAt": {"@id": "dcterms:modified", "@type": "xsd:dateTime"}
+      }
+    },
+
+    "Blueprint": {
+      "@id": "golioth:Blueprint",
+      "@context": {
+        "id": {"@id": "golioth:Blueprint/id", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"},
+        "platform": {"@id": "golioth:Blueprint/platform", "@type": "xsd:string"},
+        "boardId": {"@id": "golioth:Blueprint/boardId", "@type": "xsd:string"}
+      }
+    },
+
+    "Tag": {
+      "@id": "golioth:Tag",
+      "@context": {
+        "id": {"@id": "golioth:Tag/id", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"}
+      }
+    },
+
+    "Artifact": {
+      "@id": "golioth:Artifact",
+      "@context": {
+        "id": {"@id": "golioth:Artifact/id", "@type": "xsd:string"},
+        "version": {"@id": "schema:softwareVersion", "@type": "xsd:string"},
+        "packageId": {"@id": "golioth:Artifact/packageId", "@type": "xsd:string"},
+        "blueprintId": {"@id": "golioth:Artifact/blueprintId", "@type": "xsd:string"},
+        "size": {"@id": "schema:contentSize", "@type": "xsd:integer"},
+        "hash": {"@id": "golioth:Artifact/hash", "@type": "xsd:string"},
+        "createdAt": {"@id": "dcterms:created", "@type": "xsd:dateTime"}
+      }
+    },
+
+    "Release": {
+      "@id": "golioth:Release",
+      "@context": {
+        "id": {"@id": "golioth:Release/id", "@type": "xsd:string"},
+        "releaseTags": {"@id": "golioth:Release/releaseTags", "@container": "@list"},
+        "artifactIds": {"@id": "golioth:Release/artifactIds", "@container": "@list"},
+        "tagIds": {"@id": "golioth:Release/tagIds", "@container": "@list"},
+        "rollout": {"@id": "golioth:Release/rollout", "@type": "xsd:boolean"},
+        "rolledOutAt": {"@id": "golioth:Release/rolledOutAt", "@type": "xsd:dateTime"},
+        "createdAt": {"@id": "dcterms:created", "@type": "xsd:dateTime"}
+      }
+    },
+
+    "Cohort": {
+      "@id": "golioth:Cohort",
+      "@context": {
+        "id": {"@id": "golioth:Cohort/id", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"}
+      }
+    },
+
+    "Pipeline": {
+      "@id": "golioth:Pipeline",
+      "@context": {
+        "id": {"@id": "golioth:Pipeline/id", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"},
+        "enabled": {"@id": "golioth:Pipeline/enabled", "@type": "xsd:boolean"},
+        "yaml": {"@id": "golioth:Pipeline/yaml", "@type": "xsd:string"}
+      }
+    },
+
+    "Setting": {
+      "@id": "golioth:Setting",
+      "@context": {
+        "id": {"@id": "golioth:Setting/id", "@type": "xsd:string"},
+        "key": {"@id": "golioth:Setting/key", "@type": "xsd:string"},
+        "dataType": {"@id": "golioth:Setting/dataType", "@type": "xsd:string"},
+        "value": {"@id": "schema:value"},
+        "tagId": {"@id": "golioth:Setting/tagId", "@type": "xsd:string"}
+      }
+    },
+
+    "LogRecord": {
+      "@id": "golioth:LogRecord",
+      "@context": {
+        "deviceId": {"@id": "golioth:LogRecord/deviceId", "@type": "xsd:string"},
+        "timestamp": {"@id": "dcterms:date", "@type": "xsd:dateTime"},
+        "level": {"@id": "golioth:LogRecord/level", "@type": "xsd:string"},
+        "module": {"@id": "golioth:LogRecord/module", "@type": "xsd:string"},
+        "message": {"@id": "schema:description", "@type": "xsd:string"}
+      }
+    },
+
+    "StreamRecord": {
+      "@id": "golioth:StreamRecord",
+      "@context": {
+        "deviceId": {"@id": "golioth:StreamRecord/deviceId", "@type": "xsd:string"},
+        "time": {"@id": "dcterms:date", "@type": "xsd:dateTime"},
+        "tags": {"@id": "golioth:StreamRecord/tags", "@container": "@list"}
+      }
+    },
+
+    "RPCInvocation": {
+      "@id": "golioth:RPCInvocation",
+      "@context": {
+        "deviceId": {"@id": "golioth:RPCInvocation/deviceId", "@type": "xsd:string"},
+        "method": {"@id": "golioth:RPCInvocation/method", "@type": "xsd:string"},
+        "params": {"@id": "golioth:RPCInvocation/params", "@container": "@list"},
+        "timeout": {"@id": "golioth:RPCInvocation/timeout", "@type": "xsd:integer"},
+        "statusCode": {"@id": "golioth:RPCInvocation/statusCode", "@type": "xsd:integer"},
+        "detail": {"@id": "golioth:RPCInvocation/detail", "@type": "xsd:string"}
+      }
+    },
+
+    "Credential": {
+      "@id": "golioth:Credential",
+      "@context": {
+        "id": {"@id": "golioth:Credential/id", "@type": "xsd:string"},
+        "type": {"@id": "golioth:Credential/type", "@type": "xsd:string"},
+        "identity": {"@id": "golioth:Credential/identity", "@type": "xsd:string"}
+      }
+    },
+
+    "APIKey": {
+      "@id": "golioth:APIKey",
+      "@context": {
+        "id": {"@id": "golioth:APIKey/id", "@type": "xsd:string"},
+        "type": {"@id": "golioth:APIKey/type", "@type": "xsd:string"},
+        "createdAt": {"@id": "dcterms:created", "@type": "xsd:dateTime"}
+      }
+    },
+
+    "Organization": {
+      "@id": "golioth:Organization",
+      "@context": {
+        "id": {"@id": "golioth:Organization/id", "@type": "xsd:string"},
+        "name": {"@id": "schema:name", "@type": "xsd:string"}
+      }
+    }
+  }
+}

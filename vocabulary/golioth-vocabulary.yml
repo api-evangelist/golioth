@@ -1,0 +1,132 @@
+vocabulary:
+  name: Golioth
+  description: >-
+    Vocabulary and taxonomy for the Golioth IoT device management cloud
+    and Firmware SDK, covering connected-device APIs for OTA, telemetry,
+    settings, RPC, logging, location, and data routing.
+  version: '1.0'
+  created: '2026-05-25'
+  modified: '2026-05-25'
+
+domains:
+  - name: Identity and Tenancy
+    description: How accounts, organizations, projects, and users are structured.
+    terms:
+      - name: Organization
+        definition: The top-level Golioth tenant that owns projects, billing, and members.
+      - name: Project
+        definition: A scoped workspace inside an organization that contains its own devices, settings, releases, pipelines, and API keys.
+      - name: API Key
+        definition: A project-scoped or organization-scoped secret passed in the x-api-key header to authenticate Management API requests.
+      - name: User
+        definition: A human member of an organization with role-based access to projects and resources.
+      - name: Role
+        definition: A named bundle of permissions assigned to a user via an Access policy.
+      - name: Policy
+        definition: A binding of a user (or service identity) to a role within a project scope.
+
+  - name: Device Inventory
+    description: How physical things are modeled in the cloud.
+    terms:
+      - name: Device
+        definition: The canonical record of one connected thing, scoped to a project, identified by a Golioth-issued ID plus one or more hardware identifiers.
+      - name: Hardware ID
+        definition: A physical identifier such as MAC, IMEI, or serial number registered against a Device.
+      - name: Blueprint
+        definition: A hardware-and-software profile that groups devices sharing the same board, MCU family, and firmware contract.
+      - name: Board
+        definition: A reference to a specific dev board (e.g. nRF9160-DK, ESP32-S3) that a Blueprint can target.
+      - name: Tag
+        definition: A label attached to one or more devices used as a selector for settings, releases, and queries.
+      - name: Cohort
+        definition: A managed group of devices used as a rollout target for OTA deployments.
+
+  - name: Credentials and PKI
+    description: How devices and clients prove identity to Golioth.
+    terms:
+      - name: PSK
+        definition: Pre-shared key used by devices to authenticate to the Golioth cloud over DTLS or TLS.
+      - name: Certificate
+        definition: An X.509 certificate enrolled in a project for cert-based device authentication.
+      - name: PKI Policy
+        definition: A rule set describing how device certificates are validated against a configured provider.
+      - name: PKI Provider
+        definition: An external PKI integration (e.g. EJBCA, Keyfactor, AWS Private CA) that issues device certificates.
+      - name: Provisioning
+        definition: The process by which a device first registers a credential with Golioth and exchanges it for a session.
+
+  - name: Device Data Services
+    description: How devices read and write data through Golioth.
+    terms:
+      - name: LightDB State
+        definition: A per-device key/value state store synchronized between device and cloud over CoAP.
+      - name: LightDB Stream
+        definition: A time-series ingest channel for sensor and telemetry data emitted by devices.
+      - name: Stream Record
+        definition: A single timestamped row of telemetry written to LightDB Stream.
+      - name: Settings
+        definition: Cloud-managed key/value configuration values that devices subscribe to and re-apply on change.
+      - name: Setting Data Type
+        definition: The Golioth-allowed type (string, int, float, bool, JSON) of a Setting value.
+
+  - name: Device Management
+    description: Lifecycle and control plane for fleets.
+    terms:
+      - name: OTA
+        definition: Over-the-air firmware update — uploading new firmware artifacts, packaging them into releases, and rolling them out to selected devices.
+      - name: Artifact
+        definition: A single uploaded firmware binary (and its metadata) for a Blueprint.
+      - name: Package
+        definition: A logical grouping of related Artifacts (e.g. application image, modem firmware, MCUboot bootloader).
+      - name: Release
+        definition: An immutable bundle of one or more Artifacts targeted at devices selected by Tag, with an associated semantic version.
+      - name: Rollout
+        definition: The act of pushing a Release to its targeted devices and tracking acceptance and reporting status.
+      - name: Deployment
+        definition: A Cohort-targeted rollout that progresses through staged phases with optional rollback.
+      - name: OTA Event
+        definition: A reported step in a device's update lifecycle (downloading, verifying, applying, applied, failed).
+      - name: RPC
+        definition: A cloud-invoked remote procedure call against a method registered by firmware, with parameters and a timeout, returning a status code and result.
+      - name: Logs
+        definition: Structured log lines emitted by firmware and collected centrally.
+      - name: Device Activity Log
+        definition: A connectivity-and-control-plane log entry describing device connection, disconnection, and credential events.
+
+  - name: Data Routing
+    description: How device data leaves Golioth for downstream systems.
+    terms:
+      - name: Pipeline
+        definition: A YAML-defined data routing definition that filters, transforms, and forwards device data to one or more destinations.
+      - name: Pipeline Step
+        definition: An ordered transformer or destination within a Pipeline.
+      - name: Destination
+        definition: An external system that a Pipeline writes to — AWS S3, GCP Pub/Sub, Azure Event Hubs, InfluxDB, MongoDB, webhook, and more.
+      - name: Integration
+        definition: A first-class connector configuration used by Pipelines and other services to call external systems.
+      - name: Unmatched Data
+        definition: Device data that arrived but did not match any active Pipeline filter, captured separately for inspection.
+
+  - name: Application Services
+    description: Higher-order services available to devices.
+    terms:
+      - name: Location
+        definition: A service that resolves device position from cellular tower and Wi-Fi access-point observations, returning latitude/longitude.
+      - name: Network
+        definition: A logical representation of cellular or other network connectivity scoped to a project, with associated devices.
+      - name: Notification
+        definition: An outbound event delivered when a project-level condition is met (e.g. device down, OTA failed).
+
+  - name: Firmware and Transports
+    description: The on-device side of Golioth.
+    terms:
+      - name: Firmware SDK
+        definition: The open-source Golioth Firmware SDK that links into Zephyr, nRF Connect SDK, ESP-IDF, and ModusToolbox builds.
+      - name: CoAP
+        definition: The Constrained Application Protocol used between Golioth-enabled devices and the cloud over UDP.
+      - name: DTLS
+        definition: Datagram TLS used to secure CoAP traffic with PSK or certificate-based authentication.
+      - name: Pouch
+        definition: A non-IP device-to-cloud transport from Golioth, optionally relayed by a Bluetooth gateway implementation.
+      - name: tinymcp
+        definition: Open-source MCP server implementation for resource-constrained embedded devices.

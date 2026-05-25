@@ -1,0 +1,30 @@
+{
+  "name": "GoliothDevice",
+  "description": "Structure documentation for the Golioth Device resource returned by the Management API.",
+  "type": "object",
+  "fields": [
+    {"name": "id", "type": "string", "required": true, "description": "Unique device identifier."},
+    {"name": "projectId", "type": "string", "required": true, "description": "Identifier of the parent project."},
+    {"name": "name", "type": "string", "required": true, "description": "Human-readable device name (unique within the project)."},
+    {"name": "hardwareIds", "type": "array<string>", "required": false, "description": "Hardware identifiers (MAC, IMEI, serial)."},
+    {"name": "tagIds", "type": "array<string>", "required": false, "description": "Tag identifiers attached to the device."},
+    {"name": "blueprintId", "type": "string|null", "required": false, "description": "Hardware/software blueprint identifier, if any."},
+    {"name": "enabled", "type": "boolean", "required": true, "description": "Whether the device is allowed to connect."},
+    {"name": "lastReport", "type": "string|null (datetime)", "required": false, "description": "Last time the device reported in."},
+    {"name": "metadata", "type": "object", "required": false, "description": "Free-form metadata attached by API consumers."},
+    {"name": "createdAt", "type": "string (datetime)", "required": true, "description": "RFC 3339 creation timestamp."},
+    {"name": "updatedAt", "type": "string (datetime)", "required": false, "description": "RFC 3339 update timestamp."}
+  ],
+  "example": {
+    "id": "642d8b1c8a5d9c0001abcd23",
+    "projectId": "61f8a3c14c5e1a0001a1b2c3",
+    "name": "kitchen-sensor-01",
+    "hardwareIds": ["302F8C5C7E10"],
+    "tagIds": ["tag_sensors"],
+    "blueprintId": null,
+    "enabled": true,
+    "lastReport": "2026-05-25T16:10:09Z",
+    "createdAt": "2026-05-25T16:12:43Z",
+    "updatedAt": "2026-05-25T16:12:43Z"
+  }
+}

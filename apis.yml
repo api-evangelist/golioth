@@ -22,7 +22,7 @@ tags:
   - Embedded
   - Connectivity
 created: '2026-05-23'
-modified: '2026-05-23'
+modified: '2026-05-25'
 specificationVersion: '0.19'
 apis:
   - aid: golioth:management-api
@@ -43,11 +43,63 @@ apis:
       - type: Documentation
         url: https://docs.golioth.io/reference/management-api/
       - type: OpenAPI
+        url: openapi/golioth-openapi.yml
+      - type: OpenAPI
         url: https://api.golioth.io/openapi.json
       - type: Swagger
         url: https://api.golioth.io/swagger.json
       - type: Authentication
         url: https://docs.golioth.io/reference/management-api/auth
+      - type: JSONSchema
+        url: json-schema/golioth-device-schema.json
+      - type: JSONSchema
+        url: json-schema/golioth-release-schema.json
+      - type: JSONSchema
+        url: json-schema/golioth-stream-record-schema.json
+      - type: JSONStructure
+        url: json-structure/golioth-device-structure.json
+      - type: JSONStructure
+        url: json-structure/golioth-release-structure.json
+      - type: JSONLD
+        url: json-ld/golioth-context.jsonld
+      - type: SpectralRuleset
+        url: rules/golioth-rules.yml
+      - type: NaftikoCapability
+        url: capabilities/management-projects.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-devices.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-ota.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-stream.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-rpc.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-settings.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-pipelines.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-logging.yaml
+      - type: NaftikoCapability
+        url: capabilities/management-tags-blueprints.yaml
+      - type: Example
+        url: examples/golioth-create-device-example.json
+      - type: Example
+        url: examples/golioth-create-release-example.json
+      - type: Example
+        url: examples/golioth-invoke-rpc-example.json
+      - type: Example
+        url: examples/golioth-query-stream-example.json
+      - type: Example
+        url: examples/golioth-create-pipeline-example.json
+      - type: Plans
+        url: plans/golioth-plans-pricing.yml
+      - type: RateLimits
+        url: rate-limits/golioth-rate-limits.yml
+      - type: FinOps
+        url: finops/golioth-finops.yml
+      - type: Vocabulary
+        url: vocabulary/golioth-vocabulary.yml
   - aid: golioth:lightdb-state
     name: Golioth LightDB State
     description: >-
@@ -77,6 +129,12 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/application-services/stream/
+      - type: JSONSchema
+        url: json-schema/golioth-stream-record-schema.json
+      - type: NaftikoCapability
+        url: capabilities/management-stream.yaml
+      - type: Example
+        url: examples/golioth-query-stream-example.json
   - aid: golioth:rpc
     name: Golioth Remote Procedure Call (RPC)
     description: >-
@@ -92,6 +150,10 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/rpc/
+      - type: NaftikoCapability
+        url: capabilities/management-rpc.yaml
+      - type: Example
+        url: examples/golioth-invoke-rpc-example.json
   - aid: golioth:ota
     name: Golioth OTA Firmware Updates
     description: >-
@@ -107,6 +169,14 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/ota/
+      - type: JSONSchema
+        url: json-schema/golioth-release-schema.json
+      - type: JSONStructure
+        url: json-structure/golioth-release-structure.json
+      - type: NaftikoCapability
+        url: capabilities/management-ota.yaml
+      - type: Example
+        url: examples/golioth-create-release-example.json
   - aid: golioth:settings
     name: Golioth Device Settings
     description: >-
@@ -122,6 +192,8 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/settings/
+      - type: NaftikoCapability
+        url: capabilities/management-settings.yaml
   - aid: golioth:logging
     name: Golioth Logging
     description: >-
@@ -135,6 +207,8 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/logging/
+      - type: NaftikoCapability
+        url: capabilities/management-logging.yaml
   - aid: golioth:pipelines
     name: Golioth Pipelines
     description: >-
@@ -151,6 +225,10 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/data-routing/
+      - type: NaftikoCapability
+        url: capabilities/management-pipelines.yaml
+      - type: Example
+        url: examples/golioth-create-pipeline-example.json
   - aid: golioth:location
     name: Golioth Location
     description: >-
@@ -261,6 +339,7 @@ integrations:
   - name: Microsoft Azure
   - name: InfluxDB
   - name: MongoDB
+  - name: Anthropic
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

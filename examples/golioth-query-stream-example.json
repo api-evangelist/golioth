@@ -1,0 +1,38 @@
+{
+  "operation": "getDeviceStream",
+  "api": "Golioth Management API",
+  "request": {
+    "method": "POST",
+    "url": "https://api.golioth.io/v1/projects/{projectId}/devices/{deviceId}/stream",
+    "headers": {
+      "x-api-key": "gAPI_xxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "start": "2026-05-25T00:00:00Z",
+      "end": "2026-05-25T23:59:59Z",
+      "interval": "5m",
+      "query": {
+        "fields": [
+          {"path": "temp", "type": "number"},
+          {"path": "humidity", "type": "number"}
+        ]
+      },
+      "perPage": 100,
+      "page": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "list": [
+        {"time": "2026-05-25T16:00:00Z", "temp": 21.4, "humidity": 47.1},
+        {"time": "2026-05-25T16:05:00Z", "temp": 21.5, "humidity": 47.0}
+      ],
+      "total": 2
+    }
+  }
+}

@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Golioth Management API — Logging
+  description: Golioth Management API — Logging. Query device logs and device activity logs for observability and debugging. Self-contained Naftiko capability.
+  tags:
+    - Golioth
+    - Logs
+    - Observability
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      GOLIOTH_API_KEY: GOLIOTH_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: management-logging
+      baseUri: https://api.golioth.io
+      description: Golioth Management API — Logging business capability.
+      resources:
+        - name: v1-logs
+          path: /v1/projects/{projectId}/logs
+          operations:
+            - name: getLogs
+              method: GET
+              description: Golioth Get Project Logs
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: v1-device-activity-logs
+          path: /v1/projects/{projectId}/device-activity-logs
+          operations:
+            - name: getDeviceActivityLogs
+              method: GET
+              description: Golioth Get Device Activity Logs
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+      authentication:
+        type: apikey
+        key: x-api-key
+        value: '{{env.GOLIOTH_API_KEY}}'
+        placement: header
+  exposes:
+    - type: mcp
+      namespace: management-logging-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for Golioth Logging capability.
+      tools:
+        - name: golioth-get-logs
+          description: Golioth Get Project Logs
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: management-logging.getLogs
+          with:
+            projectId: tools.projectId
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-get-device-activity-logs
+          description: Golioth Get Device Activity Logs
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: management-logging.getDeviceActivityLogs
+          with:
+            projectId: tools.projectId
+          outputParameters:
+            - type: object
+              mapping: $.

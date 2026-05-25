@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/golioth/golioth-device-schema.json",
+  "title": "Golioth Device",
+  "description": "Schema for a Golioth Device resource returned by the Management API. A Device is the canonical record of an embedded thing connected to Golioth, scoped to a project.",
+  "type": "object",
+  "required": ["id", "projectId", "name", "enabled", "createdAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique device identifier assigned by Golioth (MongoDB-style ObjectId)."
+    },
+    "projectId": {
+      "type": "string",
+      "description": "Identifier of the parent Golioth project."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable device name. Unique within a project."
+    },
+    "hardwareIds": {
+      "type": "array",
+      "description": "Hardware identifiers (e.g. MAC, IMEI, serial) registered for the device.",
+      "items": { "type": "string" }
+    },
+    "tagIds": {
+      "type": "array",
+      "description": "List of tag identifiers attached to the device.",
+      "items": { "type": "string" }
+    },
+    "blueprintId": {
+      "type": ["string", "null"],
+      "description": "Identifier of the blueprint (hardware/software profile) the device is associated with, if any."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the device is allowed to connect to Golioth."
+    },
+    "lastReport": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp of the device's last data report or connection."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Free-form metadata attached to the device by API consumers.",
+      "additionalProperties": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp of device creation."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp of the last update."
+    }
+  },
+  "additionalProperties": true
+}

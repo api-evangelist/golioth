@@ -1,0 +1,150 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Golioth Management API — Tags and Blueprints
+  description: Golioth Management API — Tags and Blueprints. Organize devices into logical groups using tags and hardware-software profiles using blueprints. Self-contained Naftiko capability.
+  tags:
+    - Golioth
+    - Tags
+    - Blueprints
+    - Fleet
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      GOLIOTH_API_KEY: GOLIOTH_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: management-tags-blueprints
+      baseUri: https://api.golioth.io
+      description: Golioth Management API — Tags and Blueprints business capability.
+      resources:
+        - name: v1-tags
+          path: /v1/projects/{projectId}/tags
+          operations:
+            - name: listTags
+              method: GET
+              description: Golioth List Tags
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: createTag
+              method: POST
+              description: Golioth Create Tag
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: v1-blueprints
+          path: /v1/projects/{projectId}/blueprints
+          operations:
+            - name: listBlueprints
+              method: GET
+              description: Golioth List Blueprints
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: createBlueprint
+              method: POST
+              description: Golioth Create Blueprint
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+      authentication:
+        type: apikey
+        key: x-api-key
+        value: '{{env.GOLIOTH_API_KEY}}'
+        placement: header
+  exposes:
+    - type: mcp
+      namespace: management-tags-blueprints-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for Golioth Tags and Blueprints capability.
+      tools:
+        - name: golioth-list-tags
+          description: Golioth List Tags
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: management-tags-blueprints.listTags
+          with:
+            projectId: tools.projectId
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-create-tag
+          description: Golioth Create Tag
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: management-tags-blueprints.createTag
+          with:
+            projectId: tools.projectId
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-list-blueprints
+          description: Golioth List Blueprints
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: management-tags-blueprints.listBlueprints
+          with:
+            projectId: tools.projectId
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-create-blueprint
+          description: Golioth Create Blueprint
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: management-tags-blueprints.createBlueprint
+          with:
+            projectId: tools.projectId
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.

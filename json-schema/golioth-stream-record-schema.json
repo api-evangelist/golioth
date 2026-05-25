@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/golioth/golioth-stream-record-schema.json",
+  "title": "Golioth Stream Record",
+  "description": "Schema for a single record returned by a LightDB Stream query. Each record is a flat object with a timestamp and any number of arbitrarily-named telemetry fields.",
+  "type": "object",
+  "required": ["time"],
+  "properties": {
+    "time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp of the record."
+    },
+    "deviceId": {
+      "type": "string",
+      "description": "Identifier of the device that produced the record. Present on project-scoped queries."
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tag identifiers attached to the device at the time the record was produced.",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": {
+    "description": "Telemetry fields. Names and types are defined by firmware emitting the data."
+  }
+}

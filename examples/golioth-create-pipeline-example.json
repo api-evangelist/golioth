@@ -1,0 +1,31 @@
+{
+  "operation": "createPipeline",
+  "api": "Golioth Management API",
+  "request": {
+    "method": "POST",
+    "url": "https://api.golioth.io/v1/organizations/{organizationId}/projects/{projectId}/pipelines",
+    "headers": {
+      "x-api-key": "gAPI_xxxxxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "telemetry-to-s3",
+      "enabled": true,
+      "yaml": "filter:\n  path: \"*\"\n  content_type: application/cbor\ntransformers:\n  - type: cbor-to-json\nsteps:\n  - destination:\n      type: aws-s3\n      version: v1\n      parameters:\n        bucket: golioth-telemetry\n        access_key: ${aws_access_key}\n        access_secret: ${aws_secret}\n        region: us-east-1"
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": {
+        "id": "642d8d558a5d9c0001abcdef",
+        "name": "telemetry-to-s3",
+        "enabled": true,
+        "createdAt": "2026-05-25T16:16:21Z"
+      }
+    }
+  }
+}

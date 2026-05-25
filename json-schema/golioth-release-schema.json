@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/golioth/golioth-release-schema.json",
+  "title": "Golioth Release",
+  "description": "Schema for a Golioth Release — a bundle of one or more firmware Artifacts that may be rolled out to a tagged subset of devices.",
+  "type": "object",
+  "required": ["id", "artifactIds", "createdAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique release identifier."
+    },
+    "projectId": {
+      "type": "string",
+      "description": "Identifier of the parent project."
+    },
+    "releaseTags": {
+      "type": "array",
+      "description": "Semantic version tags assigned to this release (e.g. '1.2.0').",
+      "items": { "type": "string" }
+    },
+    "artifactIds": {
+      "type": "array",
+      "description": "Identifiers of firmware artifacts included in this release.",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "tagIds": {
+      "type": "array",
+      "description": "Device tags this release targets. Devices with at least one matching tag are eligible.",
+      "items": { "type": "string" }
+    },
+    "rollout": {
+      "type": "boolean",
+      "description": "Whether the release is currently being rolled out to devices."
+    },
+    "rolledOutAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp at which the release was rolled out (null when not yet rolled out)."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,220 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Golioth Management API — Projects
+  description: Golioth Management API — Projects. CRUD over Golioth projects, which scope every other resource on the platform. Self-contained Naftiko capability covering one Golioth business surface.
+  tags:
+    - Golioth
+    - Projects
+    - Management
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      GOLIOTH_API_KEY: GOLIOTH_API_KEY
+capability:
+  consumes:
+    - type: http
+      namespace: management-projects
+      baseUri: https://api.golioth.io
+      description: Golioth Management API — Projects business capability. Self-contained, no shared references.
+      resources:
+        - name: v1-projects
+          path: /v1/projects
+          operations:
+            - name: listProjects
+              method: GET
+              description: Golioth List Projects
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: createProject
+              method: POST
+              description: Golioth Create Project
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  description: Request body (JSON).
+                  required: true
+        - name: v1-projects-by-id
+          path: /v1/projects/{projectId}
+          operations:
+            - name: getProject
+              method: GET
+              description: Golioth Get Project
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: updateProject
+              method: PATCH
+              description: Golioth Update Project
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: deleteProject
+              method: DELETE
+              description: Golioth Delete Project
+              outputRawFormat: json
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+      authentication:
+        type: apikey
+        key: x-api-key
+        value: '{{env.GOLIOTH_API_KEY}}'
+        placement: header
+  exposes:
+    - type: rest
+      namespace: management-projects-rest
+      port: 8080
+      description: REST adapter for Golioth Management API — Projects. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+      resources:
+        - path: /v1/projects
+          name: v1-projects
+          description: REST surface for v1-projects collection.
+          operations:
+            - method: GET
+              name: listProjects
+              description: Golioth List Projects
+              call: management-projects.listProjects
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: POST
+              name: createProject
+              description: Golioth Create Project
+              call: management-projects.createProject
+              with:
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+        - path: /v1/projects/{projectId}
+          name: v1-projects-by-id
+          description: REST surface for a single project.
+          operations:
+            - method: GET
+              name: getProject
+              description: Golioth Get Project
+              call: management-projects.getProject
+              with:
+                projectId: rest.path.projectId
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: PATCH
+              name: updateProject
+              description: Golioth Update Project
+              call: management-projects.updateProject
+              with:
+                projectId: rest.path.projectId
+                body: rest.body
+              outputParameters:
+                - type: object
+                  mapping: $.
+            - method: DELETE
+              name: deleteProject
+              description: Golioth Delete Project
+              call: management-projects.deleteProject
+              with:
+                projectId: rest.path.projectId
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: management-projects-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter for Golioth Management API — Projects. One tool per consumed operation, routed inline through this capability's consumes block.
+      tools:
+        - name: golioth-list-projects
+          description: Golioth List Projects
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: management-projects.listProjects
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-create-project
+          description: Golioth Create Project
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: management-projects.createProject
+          with:
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-get-project
+          description: Golioth Get Project
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: management-projects.getProject
+          with:
+            projectId: tools.projectId
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-update-project
+          description: Golioth Update Project
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: management-projects.updateProject
+          with:
+            projectId: tools.projectId
+            body: tools.body
+          outputParameters:
+            - type: object
+              mapping: $.
+        - name: golioth-delete-project
+          description: Golioth Delete Project
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: management-projects.deleteProject
+          with:
+            projectId: tools.projectId
+          outputParameters:
+            - type: object
+              mapping: $.

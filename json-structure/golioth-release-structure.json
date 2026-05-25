@@ -1,0 +1,27 @@
+{
+  "name": "GoliothRelease",
+  "description": "Structure documentation for the Golioth Release resource — a set of firmware Artifacts targeted at devices selected by tag.",
+  "type": "object",
+  "fields": [
+    {"name": "id", "type": "string", "required": true, "description": "Unique release identifier."},
+    {"name": "projectId", "type": "string", "required": false, "description": "Identifier of the parent project."},
+    {"name": "releaseTags", "type": "array<string>", "required": false, "description": "Semantic version tags."},
+    {"name": "artifactIds", "type": "array<string>", "required": true, "description": "Firmware artifact identifiers included in this release."},
+    {"name": "tagIds", "type": "array<string>", "required": false, "description": "Device tags this release targets."},
+    {"name": "rollout", "type": "boolean", "required": false, "description": "Whether this release is rolling out to devices."},
+    {"name": "rolledOutAt", "type": "string|null (datetime)", "required": false, "description": "When rollout was started (null until then)."},
+    {"name": "createdAt", "type": "string (datetime)", "required": true, "description": "RFC 3339 creation timestamp."},
+    {"name": "updatedAt", "type": "string (datetime)", "required": false, "description": "RFC 3339 update timestamp."}
+  ],
+  "example": {
+    "id": "642d8c2f8a5d9c0001abcd99",
+    "projectId": "61f8a3c14c5e1a0001a1b2c3",
+    "releaseTags": ["1.2.0"],
+    "artifactIds": ["642d7a5c8a5d9c0001fedc01"],
+    "tagIds": ["tag_sensors"],
+    "rollout": true,
+    "rolledOutAt": "2026-05-25T16:20:11Z",
+    "createdAt": "2026-05-25T16:14:10Z",
+    "updatedAt": "2026-05-25T16:20:11Z"
+  }
+}

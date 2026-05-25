@@ -1,0 +1,76 @@
+extends:
+  - spectral:oas
+
+rules:
+  # Golioth uses Title Case for all operation summaries
+  golioth-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  # Golioth uses the "Golioth " prefix in catalog-canonical summaries
+  golioth-summary-prefix:
+    description: Operation summaries used in the API Evangelist catalog must begin with 'Golioth '
+    message: "Summary '{{value}}' must begin with 'Golioth '"
+    severity: hint
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Golioth "
+
+  # Golioth uses an x-api-key header for project-scoped auth on the Management API
+  golioth-security-scheme:
+    description: Operations must reference the x-api-key security scheme
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      field: apiKey
+      function: defined
+
+  # All Management API paths must be versioned with /v1
+  golioth-versioned-paths:
+    description: Management API paths must be prefixed with /v1
+    message: "Path '{{path}}' should start with /v1"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v1/"
+
+  # Project-scoped resources must include {projectId} in the path
+  golioth-project-scope:
+    description: Project-scoped resources must include the {projectId} segment
+    severity: hint
+    given: "$.paths[?(@property.startsWith('/v1/projects/'))]"
+    then:
+      function: truthy
+
+  # Every operation should declare a 200/201 response
+  golioth-success-response:
+    description: Every operation should declare a 200 or 201 response
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ['200']
+            - required: ['201']
+            - required: ['204']
+
+  # Operations should declare at least one tag
+  golioth-operation-tagged:
+    description: Operations should have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
