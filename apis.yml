@@ -3,15 +3,12 @@ url: https://raw.githubusercontent.com/api-evangelist/golioth/refs/heads/main/ap
 name: Golioth
 kind: company
 description: >-
-  Golioth is an IoT device management cloud and firmware SDK for connected
-  hardware. The platform pairs an open-source Firmware SDK (Zephyr RTOS, nRF
-  Connect SDK, ESP-IDF, ModusToolbox, Linux) with a REST Management API at
-  api.golioth.io, a web console, and services for OTA firmware updates, device
-  settings, remote procedure calls (RPC), structured time-series data
-  (LightDB Stream), key/value device state (LightDB State), logs, location,
-  and a Pipelines data-routing engine that forwards device data to downstream
-  cloud services. Authentication to the Management API is via project-scoped
-  API keys passed in the x-api-key header.
+  Golioth is an IoT device management cloud and firmware SDK for connected hardware. The platform pairs an open-source
+  Firmware SDK (Zephyr RTOS, nRF Connect SDK, ESP-IDF, ModusToolbox, Linux) with a REST Management API at
+  api.golioth.io, a web console, and services for OTA firmware updates, device settings, remote procedure calls (RPC),
+  structured time-series data (LightDB Stream), key/value device state (LightDB State), logs, location, and a Pipelines
+  data-routing engine that forwards device data to downstream cloud services. Authentication to the Management API is
+  via project-scoped API keys passed in the x-api-key header.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - IoT
@@ -28,11 +25,9 @@ apis:
   - aid: golioth:management-api
     name: Golioth Management API
     description: >-
-      REST API for managing Golioth projects, devices, credentials, blueprints,
-      tags, settings, OTA firmware artifacts and releases, RPC, logs, and
-      Pipelines. Documented with an OpenAPI 3 definition served by the API
-      itself. Authenticated with a project-scoped API key in the x-api-key
-      header.
+      REST API for managing Golioth projects, devices, credentials, blueprints, tags, settings, OTA firmware artifacts
+      and releases, RPC, logs, and Pipelines. Documented with an OpenAPI 3 definition served by the API itself.
+      Authenticated with a project-scoped API key in the x-api-key header.
     humanURL: https://docs.golioth.io/reference/management-api/
     baseURL: https://api.golioth.io
     tags:
@@ -64,24 +59,6 @@ apis:
         url: json-ld/golioth-context.jsonld
       - type: SpectralRuleset
         url: rules/golioth-rules.yml
-      - type: NaftikoCapability
-        url: capabilities/management-projects.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-devices.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-ota.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-stream.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-rpc.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-settings.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-pipelines.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-logging.yaml
-      - type: NaftikoCapability
-        url: capabilities/management-tags-blueprints.yaml
       - type: Example
         url: examples/golioth-create-device-example.json
       - type: Example
@@ -103,9 +80,8 @@ apis:
   - aid: golioth:lightdb-state
     name: Golioth LightDB State
     description: >-
-      Per-device key/value state store. Devices and cloud services read and
-      write structured state (JSON/CBOR) that is synchronized between device
-      and cloud over CoAP.
+      Per-device key/value state store. Devices and cloud services read and write structured state (JSON/CBOR) that is
+      synchronized between device and cloud over CoAP.
     humanURL: https://docs.golioth.io/application-services/lightdb/
     baseURL: https://api.golioth.io
     tags:
@@ -118,8 +94,8 @@ apis:
   - aid: golioth:lightdb-stream
     name: Golioth LightDB Stream
     description: >-
-      Time-series ingest endpoint for streaming sensor and telemetry data from
-      devices. Stored data can be queried and routed downstream via Pipelines.
+      Time-series ingest endpoint for streaming sensor and telemetry data from devices. Stored data can be queried and
+      routed downstream via Pipelines.
     humanURL: https://docs.golioth.io/application-services/stream/
     baseURL: https://api.golioth.io
     tags:
@@ -131,16 +107,13 @@ apis:
         url: https://docs.golioth.io/application-services/stream/
       - type: JSONSchema
         url: json-schema/golioth-stream-record-schema.json
-      - type: NaftikoCapability
-        url: capabilities/management-stream.yaml
       - type: Example
         url: examples/golioth-query-stream-example.json
   - aid: golioth:rpc
     name: Golioth Remote Procedure Call (RPC)
     description: >-
-      Bidirectional remote-procedure-call service. The cloud invokes
-      device-side methods registered by firmware and receives the response,
-      enabling on-demand diagnostics and control.
+      Bidirectional remote-procedure-call service. The cloud invokes device-side methods registered by firmware and
+      receives the response, enabling on-demand diagnostics and control.
     humanURL: https://docs.golioth.io/device-management/rpc/
     baseURL: https://api.golioth.io
     tags:
@@ -150,16 +123,13 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/rpc/
-      - type: NaftikoCapability
-        url: capabilities/management-rpc.yaml
       - type: Example
         url: examples/golioth-invoke-rpc-example.json
   - aid: golioth:ota
     name: Golioth OTA Firmware Updates
     description: >-
-      Over-the-air firmware update service. Upload artifacts, group them into
-      releases, target devices by tag or blueprint, and roll out updates with
-      progress tracking and rollback.
+      Over-the-air firmware update service. Upload artifacts, group them into releases, target devices by tag or
+      blueprint, and roll out updates with progress tracking and rollback.
     humanURL: https://docs.golioth.io/device-management/ota/
     baseURL: https://api.golioth.io
     tags:
@@ -173,16 +143,13 @@ apis:
         url: json-schema/golioth-release-schema.json
       - type: JSONStructure
         url: json-structure/golioth-release-structure.json
-      - type: NaftikoCapability
-        url: capabilities/management-ota.yaml
       - type: Example
         url: examples/golioth-create-release-example.json
   - aid: golioth:settings
     name: Golioth Device Settings
     description: >-
-      Cloud-managed settings pushed to one device, a group, or an entire fleet.
-      Firmware subscribes to settings keys and receives updates without
-      requiring a firmware release.
+      Cloud-managed settings pushed to one device, a group, or an entire fleet. Firmware subscribes to settings keys and
+      receives updates without requiring a firmware release.
     humanURL: https://docs.golioth.io/device-management/settings/
     baseURL: https://api.golioth.io
     tags:
@@ -192,13 +159,11 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/settings/
-      - type: NaftikoCapability
-        url: capabilities/management-settings.yaml
   - aid: golioth:logging
     name: Golioth Logging
     description: >-
-      Centralized device logging. Firmware emits structured log lines that are
-      collected, indexed, and made queryable via the console and API.
+      Centralized device logging. Firmware emits structured log lines that are collected, indexed, and made queryable
+      via the console and API.
     humanURL: https://docs.golioth.io/device-management/logging/
     baseURL: https://api.golioth.io
     tags:
@@ -207,15 +172,12 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/logging/
-      - type: NaftikoCapability
-        url: capabilities/management-logging.yaml
   - aid: golioth:pipelines
     name: Golioth Pipelines
     description: >-
-      Data routing and transformation engine. Pipelines describe how data
-      arriving from devices is filtered, transformed, and forwarded to
-      downstream destinations such as AWS S3, GCP Pub/Sub, Azure Event Hubs,
-      InfluxDB, MongoDB, and generic webhooks.
+      Data routing and transformation engine. Pipelines describe how data arriving from devices is filtered,
+      transformed, and forwarded to downstream destinations such as AWS S3, GCP Pub/Sub, Azure Event Hubs, InfluxDB,
+      MongoDB, and generic webhooks.
     humanURL: https://docs.golioth.io/data-routing/
     baseURL: https://api.golioth.io
     tags:
@@ -225,16 +187,13 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/data-routing/
-      - type: NaftikoCapability
-        url: capabilities/management-pipelines.yaml
       - type: Example
         url: examples/golioth-create-pipeline-example.json
   - aid: golioth:location
     name: Golioth Location
     description: >-
-      Location service that resolves device position from cellular tower and
-      Wi-Fi access-point observations submitted by firmware, returning
-      latitude/longitude back to the device or downstream system.
+      Location service that resolves device position from cellular tower and Wi-Fi access-point observations submitted
+      by firmware, returning latitude/longitude back to the device or downstream system.
     humanURL: https://docs.golioth.io/application-services/location/
     baseURL: https://api.golioth.io
     tags:
@@ -248,10 +207,9 @@ apis:
   - aid: golioth:firmware-sdk
     name: Golioth Firmware SDK
     description: >-
-      Open-source firmware SDK that connects embedded devices to the Golioth
-      cloud over CoAP. Supports Zephyr RTOS, nRF Connect SDK, ESP-IDF, and
-      ModusToolbox. Implements client APIs for LightDB State, LightDB Stream,
-      RPC, settings, logging, and OTA.
+      Open-source firmware SDK that connects embedded devices to the Golioth cloud over CoAP. Supports Zephyr RTOS, nRF
+      Connect SDK, ESP-IDF, and ModusToolbox. Implements client APIs for LightDB State, LightDB Stream, RPC, settings,
+      logging, and OTA.
     humanURL: https://github.com/golioth/golioth-firmware-sdk
     baseURL: https://github.com/golioth/golioth-firmware-sdk
     tags:
@@ -265,8 +223,8 @@ apis:
   - aid: golioth:python-tools
     name: Golioth Python Tools
     description: >-
-      Python tooling that wraps the Management API for scripting, automation,
-      and CLI-driven workflows against Golioth projects.
+      Python tooling that wraps the Management API for scripting, automation, and CLI-driven workflows against Golioth
+      projects.
     humanURL: https://github.com/golioth/python-golioth-tools
     baseURL: https://github.com/golioth/python-golioth-tools
     tags:
@@ -279,9 +237,8 @@ apis:
   - aid: golioth:tinymcp
     name: Golioth tinymcp
     description: >-
-      Open-source implementation of the Model Context Protocol (MCP) for
-      resource-constrained embedded devices, enabling large language models to
-      observe and control firmware via MCP tools.
+      Open-source implementation of the Model Context Protocol (MCP) for resource-constrained embedded devices, enabling
+      large language models to observe and control firmware via MCP tools.
     humanURL: https://github.com/golioth/tinymcp
     baseURL: https://github.com/golioth/tinymcp
     tags:
@@ -294,9 +251,8 @@ apis:
   - aid: golioth:pouch
     name: Golioth Pouch
     description: >-
-      Non-IP device-to-cloud transport protocol from Golioth, with a companion
-      Bluetooth gateway reference implementation (pouch-gateway) for relaying
-      pouch traffic to the Golioth cloud.
+      Non-IP device-to-cloud transport protocol from Golioth, with a companion Bluetooth gateway reference
+      implementation (pouch-gateway) for relaying pouch traffic to the Golioth cloud.
     humanURL: https://github.com/golioth/pouch
     baseURL: https://github.com/golioth/pouch
     tags:
