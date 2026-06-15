@@ -1,0 +1,4551 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golioth Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Artifacts_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/artifacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Artifacts_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/artifacts",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "package",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Artifacts_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Artifacts_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Artifacts_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Artifacts_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/artifacts/:artifactId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "artifactId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Boards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boards_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/boards",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Boards_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/boards/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Integrations_ListIntegrationTypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/integration-types",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_Validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations/validate",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations/:integrationId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations/:integrationId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations/:integrationId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations/:integrationId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Integrations_Test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/integrations/:integrationId/test",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Organizations_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations"
+          }
+        },
+        {
+          "info": {
+            "name": "Organizations_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Organizations_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Organizations_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Organizations_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Billing_CreateCustomerPortalSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/customer_portal_sessions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cohorts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cohorts_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Cohorts_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Cohorts_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Cohorts_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Cohorts_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts/:cohortId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deployments_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts/:cohortId/deployments",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Deployments_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts/:cohortId/deployments",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Deployments_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/cohorts/:cohortId/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Project Config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ProjectConfig_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/config",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "ProjectConfig_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/config/:settingId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "ProjectConfig_Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/config/:settingId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Location",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Location_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/location",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Networks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Networks_ListNetworks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/networks",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Networks_GetNetwork",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/networks/:networkId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "networkId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Networks_ListNetworkDevices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/networks/:networkId/devices",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "networkId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Networks_GetDeviceNetwork",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/network",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Notifications_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/notifications",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OTAEvents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OTAEvents_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/ota-events",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "packageId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "leave out end to get all events up to now"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "OTAEvents_ListStats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/ota-events/stats",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "leave out end to get all events up to now"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Packages_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/packages",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Packages_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/packages",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Packages_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/packages/:packageId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "packageId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Packages_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/packages/:packageId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "packageId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Packages_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/packages/:packageId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "packageId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Pipelines_GetUnmatchedData",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipeline-unmatched",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Pipelines_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipelines",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Pipelines_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipelines",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Pipelines_GetPipelineErrorStats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipelines/errors",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Pipelines_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Pipelines_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Pipelines_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Pipelines_GetPipelineErrors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pipelines/:pipelineId/errors",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PKI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "PKI_ListPKIPolicies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_CreatePKIPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/policies",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_GetPKIPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_UpdatePKIPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_DeletePKIPolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/policies/:policyId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_ListProviders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/providers",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_AddProvider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/providers",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_GetProvider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/providers/:providerId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_UpdateProvider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/providers/:providerId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_DeleteProvider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/providers/:providerId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PKI_GetProviderStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/pki/providers/:providerId/status",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Secrets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Secrets_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/secrets",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Secrets_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/secrets",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Secrets_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/secrets/:name",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Secrets_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/projects/:projectId/secrets/:name",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Usage_ListProjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/usage",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Usage_ListDevices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/usage/:projectId/devices",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Usage_GetDevice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/usage/:projectId/devices/:id",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Usage_ListPipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/usage/:projectId/pipelines",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Usage_GetPipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/organizations/:organizationId/usage/:projectId/pipelines/:id",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Projects_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Projects_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Projects_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Projects_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Projects_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Projects_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "APIKeys_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/apikeys",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "APIKeys_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/apikeys",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "APIKeys_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/apikeys/:apikeyId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "apikeyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "APIKeys_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/apikeys/:apikeyId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "apikeyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Blueprints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Blueprints_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/blueprints",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "blueprintName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Blueprints_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/blueprints",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Blueprints_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/blueprints/:blueprintId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Blueprints_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/blueprints/:blueprintId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Blueprints_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/blueprints/:blueprintId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Blueprints_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/blueprints/:blueprintId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Certificates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Certificates_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "TODO: filter by: device_id, enabled/disabled, start/end expiration date, cert type, may increase filters in the future"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Certificates_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Certificates_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates/:certificateId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Certificates_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates/:certificateId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Credentials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Credentials_Create2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/credentials",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Credentials_Delete2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/credentials/:credentialId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "credentialId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Credentials_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/credentials",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Credentials_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/credentials",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Credentials_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/credentials/:credentialId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "credentialId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Logs_GetLatestDeviceActivityLogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/device-activity-logs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Logs_GetLogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/logs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "module",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "term",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List devices in the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination page number"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Pagination items per page.\nMust be between 1 and 100 (inclusive). Default is 100."
+              },
+              {
+                "name": "deviceName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device name (full match)"
+              },
+              {
+                "name": "hardwareId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by hardware ID (full match)"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag IDs. Devices must have all specified tags."
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by blueprint ID"
+              },
+              {
+                "name": "statePath",
+                "value": "",
+                "type": "query",
+                "description": "Path to device state to include in the response"
+              },
+              {
+                "name": "streamPath",
+                "value": "",
+                "type": "query",
+                "description": "Path to device stream data to include in the response"
+              },
+              {
+                "name": "updatePath",
+                "value": "",
+                "type": "query",
+                "description": "Ignored, kept for backward compatibility"
+              },
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "Partial text search term to filter devices by name or hardware IDs"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Filter by enabled status"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by cohort ID"
+              }
+            ]
+          },
+          "docs": "List devices in the project, optionally applying filters and pagination parameters.\n\nDevices can be filtered by any property, and additionally filtered by a freetext search term."
+        },
+        {
+          "info": {
+            "name": "Create a new device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new device with a unique name in an existing project. The tags, blueprint and cohort must already have been created.\n\nIf no hardware ID is specified, a new hardware ID is generated. The device will also be assigned a unique device ID that can be used to fetch it later."
+        },
+        {
+          "info": {
+            "name": "Get a device by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              }
+            ]
+          },
+          "docs": "Get a device by its assigned device ID."
+        },
+        {
+          "info": {
+            "name": "Update a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query",
+                "description": "Field mask specifying which fields to update (only used for PATCH requests)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.\n\nFor the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties."
+        },
+        {
+          "info": {
+            "name": "Update a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.\n\nFor the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties."
+        },
+        {
+          "info": {
+            "name": "Delete a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              }
+            ]
+          },
+          "docs": "Permanently delete a device and all its data. Data already pushed to other services by this device will not be removed retroactively."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LightDB",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "DeviceState_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_Update3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_UpdateByTag3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devicesByTag/:tag/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_UpdateByTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devicesByTag/:tag/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_UpdateByTag2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devicesByTag/:tag/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceState_DeleteByTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devicesByTag/:tag/data/:path",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Provisioning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Provisioning_ProvisionDevice2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/provisioning",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Provisioning_ProvisionDevice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/provisioning",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Remote Procedure Call",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "DeviceRemoteProcedureCall_RemoteProcedureCall",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/rpc",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Settings_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/settings",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Settings_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/settings",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Settings_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/settings",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Settings_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/settings/:settingId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Settings_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/settings/:settingId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Settings_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/settings/:settingId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Settings_ListAllowedSettingsDataTypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/settings-data-types"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LightDB Stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "DeviceStream_GetDeviceStream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "encodedQuery",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query.timeBucket",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceStream_GetDeviceStream2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceStream_GetProjectStream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "encodedQuery",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query.timeBucket",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceStream_GetProjectStream2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Firmware",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Firmwares_Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/firmware/logs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reason",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Access_ListPermissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/permissions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Access_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/policies",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Access_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/policies/:policyId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Access_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/policies/:policyId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Access_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/policies/:policyId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Access_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/policies/:policyId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Access_ListUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/users",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Access_InviteUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/users/invitation",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Access_ListRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/roles"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Releases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Releases_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/releases",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "releaseTags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceTags",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "rollout",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Releases_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/releases",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Releases_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/releases/:releaseId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Releases_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/releases/:releaseId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Releases_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/releases/:releaseId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Releases_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/releases/:releaseId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "releaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tags_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/tags",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tagName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Tags_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/tags",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Tags_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/tags/:tagId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Tags_Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/tags/:tagId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Tags_Update2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/tags/:tagId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Tags_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/tags/:tagId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
