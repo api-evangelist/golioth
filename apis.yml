@@ -9,7 +9,7 @@ description: >-
   structured time-series data (LightDB Stream), key/value device state (LightDB State), logs, location, and a Pipelines
   data-routing engine that forwards device data to downstream cloud services. Authentication to the Management API is
   via project-scoped API keys passed in the x-api-key header.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - IoT
   - Device Management
