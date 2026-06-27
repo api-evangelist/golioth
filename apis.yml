@@ -59,15 +59,15 @@ apis:
         url: json-ld/golioth-context.jsonld
       - type: SpectralRuleset
         url: rules/golioth-rules.yml
-      - type: Example
+      - type: Examples
         url: examples/golioth-create-device-example.json
-      - type: Example
+      - type: Examples
         url: examples/golioth-create-release-example.json
-      - type: Example
+      - type: Examples
         url: examples/golioth-invoke-rpc-example.json
-      - type: Example
+      - type: Examples
         url: examples/golioth-query-stream-example.json
-      - type: Example
+      - type: Examples
         url: examples/golioth-create-pipeline-example.json
       - type: Plans
         url: plans/golioth-plans-pricing.yml
@@ -107,7 +107,7 @@ apis:
         url: https://docs.golioth.io/application-services/stream/
       - type: JSONSchema
         url: json-schema/golioth-stream-record-schema.json
-      - type: Example
+      - type: Examples
         url: examples/golioth-query-stream-example.json
   - aid: golioth:rpc
     name: Golioth Remote Procedure Call (RPC)
@@ -123,7 +123,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/device-management/rpc/
-      - type: Example
+      - type: Examples
         url: examples/golioth-invoke-rpc-example.json
   - aid: golioth:ota
     name: Golioth OTA Firmware Updates
@@ -143,7 +143,7 @@ apis:
         url: json-schema/golioth-release-schema.json
       - type: JSONStructure
         url: json-structure/golioth-release-structure.json
-      - type: Example
+      - type: Examples
         url: examples/golioth-create-release-example.json
   - aid: golioth:settings
     name: Golioth Device Settings
@@ -187,7 +187,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.golioth.io/data-routing/
-      - type: Example
+      - type: Examples
         url: examples/golioth-create-pipeline-example.json
   - aid: golioth:location
     name: Golioth Location
@@ -271,7 +271,7 @@ common:
     url: https://github.com/golioth
   - type: Console
     url: https://console.golioth.io/
-  - type: Forum
+  - type: Forums
     url: https://forum.golioth.io/
   - type: Blog
     url: https://blog.golioth.io/
@@ -283,7 +283,7 @@ common:
     url: https://golioth.io/pricing
   - type: LinkedIn
     url: https://www.linkedin.com/company/golioth/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.golioth.io/llms.txt
 integrations:
   - name: Zephyr RTOS
