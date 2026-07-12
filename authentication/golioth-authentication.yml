@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/golioth-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: API Key
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/golioth-openapi.yml
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/golioth-openapi.yml
