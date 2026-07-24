@@ -1,0 +1,285 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Usage API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Usage
+paths:
+  /v1/organizations/{organizationId}/usage:
+    get:
+      operationId: Usage_ListProjects
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsageResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Usage
+  /v1/organizations/{organizationId}/usage/{projectId}/devices:
+    get:
+      operationId: Usage_ListDevices
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsageResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Usage
+  /v1/organizations/{organizationId}/usage/{projectId}/devices/{id}:
+    get:
+      operationId: Usage_GetDevice
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsageResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Usage
+  /v1/organizations/{organizationId}/usage/{projectId}/pipelines:
+    get:
+      operationId: Usage_ListPipelines
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsageResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Usage
+  /v1/organizations/{organizationId}/usage/{projectId}/pipelines/{id}:
+    get:
+      operationId: Usage_GetPipeline
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsageResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Usage
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothListUsageResponse:
+      properties:
+        dates:
+          additionalProperties:
+            $ref: '#/components/schemas/goliothUsageSummaries'
+          type: object
+        entity:
+          $ref: '#/components/schemas/ListUsageResponseUsageEntity'
+        unit:
+          $ref: '#/components/schemas/goliothUsageUnit'
+      type: object
+    ListUsageResponseUsageEntity:
+      default: PROJECT
+      enum:
+      - PROJECT
+      - DEVICE
+      - PIPELINE
+      type: string
+    goliothUsageSummary:
+      properties:
+        id:
+          type: string
+        quantity:
+          format: uint64
+          type: string
+        service:
+          type: string
+      type: object
+    goliothUsageUnit:
+      default: KILOBYTES
+      enum:
+      - KILOBYTES
+      type: string
+    goliothUsageSummaries:
+      properties:
+        summaries:
+          items:
+            $ref: '#/components/schemas/goliothUsageSummary'
+          type: array
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

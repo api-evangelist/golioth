@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Boards API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Boards
+paths:
+  /v1/boards:
+    get:
+      operationId: Boards_List
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+      - in: query
+        name: platform
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListBoardsResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Boards
+  /v1/boards/{id}:
+    get:
+      operationId: Boards_Get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetBoardsResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Boards
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothListBoardsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothBoard'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothBoard:
+      properties:
+        arch:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        platforms:
+          items:
+            type: string
+          type: array
+      type: object
+    goliothGetBoardsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBoard'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

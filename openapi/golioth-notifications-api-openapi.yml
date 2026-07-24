@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Notifications API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Notifications
+paths:
+  /v1/organizations/{organizationId}/projects/{projectId}/notifications:
+    get:
+      operationId: Notifications_List
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: scope
+        schema:
+          type: string
+      - in: query
+        name: level
+        schema:
+          items:
+            enum:
+            - INFO
+            - WARNING
+            - ERROR
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListNotificationsResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Notifications
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothListNotificationsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothNotification'
+          type: array
+      type: object
+    NotificationLevel:
+      default: INFO
+      enum:
+      - INFO
+      - WARNING
+      - ERROR
+      type: string
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothNotification:
+      properties:
+        id:
+          type: string
+        level:
+          $ref: '#/components/schemas/NotificationLevel'
+        message:
+          type: string
+        scope:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        title:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

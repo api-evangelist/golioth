@@ -1,0 +1,338 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Settings API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Settings
+paths:
+  /v1/projects/{projectId}/devices/{deviceId}/settings:
+    get:
+      operationId: Settings_Get
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetSettingResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Settings
+  /v1/projects/{projectId}/settings:
+    get:
+      operationId: Settings_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: blueprintId
+        schema:
+          type: string
+      - in: query
+        name: deviceId
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListSettingResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Settings
+    post:
+      operationId: Settings_Create
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothSettingsCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateSettingResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Settings
+  /v1/projects/{projectId}/settings/{settingId}:
+    delete:
+      operationId: Settings_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: settingId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteSettingResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Settings
+    patch:
+      operationId: Settings_Update2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: settingId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothSettingUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateSettingResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Settings
+    put:
+      operationId: Settings_Update
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: settingId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothSettingUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateSettingResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Settings
+  /v1/settings-data-types:
+    get:
+      operationId: Settings_ListAllowedSettingsDataTypes
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListAllowedSettingsDataTypesResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Settings
+components:
+  schemas:
+    goliothCreateSettingResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothSetting:
+      properties:
+        blueprintId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        dataType:
+          type: string
+        deviceId:
+          type: string
+        id:
+          type: string
+        key:
+          type: string
+        projectId:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        value: {}
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothDeleteSettingResponse:
+      type: object
+    goliothSettingDataType:
+      properties:
+        type:
+          type: string
+      type: object
+    goliothSettingUpdate:
+      properties:
+        value: {}
+      type: object
+    goliothSettingsCreateBody:
+      properties:
+        blueprintId:
+          type: string
+        dataType:
+          type: string
+        deviceId:
+          type: string
+        key:
+          type: string
+        value: {}
+      type: object
+    goliothGetSettingResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSetting'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothUpdateSettingResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
+      type: object
+    goliothListAllowedSettingsDataTypesResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSettingDataType'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothListSettingResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSetting'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

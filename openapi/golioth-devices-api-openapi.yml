@@ -1,0 +1,574 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Devices API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Devices
+paths:
+  /v1/projects/{projectId}/devices:
+    get:
+      description: 'List devices in the project, optionally applying filters and pagination parameters.
+
+
+        Devices can be filtered by any property, and additionally filtered by a freetext search term.'
+      operationId: Devices_List
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - description: Pagination page number
+        in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - description: 'Pagination items per page.
+
+          Must be between 1 and 100 (inclusive). Default is 100.'
+        in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - description: Filter by device name (full match)
+        in: query
+        name: deviceName
+        schema:
+          type: string
+      - description: Filter by hardware ID (full match)
+        in: query
+        name: hardwareId
+        schema:
+          type: string
+      - description: Filter by tag IDs. Devices must have all specified tags.
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Filter by blueprint ID
+        in: query
+        name: blueprintId
+        schema:
+          type: string
+      - description: Path to device state to include in the response
+        in: query
+        name: statePath
+        schema:
+          type: string
+      - description: Path to device stream data to include in the response
+        in: query
+        name: streamPath
+        schema:
+          type: string
+      - description: Ignored, kept for backward compatibility
+        in: query
+        name: updatePath
+        schema:
+          type: string
+      - description: Partial text search term to filter devices by name or hardware IDs
+        in: query
+        name: term
+        schema:
+          type: string
+      - description: Filter by enabled status
+        in: query
+        name: enabled
+        schema:
+          type: boolean
+      - description: Filter by cohort ID
+        in: query
+        name: cohortId
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: List devices in the project
+      tags:
+      - Devices
+    post:
+      description: 'Create a new device with a unique name in an existing project. The tags, blueprint and cohort must already have been created.
+
+
+        If no hardware ID is specified, a new hardware ID is generated. The device will also be assigned a unique device ID that can be used to fetch it later.'
+      operationId: Devices_Create
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothDevicesCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Create a new device
+      tags:
+      - Devices
+  /v1/projects/{projectId}/devices/{deviceId}:
+    delete:
+      description: Permanently delete a device and all its data. Data already pushed to other services by this device will not be removed retroactively.
+      operationId: Devices_Delete
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - description: Device ID
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Delete a device
+      tags:
+      - Devices
+    get:
+      description: Get a device by its assigned device ID.
+      operationId: Devices_Get
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - description: Device ID
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Get a device by its ID
+      tags:
+      - Devices
+    patch:
+      description: 'Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.
+
+
+        For the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties.'
+      operationId: Devices_Update2
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - description: Device ID
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothDeviceUpdate'
+        description: Update to apply to the device
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Update a device
+      tags:
+      - Devices
+    put:
+      description: 'Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.
+
+
+        For the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties.'
+      operationId: Devices_Update
+      parameters:
+      - description: Project ID
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - description: Device ID
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - description: Field mask specifying which fields to update (only used for PATCH requests)
+        in: query
+        name: updateMask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothDeviceUpdate'
+        description: Update to apply to the device
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Update a device
+      tags:
+      - Devices
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothCreateDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
+    goliothSettingsStatus:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothSettingError'
+          title: List of setting errors reported by the device
+          type: array
+        reportedVersion:
+          title: Version of the settings reported by the device, if any
+          type: string
+        status:
+          title: 'Overall status of the settings, if known.
+
+            Possible values:
+
+            - "no-settings": There are no settings for this device
+
+            - "in-sync": The device settings are in sync with the server
+
+            - "out-of-sync": The device settings are out of sync with the server'
+          type: string
+        statusDetail:
+          title: Optional detailed status message
+          type: string
+        syncTime:
+          format: date-time
+          title: Timestamp of the last settings sync
+          type: string
+      type: object
+    goliothGetDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
+    goliothUpdateDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
+    goliothDevicesCreateBody:
+      properties:
+        blueprintId:
+          title: Optional Blueprint ID to assign to the device
+          type: string
+        cohortId:
+          title: Optional Cohort ID to assign the device to
+          type: string
+        hardwareIds:
+          items:
+            type: string
+          title: Optional list of hardware IDs to add to the device. A single hardware ID will be generated if none are specified
+          type: array
+        name:
+          title: Name of the device. Must be unique within the project
+          type: string
+        tagIds:
+          items:
+            type: string
+          title: Optional list of tag IDs to attach to the device
+          type: array
+      type: object
+    goliothDeleteDeviceResponse:
+      type: object
+    goliothDeviceUpdate:
+      properties:
+        addHardwareId:
+          items:
+            type: string
+          title: Hardware IDs to append for this device
+          type: array
+        addTagId:
+          items:
+            type: string
+          title: Tag IDs to append for this device
+          type: array
+        blueprintId:
+          title: Optional Blueprint ID to assign to the device
+          type: string
+        cohortId:
+          description: 'Optional Cohort ID to assign the device to.
+
+            Setting to an empty string removes the device from its cohort without assigning it to a new one.'
+          type: string
+        enabled:
+          title: Optionally enable or disable the device
+          type: boolean
+        hardwareIds:
+          items:
+            type: string
+          title: Full list of hardware IDs to set for this device, replacing any existing ones
+          type: array
+        name:
+          title: Optional new name for the device
+          type: string
+        removeHardwareId:
+          items:
+            type: string
+          title: Hardware IDs to remove from this device
+          type: array
+        removeTagId:
+          items:
+            type: string
+          title: Tag IDs to remove from this device
+          type: array
+        tagIds:
+          items:
+            type: string
+          title: Full list of tag IDs to set for this device, replacing any existing ones
+          type: array
+      type: object
+    goliothDevice:
+      properties:
+        blueprintId:
+          title: Blueprint ID assigned to the device
+          type: string
+        certificateId:
+          title: Certificate ID assigned to the device, if the device uses certificate-based authentication
+          type: string
+        cohortId:
+          title: Cohort ID of the cohort the device belongs to
+          type: string
+        createdAt:
+          format: date-time
+          title: Timestamp of device creation
+          type: string
+        data:
+          title: Requested device data
+          type: object
+        enabled:
+          title: Whether the device is enabled
+          type: boolean
+        hardwareIds:
+          items:
+            type: string
+          title: List of hardware IDs associated with the device
+          type: array
+        id:
+          title: Unique device ID
+          type: string
+        lastReport:
+          format: date-time
+          title: 'Deprecated: Use metadata.last_report instead'
+          type: string
+        metadata:
+          $ref: '#/components/schemas/goliothDeviceMetadata'
+        name:
+          title: Name of the device
+          type: string
+        status:
+          title: 'Deprecated: Use metadata.status instead'
+          type: string
+        tagIds:
+          items:
+            type: string
+          title: List of tag IDs attached to the device
+          type: array
+        updatedAt:
+          format: date-time
+          title: Timestamp of the last update to the device
+          type: string
+      type: object
+    goliothSettingError:
+      properties:
+        code:
+          format: int64
+          title: 'Error code.
+
+            Possible values:
+
+            - 0: Sync successful
+
+            - 1: Key not recognized
+
+            - 2: Key not valid
+
+            - 3: Value format not valid
+
+            - 4: Value outside of allowed range
+
+            - 5: Value string too long
+
+            - 6: General error'
+          type: integer
+        codeDescription:
+          title: Human-readable description of the error
+          type: string
+        deviceDetails:
+          title: Optional detailed information about the error provided by the device
+          type: string
+        key:
+          title: Key of the setting that has the error
+          type: string
+      type: object
+    goliothDeviceMetadata:
+      properties:
+        lastReport:
+          format: date-time
+          title: Timestamp of latest device activity
+          type: string
+        lastSeenOffline:
+          format: date-time
+          title: Deprecated, use last_seen_online instead
+          type: string
+        lastSeenOnline:
+          format: date-time
+          title: Timestamp of when the device was last seen online
+          type: string
+        lastSettingsStatus:
+          $ref: '#/components/schemas/goliothSettingsStatus'
+        status:
+          title: Deprecated, always returns `-`
+          type: string
+        update:
+          description: Latest Firmware Update information.
+          type: object
+      type: object
+    goliothListDeviceResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothDevice'
+          title: List of devices
+          type: array
+        page:
+          format: int64
+          title: Pagination page number
+          type: integer
+        perPage:
+          format: int64
+          title: Pagination items per page
+          type: integer
+        total:
+          format: int64
+          title: Total number of devices matching the request
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

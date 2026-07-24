@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access API Keys API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: API Keys
+paths:
+  /v1/projects/{projectId}/apikeys:
+    get:
+      operationId: APIKeys_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListAPIKeyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - API Keys
+    post:
+      operationId: APIKeys_Create
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothAPIKeysCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateAPIKeyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - API Keys
+  /v1/projects/{projectId}/apikeys/{apikeyId}:
+    delete:
+      operationId: APIKeys_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: apikeyId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteAPIKeyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - API Keys
+    patch:
+      operationId: APIKeys_Update
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: apikeyId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: name
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothAPIKeyUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateAPIKeyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - API Keys
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothAPIKeyType:
+      default: API_KEY
+      enum:
+      - API_KEY
+      - JWT_KEY
+      - API_KEY_V2
+      type: string
+    goliothAPIKeyUpdate:
+      properties:
+        keyTags:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+      type: object
+    goliothCreateAPIKeyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothAPIKey'
+      type: object
+    goliothUpdateAPIKeyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothAPIKey'
+      type: object
+    goliothDeleteAPIKeyResponse:
+      type: object
+    goliothListAPIKeyResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothAPIKey'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothAPIKey:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        key:
+          type: string
+        keyTags:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        policyId:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+        secret:
+          type: string
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+      type: object
+    goliothAPIKeysCreateBody:
+      properties:
+        keyTags:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

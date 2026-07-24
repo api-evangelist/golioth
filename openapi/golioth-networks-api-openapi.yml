@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Networks API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Networks
+paths:
+  /v1/organizations/{organizationId}/projects/{projectId}/networks:
+    get:
+      operationId: Networks_ListNetworks
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListNetworksResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Networks
+  /v1/organizations/{organizationId}/projects/{projectId}/networks/{networkId}:
+    get:
+      operationId: Networks_GetNetwork
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothNetworkResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Networks
+  /v1/organizations/{organizationId}/projects/{projectId}/networks/{networkId}/devices:
+    get:
+      operationId: Networks_ListNetworkDevices
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: networkId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListNetworkDevicesResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Networks
+  /v1/projects/{projectId}/devices/{deviceId}/network:
+    get:
+      operationId: Networks_GetDeviceNetwork
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothNetworkResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Networks
+components:
+  schemas:
+    goliothNetwork:
+      properties:
+        deviceCount:
+          format: int64
+          type: integer
+        id:
+          type: string
+        lastDevices:
+          items:
+            $ref: '#/components/schemas/goliothRecentDevice'
+          type: array
+        lastSeen:
+          format: date-time
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothRecentDevice:
+      properties:
+        id:
+          type: string
+        lastSeen:
+          format: date-time
+          type: string
+        name:
+          type: string
+      type: object
+    goliothListNetworkDevicesResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothNetworkDevice'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothNetworkResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothNetwork'
+      type: object
+    goliothListNetworksResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothNetwork'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothNetworkDevice:
+      properties:
+        firstSeenOnGateway:
+          format: date-time
+          type: string
+        gatewayId:
+          type: string
+        id:
+          type: string
+        lastSeen:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Deployments API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Deployments
+paths:
+  /v1/organizations/{organizationId}/projects/{projectId}/cohorts/{cohortId}/deployments:
+    get:
+      operationId: Deployments_List
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: cohortId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListDeploymentResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Deployments
+    post:
+      operationId: Deployments_Create
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: cohortId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothDeploymentsCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateDeploymentResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Deployments
+  /v1/organizations/{organizationId}/projects/{projectId}/cohorts/{cohortId}/deployments/{deploymentId}:
+    get:
+      operationId: Deployments_Get
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: cohortId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deploymentId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeploymentResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Deployments
+components:
+  schemas:
+    goliothDeploymentsCreateBody:
+      properties:
+        artifactIds:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothListDeploymentResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothDeployment'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothGetDeploymentResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDeployment'
+      type: object
+    goliothCreateDeploymentResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDeployment'
+      type: object
+    goliothDeployment:
+      properties:
+        artifactIds:
+          items:
+            type: string
+          type: array
+        createdAt:
+          format: date-time
+          type: string
+        deploymentId:
+          type: string
+        name:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

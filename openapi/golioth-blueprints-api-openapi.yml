@@ -1,0 +1,326 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Blueprints API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Blueprints
+paths:
+  /v1/projects/{projectId}/blueprints:
+    get:
+      operationId: Blueprints_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: blueprintName
+        schema:
+          type: string
+      - in: query
+        name: ids
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: boardId
+        schema:
+          type: string
+      - in: query
+        name: platform
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListBlueprintResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Blueprints
+    post:
+      operationId: Blueprints_Create
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothBlueprintsCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateBlueprintResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Blueprints
+  /v1/projects/{projectId}/blueprints/{blueprintId}:
+    delete:
+      operationId: Blueprints_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: blueprintId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteBlueprintResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Blueprints
+    get:
+      operationId: Blueprints_Get
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: blueprintId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetBlueprintResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Blueprints
+    patch:
+      operationId: Blueprints_Update2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: blueprintId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothBlueprintUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateBlueprintResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Blueprints
+    put:
+      operationId: Blueprints_Update
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: blueprintId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: updateMask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothBlueprintUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateBlueprintResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Blueprints
+components:
+  schemas:
+    goliothCreateBlueprintResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothUpdateBlueprintResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
+    goliothBlueprintsCreateBody:
+      properties:
+        boardId:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+      type: object
+    goliothBlueprint:
+      properties:
+        boardId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothListBlueprintResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothBlueprint'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothGetBlueprintResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
+    goliothBlueprintUpdate:
+      properties:
+        boardId:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+      type: object
+    goliothDeleteBlueprintResponse:
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

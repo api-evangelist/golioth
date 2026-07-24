@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Provisioning API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Provisioning
+paths:
+  /v1/projects/{projectId}/devices/{deviceId}/provisioning:
+    post:
+      operationId: Provisioning_ProvisionDevice2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvisioningProvisionDeviceBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothProvisionDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Provisioning
+  /v1/projects/{projectId}/provisioning:
+    post:
+      operationId: Provisioning_ProvisionDevice
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvisioningProvisionDeviceBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothProvisionDeviceResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Provisioning
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    ProvisioningProvisionDeviceBody:
+      properties:
+        blueprintId:
+          type: string
+        cohortId:
+          title: 'string publicKey
+
+            string encryption'
+          type: string
+        hardwareIds:
+          items:
+            type: string
+          type: array
+        identity:
+          type: string
+        name:
+          type: string
+        preSharedKey:
+          type: string
+        tagIds:
+          items:
+            type: string
+          type: array
+        type:
+          $ref: '#/components/schemas/goliothCredentialType'
+      type: object
+    goliothProvisionData:
+      properties:
+        deviceId:
+          type: string
+      type: object
+    goliothCredentialType:
+      default: PRE_SHARED_KEY
+      enum:
+      - PRE_SHARED_KEY
+      - ASYMMETRIC_KEY_PAIR
+      type: string
+    goliothProvisionDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvisionData'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

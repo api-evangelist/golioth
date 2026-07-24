@@ -1,0 +1,470 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Access
+paths:
+  /v1/projects/{projectId}/permissions:
+    get:
+      operationId: Access_ListPermissions
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListPermissionResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+  /v1/projects/{projectId}/policies:
+    get:
+      operationId: Access_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: userId
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListPolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+  /v1/projects/{projectId}/policies/{policyId}:
+    delete:
+      operationId: Access_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeletePolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+    get:
+      operationId: Access_Get
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetPolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+    patch:
+      operationId: Access_Update2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothPolicyUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdatePolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+    put:
+      operationId: Access_Update
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: updateMask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothPolicyUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdatePolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+  /v1/projects/{projectId}/users:
+    get:
+      operationId: Access_ListUsers
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListUsersResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+  /v1/projects/{projectId}/users/invitation:
+    post:
+      operationId: Access_InviteUser
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessInviteUserBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothInviteUserResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+  /v1/roles:
+    get:
+      operationId: Access_ListRoles
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListRoleResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Access
+components:
+  schemas:
+    goliothPermission:
+      properties:
+        action:
+          type: string
+        resource:
+          type: string
+      type: object
+    goliothInviteUserResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothGetPolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+      type: object
+    goliothPolicyUpdate:
+      properties:
+        addRoles:
+          items:
+            type: string
+          type: array
+        addTags:
+          items:
+            type: string
+          type: array
+        removeRoles:
+          items:
+            type: string
+          type: array
+        removeTags:
+          items:
+            type: string
+          type: array
+        roles:
+          items:
+            type: string
+          type: array
+        tagIds:
+          items:
+            type: string
+          type: array
+      type: object
+    goliothRole:
+      properties:
+        children:
+          items:
+            type: string
+          type: array
+        id:
+          type: string
+        name:
+          type: string
+        permissions:
+          items:
+            $ref: '#/components/schemas/goliothPermission'
+          type: array
+        type:
+          type: string
+      type: object
+    goliothListRoleResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothRole'
+          type: array
+      type: object
+    goliothPolicy:
+      properties:
+        conditionals:
+          $ref: '#/components/schemas/goliothConditionalMap'
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        resourceId:
+          type: string
+        resourceType:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+        updatedAt:
+          format: date-time
+          type: string
+        userId:
+          type: string
+      type: object
+    AccessInviteUserBody:
+      properties:
+        email:
+          type: string
+      type: object
+    goliothUpdatePolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+      type: object
+    goliothListPolicyResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPolicy'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothConditionalMap:
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    goliothListUsersResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothUser'
+          type: array
+      type: object
+    goliothUser:
+      properties:
+        email:
+          type: string
+        emailVerified:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        policyId:
+          type: string
+        profileUrl:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+      type: object
+    goliothListPermissionResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPermission'
+          type: array
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothDeletePolicyResponse:
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

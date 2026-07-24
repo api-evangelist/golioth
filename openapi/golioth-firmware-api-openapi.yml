@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Firmware API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Firmware
+paths:
+  /v1/projects/{projectId}/firmware/logs:
+    get:
+      operationId: Firmwares_Logs
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: version
+        schema:
+          type: string
+      - in: query
+        name: target
+        schema:
+          type: string
+      - in: query
+        name: state
+        schema:
+          type: string
+      - in: query
+        name: reason
+        schema:
+          type: string
+      - in: query
+        name: deviceId
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListFirmwareLogsResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Firmware
+components:
+  schemas:
+    goliothFirmwareLogEntry:
+      properties:
+        deviceId:
+          type: string
+        package:
+          type: string
+        reason:
+          type: string
+        reasonCode:
+          type: string
+        state:
+          type: string
+        stateCode:
+          type: string
+        target:
+          type: string
+        time:
+          format: date-time
+          type: string
+        version:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothListFirmwareLogsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothFirmwareLogEntry'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

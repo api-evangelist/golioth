@@ -1,0 +1,355 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access LightDB Stream API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: LightDB Stream
+paths:
+  /v1/projects/{projectId}/devices/{deviceId}/stream:
+    get:
+      operationId: DeviceStream_GetDeviceStream
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: interval
+        schema:
+          type: string
+      - in: query
+        name: encodedQuery
+        schema:
+          type: string
+      - in: query
+        name: query.timeBucket
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceStreamResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - LightDB Stream
+    post:
+      operationId: DeviceStream_GetDeviceStream2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceStreamGetDeviceStreamBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetDeviceStreamResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - LightDB Stream
+  /v1/projects/{projectId}/stream:
+    get:
+      operationId: DeviceStream_GetProjectStream
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: interval
+        schema:
+          type: string
+      - in: query
+        name: encodedQuery
+        schema:
+          type: string
+      - in: query
+        name: query.timeBucket
+        schema:
+          type: string
+      - in: query
+        name: deviceId
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProjectStreamResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - LightDB Stream
+    post:
+      operationId: DeviceStream_GetProjectStream2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceStreamGetProjectStreamBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProjectStreamResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - LightDB Stream
+components:
+  schemas:
+    DeviceStreamGetProjectStreamBody:
+      properties:
+        deviceId:
+          items:
+            type: string
+          type: array
+        encodedQuery:
+          type: string
+        end:
+          format: date-time
+          type: string
+        interval:
+          type: string
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        query:
+          $ref: '#/components/schemas/goliothDeviceStreamQuery'
+        start:
+          format: date-time
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothQueryFilter:
+      properties:
+        filters:
+          items:
+            $ref: '#/components/schemas/goliothQueryFilter'
+          type: array
+        op:
+          type: string
+        path:
+          type: string
+        value: {}
+      type: object
+    goliothGetProjectStreamResponse:
+      properties:
+        list:
+          items: {}
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothQueryField:
+      properties:
+        agg:
+          type: string
+        alias:
+          type: string
+        path:
+          type: string
+        type:
+          type: string
+      type: object
+    goliothGetDeviceStreamResponse:
+      properties:
+        list:
+          items: {}
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothDeviceStreamQuery:
+      properties:
+        fields:
+          items:
+            $ref: '#/components/schemas/goliothQueryField'
+          type: array
+        filters:
+          items:
+            $ref: '#/components/schemas/goliothQueryFilter'
+          type: array
+        timeBucket:
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    DeviceStreamGetDeviceStreamBody:
+      properties:
+        encodedQuery:
+          type: string
+        end:
+          format: date-time
+          type: string
+        interval:
+          type: string
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        query:
+          $ref: '#/components/schemas/goliothDeviceStreamQuery'
+        start:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

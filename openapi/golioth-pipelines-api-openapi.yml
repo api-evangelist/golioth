@@ -1,0 +1,471 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Pipelines API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Pipelines
+paths:
+  /v1/organizations/{organizationId}/projects/{projectId}/pipeline-unmatched:
+    get:
+      operationId: Pipelines_GetUnmatchedData
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothPipelineUnmatchedDataResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+  /v1/organizations/{organizationId}/projects/{projectId}/pipelines:
+    get:
+      operationId: Pipelines_List
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListPipelineResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+    post:
+      operationId: Pipelines_Create
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothPipelinesCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreatePipelineResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+  /v1/organizations/{organizationId}/projects/{projectId}/pipelines/errors:
+    get:
+      operationId: Pipelines_GetPipelineErrorStats
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetErrorStatsResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+  /v1/organizations/{organizationId}/projects/{projectId}/pipelines/{pipelineId}:
+    delete:
+      operationId: Pipelines_Delete
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipelineId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeletePipelineResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+    get:
+      operationId: Pipelines_Get
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipelineId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetPipelineResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+    put:
+      operationId: Pipelines_Update
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipelineId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothPipelineUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdatePipelineResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+  /v1/organizations/{organizationId}/projects/{projectId}/pipelines/{pipelineId}/errors:
+    get:
+      operationId: Pipelines_GetPipelineErrors
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: pipelineId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothPipelineErrors'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Pipelines
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothPipelineMetadata:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        name:
+          type: string
+        pipelineId:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothPipelineError:
+      properties:
+        error:
+          type: string
+        source:
+          type: string
+        step:
+          format: int32
+          type: integer
+        timestamp:
+          format: date-time
+          type: string
+        type:
+          type: string
+      type: object
+    goliothPipelineErrorSummaries:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothPipelineErrorCount'
+          type: array
+      type: object
+    goliothPipelineErrorCount:
+      properties:
+        errors:
+          format: int64
+          type: integer
+        id:
+          type: string
+      type: object
+    goliothPipelineErrors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothPipelineError'
+          type: array
+      type: object
+    goliothUpdatePipelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPipeline'
+      type: object
+    goliothPipelineUpdate:
+      properties:
+        enabled:
+          type: boolean
+        name:
+          type: string
+        pipeline:
+          format: byte
+          type: string
+      type: object
+    goliothGetErrorStatsResponse:
+      properties:
+        errors:
+          additionalProperties:
+            $ref: '#/components/schemas/goliothPipelineErrorSummaries'
+          type: object
+      type: object
+    goliothPipelinesCreateBody:
+      properties:
+        enabled:
+          type: boolean
+        name:
+          type: string
+        pipeline:
+          format: byte
+          type: string
+      type: object
+    goliothGetPipelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPipeline'
+      type: object
+    goliothPipelineUnmatchedDataResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPipelineUnmatchedData'
+          type: array
+      type: object
+    goliothPipelineUnmatchedData:
+      properties:
+        contentType:
+          type: string
+        path:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    goliothCreatePipelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPipeline'
+      type: object
+    goliothListPipelineResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPipelineMetadata'
+          type: array
+      type: object
+    goliothPipeline:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        name:
+          type: string
+        pipeline:
+          format: byte
+          type: string
+        pipelineId:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothDeletePipelineResponse:
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

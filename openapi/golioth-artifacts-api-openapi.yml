@@ -1,0 +1,325 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Artifacts API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Artifacts
+paths:
+  /v1/artifacts:
+    post:
+      operationId: Artifacts_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothCreateArtifactRequest'
+        description: ' (streaming inputs)'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateArtifactResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Artifacts
+  /v1/projects/{projectId}/artifacts:
+    get:
+      operationId: Artifacts_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: version
+        schema:
+          type: string
+      - in: query
+        name: blueprintId
+        schema:
+          type: string
+      - in: query
+        name: package
+        schema:
+          type: string
+      - in: query
+        name: ids
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListArtifactResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Artifacts
+  /v1/projects/{projectId}/artifacts/{artifactId}:
+    delete:
+      operationId: Artifacts_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: artifactId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteArtifactResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Artifacts
+    get:
+      operationId: Artifacts_Get
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: artifactId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetArtifactResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Artifacts
+    patch:
+      operationId: Artifacts_Update2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: artifactId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothArtifactUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateArtifactResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Artifacts
+    put:
+      operationId: Artifacts_Update
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: artifactId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: updateMask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothArtifactUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateArtifactResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Artifacts
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothArtifactUpdate:
+      type: object
+    goliothListArtifactResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothArtifact'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothUpdateArtifactResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
+      type: object
+    goliothCreateArtifactResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
+      type: object
+    goliothDeleteArtifactResponse:
+      type: object
+    goliothGetArtifactResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
+      type: object
+    goliothArtifact:
+      properties:
+        binaryInfo:
+          type: object
+        blueprintId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        package:
+          type: string
+        size:
+          format: uint64
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        version:
+          type: string
+      type: object
+    goliothCreateArtifactRequest:
+      properties:
+        blueprintId:
+          type: string
+        content:
+          format: byte
+          type: string
+        package:
+          type: string
+        projectId:
+          type: string
+        version:
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

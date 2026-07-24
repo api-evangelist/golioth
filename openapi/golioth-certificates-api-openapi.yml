@@ -1,0 +1,255 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Certificates API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Certificates
+paths:
+  /v1/projects/{projectId}/certificates:
+    get:
+      operationId: Certificates_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - description: 'TODO: filter by: device_id, enabled/disabled, start/end expiration date, cert type, may increase filters in the future'
+        in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListCertificateResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Certificates
+    post:
+      operationId: Certificates_Create
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothCertificatesCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateCertificateResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Certificates
+  /v1/projects/{projectId}/certificates/{certificateId}:
+    delete:
+      operationId: Certificates_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: certificateId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteCertificateResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Certificates
+    get:
+      operationId: Certificates_Get
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: certificateId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetCertificateResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Certificates
+components:
+  schemas:
+    goliothDeleteCertificateResponse:
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothListCertificateResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothCertificate'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothCertificatesCreateBody:
+      properties:
+        certFile:
+          format: byte
+          type: string
+        certType:
+          type: string
+        demo:
+          type: boolean
+      type: object
+    goliothGetCertificateResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
+      type: object
+    goliothCreateCertificateResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
+      type: object
+    goliothCertificate:
+      properties:
+        certType:
+          type: string
+        certificateContent:
+          $ref: '#/components/schemas/goliothCertificateContent'
+        createdAt:
+          format: date-time
+          type: string
+        demo:
+          type: boolean
+        enabled:
+          type: boolean
+        id:
+          type: string
+        projectId:
+          type: string
+      type: object
+    goliothCertificateContent:
+      properties:
+        issuer:
+          type: string
+        keyUsages:
+          items:
+            type: string
+          type: array
+        notAfter:
+          format: date-time
+          type: string
+        notBefore:
+          format: date-time
+          type: string
+        publicKey:
+          format: byte
+          type: string
+        publicKeyAlgorithm:
+          type: string
+        serialNumber:
+          type: string
+        signature:
+          format: byte
+          type: string
+        signatureAlgorithm:
+          type: string
+        subject:
+          type: string
+        version:
+          format: int64
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

@@ -1,0 +1,487 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Integrations API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Integrations
+paths:
+  /v1/integration-types:
+    get:
+      operationId: Integrations_ListIntegrationTypes
+      parameters:
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListIntegrationTypesResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+  /v1/projects/{projectId}/integrations:
+    get:
+      operationId: Integrations_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: ids
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: type
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListIntegrationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+    post:
+      operationId: Integrations_Create
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothIntegrationsCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateIntegrationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+  /v1/projects/{projectId}/integrations/validate:
+    post:
+      operationId: Integrations_Validate
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationsValidateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothIntegrationValidationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+  /v1/projects/{projectId}/integrations/{integrationId}:
+    delete:
+      operationId: Integrations_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: integrationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteIntegrationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+    get:
+      operationId: Integrations_Get
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: integrationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetIntegrationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+    patch:
+      operationId: Integrations_Update2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: integrationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothIntegrationUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateIntegrationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+    put:
+      operationId: Integrations_Update
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: integrationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: updateMask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothIntegrationUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateIntegrationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+  /v1/projects/{projectId}/integrations/{integrationId}/test:
+    post:
+      operationId: Integrations_Test
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: integrationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationsTestBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothTestIntegrationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Integrations
+components:
+  schemas:
+    goliothIntegration:
+      properties:
+        configuration:
+          type: object
+        createdAt:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothCreateIntegrationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
+      type: object
+    goliothListIntegrationTypesResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothIntegrationType'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothIntegrationUpdate:
+      properties:
+        configuration:
+          type: object
+        enabled:
+          type: boolean
+        name:
+          type: string
+      type: object
+    goliothIntegrationValidationResponse:
+      type: object
+    goliothIntegrationType:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/goliothIntegrationTypeAttribute'
+          type: array
+        description:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+      type: object
+    goliothListIntegrationResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothIntegration'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothIntegrationsCreateBody:
+      properties:
+        configuration:
+          type: object
+        enabled:
+          type: boolean
+        name:
+          type: string
+        type:
+          type: string
+      type: object
+    goliothTestIntegrationResponse:
+      properties:
+        result:
+          type: string
+      type: object
+    goliothGetIntegrationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
+      type: object
+    goliothIntegrationTypeAttribute:
+      properties:
+        description:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+        required:
+          type: boolean
+        type:
+          type: string
+      type: object
+    IntegrationsValidateBody:
+      properties:
+        configuration:
+          type: object
+        enabled:
+          type: boolean
+        name:
+          type: string
+        type:
+          type: string
+      type: object
+    IntegrationsTestBody:
+      properties:
+        data:
+          type: object
+      type: object
+    goliothDeleteIntegrationResponse:
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothUpdateIntegrationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

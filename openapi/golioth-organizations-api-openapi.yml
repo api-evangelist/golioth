@@ -1,0 +1,234 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Organizations API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Organizations
+paths:
+  /v1/organizations:
+    get:
+      operationId: Organizations_List
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListOrganizationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Organizations
+    post:
+      operationId: Organizations_Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothCreateOrganizationRequest'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateOrganizationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Organizations
+  /v1/organizations/{organizationId}:
+    get:
+      operationId: Organizations_Get
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetOrganizationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Organizations
+    patch:
+      operationId: Organizations_Update2
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothOrganizationUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateOrganizationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Organizations
+    put:
+      operationId: Organizations_Update
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: updateMask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothOrganizationUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateOrganizationResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Organizations
+components:
+  schemas:
+    goliothUpdateOrganizationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+      type: object
+    goliothListOrganizationResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothOrganization'
+          type: array
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothGetOrganizationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+      type: object
+    goliothCreateOrganizationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+      type: object
+    goliothOrganizationUpdate:
+      properties:
+        name:
+          type: string
+        website:
+          type: string
+      type: object
+    goliothCreateOrganizationRequest:
+      properties:
+        name:
+          type: string
+        website:
+          type: string
+      type: object
+    goliothOrganization:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        paymentStatus:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+        tier:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        website:
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

@@ -1,0 +1,379 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Releases API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Releases
+paths:
+  /v1/projects/{projectId}/releases:
+    get:
+      operationId: Releases_List
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: perPage
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: releaseTags
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: deviceTags
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: ids
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: rollout
+        schema:
+          type: boolean
+      - in: query
+        name: blueprintId
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListReleaseResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Releases
+    post:
+      operationId: Releases_Create
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothReleasesCreateBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreateReleaseResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Releases
+  /v1/projects/{projectId}/releases/{releaseId}:
+    delete:
+      operationId: Releases_Delete
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: releaseId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteReleaseResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Releases
+    get:
+      operationId: Releases_Get
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: releaseId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetReleaseResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Releases
+    patch:
+      operationId: Releases_Update2
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: releaseId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothReleaseUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateReleaseResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Releases
+    put:
+      operationId: Releases_Update
+      parameters:
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: releaseId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: updateMask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothReleaseUpdate'
+        required: true
+        x-originalParamName: update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateReleaseResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Releases
+components:
+  schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothReleasesCreateBody:
+      properties:
+        artifactIds:
+          items:
+            type: string
+          type: array
+        deviceTagIds:
+          items:
+            type: string
+          type: array
+        releaseTags:
+          items:
+            type: string
+          type: array
+        rollout:
+          type: boolean
+      type: object
+    goliothReleaseUpdate:
+      properties:
+        addDeviceTagId:
+          items:
+            type: string
+          type: array
+        addReleaseTag:
+          items:
+            type: string
+          type: array
+        deviceTagIds:
+          items:
+            type: string
+          type: array
+        releaseTags:
+          items:
+            type: string
+          type: array
+        removeDeviceTagId:
+          items:
+            type: string
+          type: array
+        removeReleaseTag:
+          items:
+            type: string
+          type: array
+        rollout:
+          type: boolean
+      type: object
+    goliothCreateReleaseResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+      type: object
+    goliothDeleteReleaseResponse:
+      type: object
+    goliothGetReleaseResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+      type: object
+    goliothRelease:
+      properties:
+        artifactIds:
+          items:
+            type: string
+          type: array
+        blueprintId:
+          type: string
+        cohortId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        deviceTagIds:
+          items:
+            type: string
+          type: array
+        id:
+          type: string
+        releaseTags:
+          items:
+            type: string
+          type: array
+        rollout:
+          type: boolean
+        sequenceNumber:
+          format: int64
+          type: string
+        suitManifest:
+          type: object
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothListReleaseResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothRelease'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothUpdateReleaseResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

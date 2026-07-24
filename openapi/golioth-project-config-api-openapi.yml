@@ -1,0 +1,218 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access Project Config API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: Project Config
+paths:
+  /v1/organizations/{organizationId}/projects/{projectId}/config:
+    get:
+      operationId: ProjectConfig_List
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListProjectConfigsResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Project Config
+  /v1/organizations/{organizationId}/projects/{projectId}/config/{settingId}:
+    get:
+      operationId: ProjectConfig_Get
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: settingId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProjectConfigResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Project Config
+    put:
+      operationId: ProjectConfig_Set
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: settingId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectConfigSetBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothSetProjectConfigResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - Project Config
+components:
+  schemas:
+    goliothProjectConfigValue:
+      properties:
+        boolean:
+          type: boolean
+        integer:
+          format: int32
+          type: integer
+        string:
+          type: string
+      type: object
+    ProjectConfigSetBody:
+      properties:
+        value:
+          $ref: '#/components/schemas/goliothProjectConfigValue'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothListProjectConfigsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothProjectConfigSetting'
+          type: array
+      type: object
+    goliothProjectConfigValueRange:
+      properties:
+        max:
+          format: int32
+          type: integer
+        min:
+          format: int32
+          type: integer
+      type: object
+    goliothProjectConfigSetting:
+      properties:
+        default:
+          $ref: '#/components/schemas/goliothProjectConfigValue'
+        description:
+          type: string
+        disabled:
+          $ref: '#/components/schemas/goliothProjectConfigDisabled'
+        id:
+          type: string
+        name:
+          type: string
+        range:
+          $ref: '#/components/schemas/goliothProjectConfigValueRange'
+        type:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        value:
+          $ref: '#/components/schemas/goliothProjectConfigValue'
+      type: object
+    goliothProjectConfigDisabled:
+      properties:
+        description:
+          type: string
+        reason:
+          type: string
+      type: object
+    goliothSetProjectConfigResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProjectConfigSetting'
+      type: object
+    goliothGetProjectConfigResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProjectConfigSetting'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io

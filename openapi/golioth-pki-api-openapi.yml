@@ -1,0 +1,563 @@
+openapi: 3.1.0
+info:
+  title: Golioth Management Access PKI API
+  version: '1.0'
+  description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
+servers:
+- url: https://api.golioth.io
+security:
+- API Key: []
+  Bearer: []
+tags:
+- name: PKI
+paths:
+  /v1/organizations/{organizationId}/projects/{projectId}/pki/policies:
+    get:
+      operationId: PKI_ListPKIPolicies
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListPKIPoliciesResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+    post:
+      operationId: PKI_CreatePKIPolicy
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PKICreatePKIPolicyBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothCreatePKIPolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+  /v1/organizations/{organizationId}/projects/{projectId}/pki/policies/{policyId}:
+    delete:
+      operationId: PKI_DeletePKIPolicy
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeletePKIPolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+    get:
+      operationId: PKI_GetPKIPolicy
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetPKIPolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+    put:
+      operationId: PKI_UpdatePKIPolicy
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: policyId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PKIUpdatePKIPolicyBody'
+        required: true
+        x-originalParamName: body
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdatePKIPolicyResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+  /v1/organizations/{organizationId}/projects/{projectId}/pki/providers:
+    get:
+      operationId: PKI_ListProviders
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothListProviderResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+    post:
+      operationId: PKI_AddProvider
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothProviderConfig'
+        required: true
+        x-originalParamName: config
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothAddProviderResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+  /v1/organizations/{organizationId}/projects/{projectId}/pki/providers/{providerId}:
+    delete:
+      operationId: PKI_DeleteProvider
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: providerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothDeleteProviderResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+    get:
+      operationId: PKI_GetProvider
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: providerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProviderResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+    put:
+      operationId: PKI_UpdateProvider
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: providerId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/goliothProviderConfig'
+        required: true
+        x-originalParamName: config
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothUpdateProviderResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+  /v1/organizations/{organizationId}/projects/{projectId}/pki/providers/{providerId}/status:
+    get:
+      operationId: PKI_GetProviderStatus
+      parameters:
+      - in: path
+        name: organizationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: providerId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/goliothGetProviderStatusResponse'
+          description: A successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      tags:
+      - PKI
+components:
+  schemas:
+    goliothAWSProviderOptions:
+      properties:
+        accessKey:
+          $ref: '#/components/schemas/goliothAWSAuthOptionsAccessKey'
+        region:
+          title: AWS region, e.g. us-east-1
+          type: string
+        webIdentity:
+          $ref: '#/components/schemas/goliothAWSAuthOptionsWebIdentity'
+      type: object
+    goliothAWSProviderOptionsResponse:
+      properties:
+        accessKey:
+          type: string
+        region:
+          title: AWS region, e.g. us-east-1
+          type: string
+        webIdentity:
+          $ref: '#/components/schemas/goliothAWSAuthOptionsWebIdentity'
+      type: object
+    goliothListProviderResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothProvider'
+          type: array
+      type: object
+    goliothAddProviderResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvider'
+      type: object
+    PKICreatePKIPolicyBody:
+      properties:
+        policyId:
+          type: string
+        providerId:
+          type: string
+        type:
+          type: string
+      type: object
+    goliothListPKIPoliciesResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPKIPolicy'
+          type: array
+      type: object
+    goliothDeleteProviderResponse:
+      type: object
+    goliothProviderConfig:
+      properties:
+        aws:
+          $ref: '#/components/schemas/goliothAWSProviderOptions'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothAWSAuthOptionsAccessKey:
+      properties:
+        accessKeyId:
+          type: string
+        secretAccessKey:
+          type: string
+      title: Access key based authentication
+      type: object
+    goliothDeletePKIPolicyResponse:
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothProvider:
+      properties:
+        aws:
+          $ref: '#/components/schemas/goliothAWSProviderOptionsResponse'
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothAWSAuthOptionsWebIdentity:
+      properties:
+        roleArn:
+          description: ARN for the AWS IAM Role the Golioth PKI Service should assume.
+          type: string
+      title: WebIdentity based authentication
+      type: object
+    goliothUpdateProviderResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvider'
+      type: object
+    goliothUpdatePKIPolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPKIPolicy'
+      type: object
+    goliothGetProviderStatusResponse:
+      properties:
+        caCerts:
+          format: int64
+          type: integer
+        error:
+          type: string
+        id:
+          type: string
+      type: object
+    goliothGetProviderResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvider'
+      type: object
+    PKIUpdatePKIPolicyBody:
+      properties:
+        providerId:
+          type: string
+        type:
+          type: string
+      type: object
+    goliothCreatePKIPolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPKIPolicy'
+      type: object
+    goliothPKIPolicy:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        providerId:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothGetPKIPolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPKIPolicy'
+      type: object
+  securitySchemes:
+    API Key:
+      in: header
+      name: x-api-key
+      type: apiKey
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: golioth API
+  url: https://docs.golioth.io
