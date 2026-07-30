@@ -9,7 +9,20 @@ description: >-
   structured time-series data (LightDB Stream), key/value device state (LightDB State), logs, location, and a Pipelines
   data-routing engine that forwards device data to downstream cloud services. Authentication to the Management API is
   via project-scoped API keys passed in the x-api-key header.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/golioth.png
 tags:
   - IoT
   - Device Management
@@ -22,246 +35,1775 @@ created: '2026-05-23'
 modified: '2026-05-25'
 specificationVersion: '0.19'
 apis:
-  - aid: golioth:management-api
-    name: Golioth Management API
-    description: >-
-      REST API for managing Golioth projects, devices, credentials, blueprints, tags, settings, OTA firmware artifacts
-      and releases, RPC, logs, and Pipelines. Documented with an OpenAPI 3 definition served by the API itself.
-      Authenticated with a project-scoped API key in the x-api-key header.
-    humanURL: https://docs.golioth.io/reference/management-api/
-    baseURL: https://api.golioth.io
-    tags:
-      - Device Management
-      - Projects
-      - REST
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/reference/management-api/
-      - type: OpenAPI
-        url: openapi/golioth-openapi.yml
-      - type: OpenAPI
-        url: https://api.golioth.io/openapi.json
-      - type: Swagger
-        url: https://api.golioth.io/swagger.json
-      - type: Authentication
-        url: https://docs.golioth.io/reference/management-api/auth
-      - type: JSONSchema
-        url: json-schema/golioth-device-schema.json
-      - type: JSONSchema
-        url: json-schema/golioth-release-schema.json
-      - type: JSONSchema
-        url: json-schema/golioth-stream-record-schema.json
-      - type: JSONStructure
-        url: json-structure/golioth-device-structure.json
-      - type: JSONStructure
-        url: json-structure/golioth-release-structure.json
-      - type: JSONLD
-        url: json-ld/golioth-context.jsonld
-      - type: SpectralRuleset
-        url: rules/golioth-rules.yml
-      - type: Examples
-        url: examples/golioth-create-device-example.json
-      - type: Examples
-        url: examples/golioth-create-release-example.json
-      - type: Examples
-        url: examples/golioth-invoke-rpc-example.json
-      - type: Examples
-        url: examples/golioth-query-stream-example.json
-      - type: Examples
-        url: examples/golioth-create-pipeline-example.json
-      - type: Plans
-        url: plans/golioth-plans-pricing.yml
-      - type: RateLimits
-        url: rate-limits/golioth-rate-limits.yml
-      - type: FinOps
-        url: finops/golioth-finops.yml
-      - type: Vocabulary
-        url: vocabulary/golioth-vocabulary.yml
-  - aid: golioth:lightdb-state
-    name: Golioth LightDB State
-    description: >-
-      Per-device key/value state store. Devices and cloud services read and write structured state (JSON/CBOR) that is
-      synchronized between device and cloud over CoAP.
-    humanURL: https://docs.golioth.io/application-services/lightdb/
-    baseURL: https://api.golioth.io
-    tags:
-      - LightDB
-      - State
-      - Device Data
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/application-services/lightdb/
-  - aid: golioth:lightdb-stream
-    name: Golioth LightDB Stream
-    description: >-
-      Time-series ingest endpoint for streaming sensor and telemetry data from devices. Stored data can be queried and
-      routed downstream via Pipelines.
-    humanURL: https://docs.golioth.io/application-services/stream/
-    baseURL: https://api.golioth.io
-    tags:
-      - Time Series
-      - Telemetry
-      - Stream
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/application-services/stream/
-      - type: JSONSchema
-        url: json-schema/golioth-stream-record-schema.json
-      - type: Examples
-        url: examples/golioth-query-stream-example.json
-  - aid: golioth:rpc
-    name: Golioth Remote Procedure Call (RPC)
-    description: >-
-      Bidirectional remote-procedure-call service. The cloud invokes device-side methods registered by firmware and
-      receives the response, enabling on-demand diagnostics and control.
-    humanURL: https://docs.golioth.io/device-management/rpc/
-    baseURL: https://api.golioth.io
-    tags:
-      - RPC
-      - Device Management
-      - Control
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/device-management/rpc/
-      - type: Examples
-        url: examples/golioth-invoke-rpc-example.json
-  - aid: golioth:ota
-    name: Golioth OTA Firmware Updates
-    description: >-
-      Over-the-air firmware update service. Upload artifacts, group them into releases, target devices by tag or
-      blueprint, and roll out updates with progress tracking and rollback.
-    humanURL: https://docs.golioth.io/device-management/ota/
-    baseURL: https://api.golioth.io
-    tags:
-      - OTA
-      - Firmware
-      - Updates
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/device-management/ota/
-      - type: JSONSchema
-        url: json-schema/golioth-release-schema.json
-      - type: JSONStructure
-        url: json-structure/golioth-release-structure.json
-      - type: Examples
-        url: examples/golioth-create-release-example.json
-  - aid: golioth:settings
-    name: Golioth Device Settings
-    description: >-
-      Cloud-managed settings pushed to one device, a group, or an entire fleet. Firmware subscribes to settings keys and
-      receives updates without requiring a firmware release.
-    humanURL: https://docs.golioth.io/device-management/settings/
-    baseURL: https://api.golioth.io
-    tags:
-      - Settings
-      - Configuration
-      - Fleet
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/device-management/settings/
-  - aid: golioth:logging
-    name: Golioth Logging
-    description: >-
-      Centralized device logging. Firmware emits structured log lines that are collected, indexed, and made queryable
-      via the console and API.
-    humanURL: https://docs.golioth.io/device-management/logging/
-    baseURL: https://api.golioth.io
-    tags:
-      - Logs
-      - Observability
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/device-management/logging/
-  - aid: golioth:pipelines
-    name: Golioth Pipelines
-    description: >-
-      Data routing and transformation engine. Pipelines describe how data arriving from devices is filtered,
-      transformed, and forwarded to downstream destinations such as AWS S3, GCP Pub/Sub, Azure Event Hubs, InfluxDB,
-      MongoDB, and generic webhooks.
-    humanURL: https://docs.golioth.io/data-routing/
-    baseURL: https://api.golioth.io
-    tags:
-      - Pipelines
-      - Data Routing
-      - Integration
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/data-routing/
-      - type: Examples
-        url: examples/golioth-create-pipeline-example.json
-  - aid: golioth:location
-    name: Golioth Location
-    description: >-
-      Location service that resolves device position from cellular tower and Wi-Fi access-point observations submitted
-      by firmware, returning latitude/longitude back to the device or downstream system.
-    humanURL: https://docs.golioth.io/application-services/location/
-    baseURL: https://api.golioth.io
-    tags:
-      - Location
-      - Geolocation
-      - Cellular
-      - WiFi
-    properties:
-      - type: Documentation
-        url: https://docs.golioth.io/application-services/location/
-  - aid: golioth:firmware-sdk
-    name: Golioth Firmware SDK
-    description: >-
-      Open-source firmware SDK that connects embedded devices to the Golioth cloud over CoAP. Supports Zephyr RTOS, nRF
-      Connect SDK, ESP-IDF, and ModusToolbox. Implements client APIs for LightDB State, LightDB Stream, RPC, settings,
-      logging, and OTA.
-    humanURL: https://github.com/golioth/golioth-firmware-sdk
-    baseURL: https://github.com/golioth/golioth-firmware-sdk
-    tags:
-      - SDK
-      - Firmware
-      - Zephyr
-      - ESP-IDF
-    properties:
-      - type: Repository
-        url: https://github.com/golioth/golioth-firmware-sdk
-  - aid: golioth:python-tools
-    name: Golioth Python Tools
-    description: >-
-      Python tooling that wraps the Management API for scripting, automation, and CLI-driven workflows against Golioth
-      projects.
-    humanURL: https://github.com/golioth/python-golioth-tools
-    baseURL: https://github.com/golioth/python-golioth-tools
-    tags:
-      - SDK
-      - Python
-      - CLI
-    properties:
-      - type: Repository
-        url: https://github.com/golioth/python-golioth-tools
-  - aid: golioth:tinymcp
-    name: Golioth tinymcp
-    description: >-
-      Open-source implementation of the Model Context Protocol (MCP) for resource-constrained embedded devices, enabling
-      large language models to observe and control firmware via MCP tools.
-    humanURL: https://github.com/golioth/tinymcp
-    baseURL: https://github.com/golioth/tinymcp
-    tags:
-      - MCP
-      - AI
-      - Embedded
-    properties:
-      - type: Repository
-        url: https://github.com/golioth/tinymcp
-  - aid: golioth:pouch
-    name: Golioth Pouch
-    description: >-
-      Non-IP device-to-cloud transport protocol from Golioth, with a companion Bluetooth gateway reference
-      implementation (pouch-gateway) for relaying pouch traffic to the Golioth cloud.
-    humanURL: https://github.com/golioth/pouch
-    baseURL: https://github.com/golioth/pouch
-    tags:
-      - Protocol
-      - Bluetooth
-      - Gateway
-    properties:
-      - type: Repository
-        url: https://github.com/golioth/pouch
+- aid: golioth:lightdb-state
+  name: Golioth LightDB State
+  description: >-
+    Per-device key/value state store. Devices and cloud services read and write structured state (JSON/CBOR)
+    that is synchronized between device and cloud over CoAP.
+  humanURL: https://docs.golioth.io/application-services/lightdb/
+  baseURL: https://api.golioth.io
+  tags:
+  - LightDB
+  - State
+  - Device Data
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/application-services/lightdb/
+- aid: golioth:lightdb-stream
+  name: Golioth LightDB Stream
+  description: >-
+    Time-series ingest endpoint for streaming sensor and telemetry data from devices. Stored data can
+    be queried and routed downstream via Pipelines.
+  humanURL: https://docs.golioth.io/application-services/stream/
+  baseURL: https://api.golioth.io
+  tags:
+  - Time Series
+  - Telemetry
+  - Stream
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/application-services/stream/
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+- aid: golioth:rpc
+  name: Golioth Remote Procedure Call (RPC)
+  description: >-
+    Bidirectional remote-procedure-call service. The cloud invokes device-side methods registered by firmware
+    and receives the response, enabling on-demand diagnostics and control.
+  humanURL: https://docs.golioth.io/device-management/rpc/
+  baseURL: https://api.golioth.io
+  tags:
+  - RPC
+  - Device Management
+  - Control
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/device-management/rpc/
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+- aid: golioth:ota
+  name: Golioth OTA Firmware Updates
+  description: >-
+    Over-the-air firmware update service. Upload artifacts, group them into releases, target devices by
+    tag or blueprint, and roll out updates with progress tracking and rollback.
+  humanURL: https://docs.golioth.io/device-management/ota/
+  baseURL: https://api.golioth.io
+  tags:
+  - OTA
+  - Firmware
+  - Updates
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/device-management/ota/
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+- aid: golioth:settings
+  name: Golioth Device Settings
+  description: >-
+    Cloud-managed settings pushed to one device, a group, or an entire fleet. Firmware subscribes to settings
+    keys and receives updates without requiring a firmware release.
+  humanURL: https://docs.golioth.io/device-management/settings/
+  baseURL: https://api.golioth.io
+  tags:
+  - Settings
+  - Configuration
+  - Fleet
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/device-management/settings/
+- aid: golioth:logging
+  name: Golioth Logging
+  description: >-
+    Centralized device logging. Firmware emits structured log lines that are collected, indexed, and made
+    queryable via the console and API.
+  humanURL: https://docs.golioth.io/device-management/logging/
+  baseURL: https://api.golioth.io
+  tags:
+  - Logs
+  - Observability
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/device-management/logging/
+- aid: golioth:pipelines
+  name: Golioth Pipelines
+  description: >-
+    Data routing and transformation engine. Pipelines describe how data arriving from devices is filtered,
+    transformed, and forwarded to downstream destinations such as AWS S3, GCP Pub/Sub, Azure Event Hubs,
+    InfluxDB, MongoDB, and generic webhooks.
+  humanURL: https://docs.golioth.io/data-routing/
+  baseURL: https://api.golioth.io
+  tags:
+  - Pipelines
+  - Data Routing
+  - Integration
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/data-routing/
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+- aid: golioth:location
+  name: Golioth Location
+  description: >-
+    Location service that resolves device position from cellular tower and Wi-Fi access-point observations
+    submitted by firmware, returning latitude/longitude back to the device or downstream system.
+  humanURL: https://docs.golioth.io/application-services/location/
+  baseURL: https://api.golioth.io
+  tags:
+  - Location
+  - Geolocation
+  - Cellular
+  - WiFi
+  properties:
+  - type: Documentation
+    url: https://docs.golioth.io/application-services/location/
+- aid: golioth:firmware-sdk
+  name: Golioth Firmware SDK
+  description: >-
+    Open-source firmware SDK that connects embedded devices to the Golioth cloud over CoAP. Supports Zephyr
+    RTOS, nRF Connect SDK, ESP-IDF, and ModusToolbox. Implements client APIs for LightDB State, LightDB
+    Stream, RPC, settings, logging, and OTA.
+  humanURL: https://github.com/golioth/golioth-firmware-sdk
+  baseURL: https://github.com/golioth/golioth-firmware-sdk
+  tags:
+  - SDK
+  - Firmware
+  - Zephyr
+  - ESP-IDF
+  properties:
+  - type: Repository
+    url: https://github.com/golioth/golioth-firmware-sdk
+- aid: golioth:python-tools
+  name: Golioth Python Tools
+  description: >-
+    Python tooling that wraps the Management API for scripting, automation, and CLI-driven workflows against
+    Golioth projects.
+  humanURL: https://github.com/golioth/python-golioth-tools
+  baseURL: https://github.com/golioth/python-golioth-tools
+  tags:
+  - SDK
+  - Python
+  - CLI
+  properties:
+  - type: Repository
+    url: https://github.com/golioth/python-golioth-tools
+- aid: golioth:tinymcp
+  name: Golioth tinymcp
+  description: >-
+    Open-source implementation of the Model Context Protocol (MCP) for resource-constrained embedded devices,
+    enabling large language models to observe and control firmware via MCP tools.
+  humanURL: https://github.com/golioth/tinymcp
+  baseURL: https://github.com/golioth/tinymcp
+  tags:
+  - MCP
+  - AI
+  - Embedded
+  properties:
+  - type: Repository
+    url: https://github.com/golioth/tinymcp
+- aid: golioth:pouch
+  name: Golioth Pouch
+  description: >-
+    Non-IP device-to-cloud transport protocol from Golioth, with a companion Bluetooth gateway reference
+    implementation (pouch-gateway) for relaying pouch traffic to the Golioth cloud.
+  humanURL: https://github.com/golioth/pouch
+  baseURL: https://github.com/golioth/pouch
+  tags:
+  - Protocol
+  - Bluetooth
+  - Gateway
+  properties:
+  - type: Repository
+    url: https://github.com/golioth/pouch
+- aid: golioth:golioth-access-api
+  name: Golioth Access API
+  description: The Access API from Golioth — 6 operation(s) for access.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Access
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-access-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-api-keys-api
+  name: Golioth API Keys API
+  description: The API Keys API from Golioth — 2 operation(s) for api keys.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-artifacts-api
+  name: Golioth Artifacts API
+  description: The Artifacts API from Golioth — 3 operation(s) for artifacts.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Artifacts
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-artifacts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-billing-api
+  name: Golioth Billing API
+  description: The Billing API from Golioth — 1 operation(s) for billing.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-blueprints-api
+  name: Golioth Blueprints API
+  description: The Blueprints API from Golioth — 2 operation(s) for blueprints.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Blueprints
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-blueprints-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-boards-api
+  name: Golioth Boards API
+  description: The Boards API from Golioth — 2 operation(s) for boards.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Boards
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-boards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-certificates-api
+  name: Golioth Certificates API
+  description: The Certificates API from Golioth — 2 operation(s) for certificates.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Certificates
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-certificates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-cohorts-api
+  name: Golioth Cohorts API
+  description: The Cohorts API from Golioth — 2 operation(s) for cohorts.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Cohorts
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-cohorts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-credentials-api
+  name: Golioth Credentials API
+  description: The Credentials API from Golioth — 4 operation(s) for credentials.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-deployments-api
+  name: Golioth Deployments API
+  description: The Deployments API from Golioth — 2 operation(s) for deployments.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-deployments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-devices-api
+  name: Golioth Devices API
+  description: The Devices API from Golioth — 2 operation(s) for devices.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Devices
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-devices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-firmware-api
+  name: Golioth Firmware API
+  description: The Firmware API from Golioth — 1 operation(s) for firmware.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Firmware
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-firmware-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-integrations-api
+  name: Golioth Integrations API
+  description: The Integrations API from Golioth — 5 operation(s) for integrations.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-lightdb-api
+  name: Golioth LightDB API
+  description: The LightDB API from Golioth — 2 operation(s) for lightdb.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - LightDB
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-lightdb-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-lightdb-stream-api
+  name: Golioth LightDB Stream API
+  description: The LightDB Stream API from Golioth — 2 operation(s) for lightdb stream.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - LightDB Stream
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-lightdb-stream-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-location-api
+  name: Golioth Location API
+  description: The Location API from Golioth — 1 operation(s) for location.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Location
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-location-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-logs-api
+  name: Golioth Logs API
+  description: The Logs API from Golioth — 2 operation(s) for logs.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-logs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-networks-api
+  name: Golioth Networks API
+  description: The Networks API from Golioth — 4 operation(s) for networks.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Networks
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-networks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-notifications-api
+  name: Golioth Notifications API
+  description: The Notifications API from Golioth — 1 operation(s) for notifications.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-organizations-api
+  name: Golioth Organizations API
+  description: The Organizations API from Golioth — 2 operation(s) for organizations.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-otaevents-api
+  name: Golioth OTAEvents API
+  description: The OTAEvents API from Golioth — 2 operation(s) for otaevents.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - OTAEvents
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-otaevents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-packages-api
+  name: Golioth Packages API
+  description: The Packages API from Golioth — 2 operation(s) for packages.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-packages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-pipelines-api
+  name: Golioth Pipelines API
+  description: The Pipelines API from Golioth — 5 operation(s) for pipelines.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-pki-api
+  name: Golioth PKI API
+  description: The PKI API from Golioth — 5 operation(s) for pki.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - PKI
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-pki-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-project-config-api
+  name: Golioth Project Config API
+  description: The Project Config API from Golioth — 2 operation(s) for project config.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Project Config
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-project-config-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-projects-api
+  name: Golioth Projects API
+  description: The Projects API from Golioth — 2 operation(s) for projects.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-provisioning-api
+  name: Golioth Provisioning API
+  description: The Provisioning API from Golioth — 2 operation(s) for provisioning.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Provisioning
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-provisioning-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-releases-api
+  name: Golioth Releases API
+  description: The Releases API from Golioth — 2 operation(s) for releases.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Releases
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-releases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-remote-procedure-call-api
+  name: Golioth Remote Procedure Call API
+  description: The Remote Procedure Call API from Golioth — 1 operation(s) for remote procedure call.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Remote Procedure Call
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-remote-procedure-call-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-secrets-api
+  name: Golioth Secrets API
+  description: The Secrets API from Golioth — 2 operation(s) for secrets.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-secrets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-settings-api
+  name: Golioth Settings API
+  description: The Settings API from Golioth — 4 operation(s) for settings.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-tags-api
+  name: Golioth Tags API
+  description: The Tags API from Golioth — 2 operation(s) for tags.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
+- aid: golioth:golioth-usage-api
+  name: Golioth Usage API
+  description: The Usage API from Golioth — 5 operation(s) for usage.
+  humanURL: https://docs.golioth.io/reference/management-api/
+  baseURL: https://api.golioth.io
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/golioth-usage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.golioth.io/reference/management-api/
+  - type: Swagger
+    url: https://api.golioth.io/swagger.json
+  - type: Authentication
+    url: https://docs.golioth.io/reference/management-api/auth
+  - type: JSONSchema
+    url: json-schema/golioth-device-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-release-schema.json
+  - type: JSONSchema
+    url: json-schema/golioth-stream-record-schema.json
+  - type: JSONStructure
+    url: json-structure/golioth-device-structure.json
+  - type: JSONStructure
+    url: json-structure/golioth-release-structure.json
+  - type: JSONLD
+    url: json-ld/golioth-context.jsonld
+  - type: SpectralRuleset
+    url: rules/golioth-rules.yml
+  - type: Examples
+    url: examples/golioth-create-device-example.json
+  - type: Examples
+    url: examples/golioth-create-release-example.json
+  - type: Examples
+    url: examples/golioth-invoke-rpc-example.json
+  - type: Examples
+    url: examples/golioth-query-stream-example.json
+  - type: Examples
+    url: examples/golioth-create-pipeline-example.json
+  - type: Plans
+    url: plans/golioth-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/golioth-rate-limits.yml
+  - type: FinOps
+    url: finops/golioth-finops.yml
+  - type: Vocabulary
+    url: vocabulary/golioth-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/golioth-agentic-access.yml
