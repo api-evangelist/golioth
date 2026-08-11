@@ -1805,6 +1805,17 @@ apis:
   - type: Vocabulary
     url: vocabulary/golioth-vocabulary.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/golioth/golioth-firmware-sdk/issues
+  - type: Releases
+    url: https://github.com/golioth/golioth-firmware-sdk/releases
+  - type: CodeOfConduct
+    url: https://github.com/golioth/golioth-firmware-sdk/blob/main/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/golioth/golioth-firmware-sdk/blob/main/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/golioth/golioth-firmware-sdk/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/golioth-agentic-access.yml
   - type: DomainSecurity
