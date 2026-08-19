@@ -33,7 +33,7 @@ tags:
   - Connectivity
 created: '2026-05-23'
 modified: '2026-05-25'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: golioth:lightdb-state
   name: Golioth LightDB State
