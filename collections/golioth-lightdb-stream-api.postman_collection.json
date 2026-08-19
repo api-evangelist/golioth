@@ -1,0 +1,1005 @@
+{
+  "item": [
+    {
+      "id": "49eabcca-0729-4f1f-91e1-5bf4c82a44be",
+      "name": "LightDB Stream",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72e2eec2-fb77-43d8-8934-1646ee7aa4b5",
+          "name": "Device Stream Get Device Stream",
+          "request": {
+            "name": "Device Stream Get Device Stream",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices",
+                ":deviceId",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "encodedQuery",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query.timeBucket",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21cb323f-4010-452d-a29f-2c0a8ccf8a2a",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "encodedQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query.timeBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 267,\n  \"perPage\": 3272,\n  \"total\": 2798\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87ebf814-47f4-403d-afcc-4833f7a83561",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "encodedQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query.timeBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6598,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0613f24b-121c-456d-b526-caac7052075b",
+          "name": "Device Stream Get Device Stream2",
+          "request": {
+            "name": "Device Stream Get Device Stream2",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices",
+                ":deviceId",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"encodedQuery\": \"<string>\",\n  \"end\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"page\": \"<long>\",\n  \"perPage\": \"<long>\",\n  \"query\": {\n    \"fields\": [\n      {\n        \"agg\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"path\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"agg\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"path\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"<string>\",\n        \"path\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"<string>\",\n        \"path\": \"<string>\",\n        \"value\": \"\"\n      }\n    ],\n    \"timeBucket\": \"<string>\"\n  },\n  \"start\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d79dd466-7573-4abc-9367-bdf49322f0f8",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"encodedQuery\": \"<string>\",\n  \"end\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"page\": \"<long>\",\n  \"perPage\": \"<long>\",\n  \"query\": {\n    \"fields\": [\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      },\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      }\n    ],\n    \"timeBucket\": \"string\"\n  },\n  \"start\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 267,\n  \"perPage\": 3272,\n  \"total\": 2798\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5c90ab4-0ac9-4f13-8ed0-d6d5b9207acd",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"encodedQuery\": \"<string>\",\n  \"end\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"page\": \"<long>\",\n  \"perPage\": \"<long>\",\n  \"query\": {\n    \"fields\": [\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      },\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      }\n    ],\n    \"timeBucket\": \"string\"\n  },\n  \"start\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6598,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bec72b8-a5f3-40b8-a726-f2bdb74fc20f",
+          "name": "Device Stream Get Project Stream",
+          "request": {
+            "name": "Device Stream Get Project Stream",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "encodedQuery",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query.timeBucket",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1173bb11-db87-48b0-8fea-798c0c9ece19",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "encodedQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query.timeBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 267,\n  \"perPage\": 3272,\n  \"total\": 2798\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94f419e9-848f-4f6a-8850-8740f1a1c3eb",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "encodedQuery",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query.timeBucket",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6598,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df9e58a0-c01f-4513-89c2-295f0f0f099b",
+          "name": "Device Stream Get Project Stream2",
+          "request": {
+            "name": "Device Stream Get Project Stream2",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encodedQuery\": \"<string>\",\n  \"end\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"page\": \"<long>\",\n  \"perPage\": \"<long>\",\n  \"query\": {\n    \"fields\": [\n      {\n        \"agg\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"path\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"agg\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"path\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"<string>\",\n        \"path\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"<string>\",\n        \"path\": \"<string>\",\n        \"value\": \"\"\n      }\n    ],\n    \"timeBucket\": \"<string>\"\n  },\n  \"start\": \"<dateTime>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d89db6c4-0e1a-4377-91a7-2a555ccf4c81",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encodedQuery\": \"<string>\",\n  \"end\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"page\": \"<long>\",\n  \"perPage\": \"<long>\",\n  \"query\": {\n    \"fields\": [\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      },\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      }\n    ],\n    \"timeBucket\": \"string\"\n  },\n  \"start\": \"<dateTime>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 267,\n  \"perPage\": 3272,\n  \"total\": 2798\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2a579bf-87ed-4132-93ff-4794254ba183",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"encodedQuery\": \"<string>\",\n  \"end\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"page\": \"<long>\",\n  \"perPage\": \"<long>\",\n  \"query\": {\n    \"fields\": [\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"agg\": \"string\",\n        \"alias\": \"string\",\n        \"path\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"filters\": [\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      },\n      {\n        \"filters\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/goliothQueryFilter detected>\"\n          }\n        ],\n        \"op\": \"string\",\n        \"path\": \"string\",\n        \"value\": \"\"\n      }\n    ],\n    \"timeBucket\": \"string\"\n  },\n  \"start\": \"<dateTime>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6598,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.golioth.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9a9940c5-0c8f-4033-b4d9-242e9f51461c",
+    "name": "Golioth Management Access LightDB Stream API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json",
+      "type": "text/plain"
+    }
+  }
+}

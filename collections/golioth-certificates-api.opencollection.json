@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golioth Management Access Certificates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Certificates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Certificates_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "TODO: filter by: device_id, enabled/disabled, start/end expiration date, cert type, may increase filters in the future"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Certificates_Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Certificates_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates/:certificateId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Certificates_Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/certificates/:certificateId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

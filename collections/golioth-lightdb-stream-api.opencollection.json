@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golioth Management Access LightDB Stream API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LightDB Stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "DeviceStream_GetDeviceStream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "encodedQuery",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query.timeBucket",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceStream_GetDeviceStream2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceStream_GetProjectStream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "encodedQuery",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query.timeBucket",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DeviceStream_GetProjectStream2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/stream",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

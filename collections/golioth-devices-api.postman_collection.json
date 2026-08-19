@@ -1,0 +1,1358 @@
+{
+  "item": [
+    {
+      "id": "c52d8589-1478-4327-9ef4-fbf989e30ac9",
+      "name": "Devices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08e2d653-d6a7-4fb9-93e0-65802ec080c2",
+          "name": "List devices in the project",
+          "request": {
+            "name": "List devices in the project",
+            "description": {
+              "content": "List devices in the project, optionally applying filters and pagination parameters.\n\nDevices can be filtered by any property, and additionally filtered by a freetext search term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<long>",
+                  "description": "Pagination page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<long>",
+                  "description": "Pagination items per page.\nMust be between 1 and 100 (inclusive). Default is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceName",
+                  "value": "<string>",
+                  "description": "Filter by device name (full match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "hardwareId",
+                  "value": "<string>",
+                  "description": "Filter by hardware ID (full match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tag IDs. Devices must have all specified tags."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tag IDs. Devices must have all specified tags."
+                },
+                {
+                  "disabled": false,
+                  "key": "blueprintId",
+                  "value": "<string>",
+                  "description": "Filter by blueprint ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "statePath",
+                  "value": "<string>",
+                  "description": "Path to device state to include in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "streamPath",
+                  "value": "<string>",
+                  "description": "Path to device stream data to include in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "updatePath",
+                  "value": "<string>",
+                  "description": "Ignored, kept for backward compatibility"
+                },
+                {
+                  "disabled": false,
+                  "key": "term",
+                  "value": "<string>",
+                  "description": "Partial text search term to filter devices by name or hardware IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "enabled",
+                  "value": "<boolean>",
+                  "description": "Filter by enabled status"
+                },
+                {
+                  "disabled": false,
+                  "key": "cohortId",
+                  "value": "<string>",
+                  "description": "Filter by cohort ID"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "736769c8-ce6b-4bb3-9c04-f50291ce5f4e",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hardwareId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "blueprintId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statePath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updatePath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "term",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cohortId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"blueprintId\": \"string\",\n      \"certificateId\": \"string\",\n      \"cohortId\": \"string\",\n      \"createdAt\": \"1982-12-16T01:28:28.379Z\",\n      \"data\": {},\n      \"enabled\": true,\n      \"hardwareIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"id\": \"string\",\n      \"lastReport\": \"1969-01-20T13:29:42.487Z\",\n      \"metadata\": {\n        \"lastReport\": \"1955-03-30T23:12:35.032Z\",\n        \"lastSeenOffline\": \"1962-11-29T08:32:10.153Z\",\n        \"lastSeenOnline\": \"2017-03-09T03:41:33.108Z\",\n        \"lastSettingsStatus\": {\n          \"errors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"reportedVersion\": \"string\",\n          \"status\": \"string\",\n          \"statusDetail\": \"string\",\n          \"syncTime\": \"2010-11-27T13:27:49.839Z\"\n        },\n        \"status\": \"string\",\n        \"update\": {}\n      },\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"tagIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"updatedAt\": \"2013-02-18T19:08:50.945Z\"\n    },\n    {\n      \"blueprintId\": \"string\",\n      \"certificateId\": \"string\",\n      \"cohortId\": \"string\",\n      \"createdAt\": \"1995-11-14T01:39:43.155Z\",\n      \"data\": {},\n      \"enabled\": true,\n      \"hardwareIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"id\": \"string\",\n      \"lastReport\": \"1997-03-12T10:53:16.389Z\",\n      \"metadata\": {\n        \"lastReport\": \"1956-11-02T15:55:52.720Z\",\n        \"lastSeenOffline\": \"2001-04-23T18:58:49.168Z\",\n        \"lastSeenOnline\": \"2017-12-31T02:57:55.831Z\",\n        \"lastSettingsStatus\": {\n          \"errors\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"reportedVersion\": \"string\",\n          \"status\": \"string\",\n          \"statusDetail\": \"string\",\n          \"syncTime\": \"1999-09-14T06:27:24.668Z\"\n        },\n        \"status\": \"string\",\n        \"update\": {}\n      },\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"tagIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"updatedAt\": \"1978-04-04T11:06:50.518Z\"\n    }\n  ],\n  \"page\": 5393,\n  \"perPage\": 7256,\n  \"total\": 4289\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cda91eb-af01-4229-8043-e41f0f290b0c",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "deviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hardwareId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "blueprintId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statePath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "streamPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updatePath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "term",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "cohortId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8379,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce140414-e26a-4c5b-a94f-1757b89d5fbb",
+          "name": "Create a new device",
+          "request": {
+            "name": "Create a new device",
+            "description": {
+              "content": "Create a new device with a unique name in an existing project. The tags, blueprint and cohort must already have been created.\n\nIf no hardware ID is specified, a new hardware ID is generated. The device will also be assigned a unique device ID that can be used to fetch it later.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9afda5f7-29e9-49f1-b2af-9392f4fd4d71",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"blueprintId\": \"string\",\n    \"certificateId\": \"string\",\n    \"cohortId\": \"string\",\n    \"createdAt\": \"1953-05-20T13:26:44.621Z\",\n    \"data\": {},\n    \"enabled\": true,\n    \"hardwareIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": \"string\",\n    \"lastReport\": \"1963-07-31T02:17:31.816Z\",\n    \"metadata\": {\n      \"lastReport\": \"2013-06-08T16:55:28.495Z\",\n      \"lastSeenOffline\": \"1999-11-08T19:33:54.677Z\",\n      \"lastSeenOnline\": \"1977-07-01T18:42:29.199Z\",\n      \"lastSettingsStatus\": {\n        \"errors\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"reportedVersion\": \"string\",\n        \"status\": \"string\",\n        \"statusDetail\": \"string\",\n        \"syncTime\": \"1973-01-08T20:20:28.450Z\"\n      },\n      \"status\": \"string\",\n      \"update\": {}\n    },\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"tagIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"updatedAt\": \"1951-12-15T15:18:39.562Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1c31126-1467-457f-b4f8-2c87cdde781c",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8379,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5946f7b-c637-46fc-a498-66f02f1b85dc",
+          "name": "Delete a device",
+          "request": {
+            "name": "Delete a device",
+            "description": {
+              "content": "Permanently delete a device and all its data. Data already pushed to other services by this device will not be removed retroactively.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) Device ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e304d2cd-f106-4126-b5f2-dca7cbf94267",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e66fee67-5e49-478b-8c70-e0089dec7423",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8379,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3101869c-bf89-4c63-a41d-6962ce485b3a",
+          "name": "Get a device by its ID",
+          "request": {
+            "name": "Get a device by its ID",
+            "description": {
+              "content": "Get a device by its assigned device ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) Device ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e77c781b-33b8-4dab-8e3b-3eb2de77651d",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"blueprintId\": \"string\",\n    \"certificateId\": \"string\",\n    \"cohortId\": \"string\",\n    \"createdAt\": \"1953-05-20T13:26:44.621Z\",\n    \"data\": {},\n    \"enabled\": true,\n    \"hardwareIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": \"string\",\n    \"lastReport\": \"1963-07-31T02:17:31.816Z\",\n    \"metadata\": {\n      \"lastReport\": \"2013-06-08T16:55:28.495Z\",\n      \"lastSeenOffline\": \"1999-11-08T19:33:54.677Z\",\n      \"lastSeenOnline\": \"1977-07-01T18:42:29.199Z\",\n      \"lastSettingsStatus\": {\n        \"errors\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"reportedVersion\": \"string\",\n        \"status\": \"string\",\n        \"statusDetail\": \"string\",\n        \"syncTime\": \"1973-01-08T20:20:28.450Z\"\n      },\n      \"status\": \"string\",\n      \"update\": {}\n    },\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"tagIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"updatedAt\": \"1951-12-15T15:18:39.562Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4133b225-68f6-4625-a627-67ba45d041c3",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8379,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "362fd654-316e-4857-890b-c8defa5564a4",
+          "name": "Update a device",
+          "request": {
+            "name": "Update a device",
+            "description": {
+              "content": "Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.\n\nFor the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) Device ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"addTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"removeHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6e697c4-51cb-4ecf-8a0b-1e101ffa13bd",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"addTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"removeHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"blueprintId\": \"string\",\n    \"certificateId\": \"string\",\n    \"cohortId\": \"string\",\n    \"createdAt\": \"1953-05-20T13:26:44.621Z\",\n    \"data\": {},\n    \"enabled\": true,\n    \"hardwareIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": \"string\",\n    \"lastReport\": \"1963-07-31T02:17:31.816Z\",\n    \"metadata\": {\n      \"lastReport\": \"2013-06-08T16:55:28.495Z\",\n      \"lastSeenOffline\": \"1999-11-08T19:33:54.677Z\",\n      \"lastSeenOnline\": \"1977-07-01T18:42:29.199Z\",\n      \"lastSettingsStatus\": {\n        \"errors\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"reportedVersion\": \"string\",\n        \"status\": \"string\",\n        \"statusDetail\": \"string\",\n        \"syncTime\": \"1973-01-08T20:20:28.450Z\"\n      },\n      \"status\": \"string\",\n      \"update\": {}\n    },\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"tagIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"updatedAt\": \"1951-12-15T15:18:39.562Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db9cec6f-1804-4e81-bfb7-d75f045bd0c7",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"addTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"removeHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8379,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5e0946d-4946-41d3-8175-4aeb4b8c1d60",
+          "name": "Update a device",
+          "request": {
+            "name": "Update a device",
+            "description": {
+              "content": "Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.\n\nFor the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId",
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "updateMask",
+                  "value": "<string>",
+                  "description": "Field mask specifying which fields to update (only used for PATCH requests)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) Device ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"addTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"removeHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0542386-6adb-4477-952b-f1c8c37feee6",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updateMask",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"addTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"removeHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"blueprintId\": \"string\",\n    \"certificateId\": \"string\",\n    \"cohortId\": \"string\",\n    \"createdAt\": \"1953-05-20T13:26:44.621Z\",\n    \"data\": {},\n    \"enabled\": true,\n    \"hardwareIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": \"string\",\n    \"lastReport\": \"1963-07-31T02:17:31.816Z\",\n    \"metadata\": {\n      \"lastReport\": \"2013-06-08T16:55:28.495Z\",\n      \"lastSeenOffline\": \"1999-11-08T19:33:54.677Z\",\n      \"lastSeenOnline\": \"1977-07-01T18:42:29.199Z\",\n      \"lastSettingsStatus\": {\n        \"errors\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deviceDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"reportedVersion\": \"string\",\n        \"status\": \"string\",\n        \"statusDetail\": \"string\",\n        \"syncTime\": \"1973-01-08T20:20:28.450Z\"\n      },\n      \"status\": \"string\",\n      \"update\": {}\n    },\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"tagIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"updatedAt\": \"1951-12-15T15:18:39.562Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "788a397a-444a-4bd8-838c-cd02ea36377f",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId",
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updateMask",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Device ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"addTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blueprintId\": \"<string>\",\n  \"cohortId\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"hardwareIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"removeHardwareId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeTagId\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tagIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8379,\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {}\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.golioth.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "184917fe-928a-4e38-95f1-95fed6e7275e",
+    "name": "Golioth Management Access Devices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json",
+      "type": "text/plain"
+    }
+  }
+}

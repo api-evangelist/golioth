@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Golioth Management Access Devices API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List devices in the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination page number"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Pagination items per page.\nMust be between 1 and 100 (inclusive). Default is 100."
+              },
+              {
+                "name": "deviceName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device name (full match)"
+              },
+              {
+                "name": "hardwareId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by hardware ID (full match)"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tag IDs. Devices must have all specified tags."
+              },
+              {
+                "name": "blueprintId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by blueprint ID"
+              },
+              {
+                "name": "statePath",
+                "value": "",
+                "type": "query",
+                "description": "Path to device state to include in the response"
+              },
+              {
+                "name": "streamPath",
+                "value": "",
+                "type": "query",
+                "description": "Path to device stream data to include in the response"
+              },
+              {
+                "name": "updatePath",
+                "value": "",
+                "type": "query",
+                "description": "Ignored, kept for backward compatibility"
+              },
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "Partial text search term to filter devices by name or hardware IDs"
+              },
+              {
+                "name": "enabled",
+                "value": "",
+                "type": "query",
+                "description": "Filter by enabled status"
+              },
+              {
+                "name": "cohortId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by cohort ID"
+              }
+            ]
+          },
+          "docs": "List devices in the project, optionally applying filters and pagination parameters.\n\nDevices can be filtered by any property, and additionally filtered by a freetext search term."
+        },
+        {
+          "info": {
+            "name": "Create a new device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new device with a unique name in an existing project. The tags, blueprint and cohort must already have been created.\n\nIf no hardware ID is specified, a new hardware ID is generated. The device will also be assigned a unique device ID that can be used to fetch it later."
+        },
+        {
+          "info": {
+            "name": "Get a device by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              }
+            ]
+          },
+          "docs": "Get a device by its assigned device ID."
+        },
+        {
+          "info": {
+            "name": "Update a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              },
+              {
+                "name": "updateMask",
+                "value": "",
+                "type": "query",
+                "description": "Field mask specifying which fields to update (only used for PATCH requests)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.\n\nFor the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties."
+        },
+        {
+          "info": {
+            "name": "Update a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use the `PUT` method to replace a device in its entirety, or the `PATCH` method to replace a subset of the device properties.\n\nFor the `PATCH` method, hardware IDs and tags can be added or removed with the `add_...` and `remove_...` properties respectively, or the entire set of hardware IDs or tags can be replaced by assigning a value to their respective properties."
+        },
+        {
+          "info": {
+            "name": "Delete a device",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.golioth.io/v1/projects/:projectId/devices/:deviceId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              }
+            ]
+          },
+          "docs": "Permanently delete a device and all its data. Data already pushed to other services by this device will not be removed retroactively."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
