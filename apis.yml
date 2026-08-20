@@ -44,6 +44,10 @@ apis:
   baseURL: https://api.golioth.io
   tags:
   - LightDB
+  - States
+  - Device Data
+  tags_raw:
+  - LightDB
   - State
   - Device Data
   properties:
@@ -158,6 +162,11 @@ apis:
   - Location
   - Geolocation
   - Cellular
+  - Wi-Fi
+  tags_raw:
+  - Location
+  - Geolocation
+  - Cellular
   - WiFi
   properties:
   - type: Documentation
@@ -200,6 +209,10 @@ apis:
   humanURL: https://github.com/golioth/tinymcp
   baseURL: https://github.com/golioth/tinymcp
   tags:
+  - MCP
+  - Artificial Intelligence
+  - Embedded
+  tags_raw:
   - MCP
   - AI
   - Embedded
@@ -274,6 +287,8 @@ apis:
   humanURL: https://docs.golioth.io/reference/management-api/
   baseURL: https://api.golioth.io
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -658,6 +673,8 @@ apis:
   humanURL: https://docs.golioth.io/reference/management-api/
   baseURL: https://api.golioth.io
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -802,6 +819,8 @@ apis:
   humanURL: https://docs.golioth.io/reference/management-api/
   baseURL: https://api.golioth.io
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -1090,6 +1109,8 @@ apis:
   humanURL: https://docs.golioth.io/reference/management-api/
   baseURL: https://api.golioth.io
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -1138,6 +1159,8 @@ apis:
   humanURL: https://docs.golioth.io/reference/management-api/
   baseURL: https://api.golioth.io
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -1426,6 +1449,8 @@ apis:
   humanURL: https://docs.golioth.io/reference/management-api/
   baseURL: https://api.golioth.io
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
