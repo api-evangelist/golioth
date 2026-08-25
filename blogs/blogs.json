@@ -3,20 +3,16 @@
   "feeds": [
     {
       "source": "https://blog.golioth.io/feed/",
-      "feed_url": "https://blog.golioth.io/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
+      "error": "TimeoutError"
     },
     {
       "source": "https://forum.golioth.io/",
       "feed_url": "https://forum.golioth.io/",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-08-15T12:11:08Z"
+  "fetched": "2026-08-22T20:20:02Z"
 }
