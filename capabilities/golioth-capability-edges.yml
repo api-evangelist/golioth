@@ -3,7 +3,7 @@ provider: Golioth
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
-- Software & Technology
+- Telecommunications
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,25 +11,37 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 2
+edge_count: 3
 edges:
 - tag: Access
   spec_file: golioth-access-api-openapi.yml
   capability_id: BC-620.20
   capability_id_l1: BC-620
   capability_name: Identity & Access Management
-  confidence: 0.78
-  evidence: Access_ListPermissions, Access_List (policies), Access_InviteUser, Access_ListRoles; schemas
-    goliothRole, goliothPolicy, goliothPermission, goliothUser
-  reason: Operations manage users, invitations, roles, policies and permissions for a project — authorisation
-    and user access administration, i.e. Identity & Access Management.
-- tag: Usage
-  spec_file: golioth-usage-api-openapi.yml
-  capability_id: BC-4250.10
-  capability_id_l1: BC-4250
-  capability_name: Usage Metering
+  confidence: 0.8
+  evidence: GET /v1/projects/{projectId}/policies Access_List; POST /v1/projects/{projectId}/users/invitation
+    Access_InviteUser; GET /v1/roles Access_ListRoles; schemas goliothRole, goliothPolicy, goliothPermission
+  reason: Operations manage roles, permissions, policies and user invitations for project access — role-based
+    access control, i.e. identity & access management, not a business-domain capability.
+- tag: Secrets
+  spec_file: golioth-secrets-api-openapi.yml
+  capability_id: BC-4210.60
+  capability_id_l1: BC-4210
+  capability_name: Configuration & Secrets Management
+  confidence: 0.75
+  evidence: POST /v1/organizations/{organizationId}/projects/{projectId}/secrets  Secrets_Create; goliothSecret,
+    goliothSecretType
+  reason: Create/list/get/delete of named secrets scoped to a project is squarely 'Management of runtime
+    configuration values and secrets consumed by product services'. Clear match; slight discount because
+    it is a narrow enabling surface.
+- tag: Deployments
+  spec_file: golioth-deployments-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
   confidence: 0.7
-  evidence: Usage_ListProjects, Usage_GetDevice, goliothUsageSummary, goliothUsageUnit
-  reason: Reports aggregated consumption per organization, project, device and pipeline in usage units
-    — usage metering that feeds rating/billing analytics. Not fully certain it feeds commercial billing
-    rather than pure operational reporting, hence 0.7.
+  evidence: 'POST /v1/organizations/{organizationId}/projects/{projectId}/cohorts/{cohortId}/deployments
+    Deployments_Create; goliothDeployment; vendor: ''services for OTA firmware updates'''
+  reason: Creating deployments against device cohorts is progressive rollout of firmware releases to the
+    fleet, i.e. deployment orchestration; not a telecom-network capability since the vendor is an IoT
+    devtool.
