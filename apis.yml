@@ -1844,6 +1844,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/golioth-vocabulary.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/golioth-capability-edges.yml
+    name: Golioth Business Capability Map
   - type: IssueTracker
     url: https://github.com/golioth/golioth-firmware-sdk/issues
   - type: Releases
