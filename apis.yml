@@ -176,7 +176,7 @@ apis:
   - Location
   - Geolocation
   - Cellular
-  - Wi-Fi
+  - WiFi
   tags_raw:
   - Location
   - Geolocation
