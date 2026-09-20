@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 3
+edge_count: 4
 edges:
 - tag: Access
   spec_file: golioth-access-api-openapi.yml
@@ -45,3 +45,14 @@ edges:
   reason: Creating deployments against device cohorts is progressive rollout of firmware releases to the
     fleet, i.e. deployment orchestration; not a telecom-network capability since the vendor is an IoT
     devtool.
+- tag: Usage
+  spec_file: golioth-usage-api-openapi.yml
+  capability_id: BC-4250.10
+  capability_id_l1: BC-4250
+  capability_name: Usage Metering
+  confidence: 0.7
+  evidence: Usage_ListProjects, Usage_GetDevice, goliothUsageSummary, goliothUsageUnit
+  reason: Reports aggregated consumption per organization, project, device and pipeline in usage units
+    — usage metering that feeds rating/billing analytics. Not fully certain it feeds commercial billing
+    rather than pure operational reporting, hence 0.7.
+  recovered_from: sweep-20260829T005356Z-edges.json
