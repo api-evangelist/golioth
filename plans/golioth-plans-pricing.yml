@@ -1,52 +1,67 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Golioth
-providerId: golioth
-created: '2026-05-22'
-modified: '2026-05-22'
-tags:
-- IoT
-- Device Management
-- Firmware
-- Zephyr
-- OTA
-- Embedded
-- Connectivity
-description: Machine-readable plans scaffold for the Golioth API surface. Conforms to the API Commons Plans schema. Tier limits
-  and prices are scaffold defaults; replace with provider-published values.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://golioth.io/pricing
+sources:
+- https://golioth.io/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T124425
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+published: true
+note: Usage-based pricing with no tiers; annual contracts offer 'save up to an additional 10%' and volume
+  discounts as low as $0.008 per mb for streaming data.
+plan_count: 7
+currency: USD
 plans:
-- id: golioth-free
-  name: Free
-  type: freemium
-  description: Free entry tier for the Golioth API surface. Intended for evaluation, prototyping, and low-volume integrations.
-    Real limits and pricing must be reconciled with the provider's published plan documentation.
-  entries:
-  - label: API Requests
-    description: Monthly API request quota across all included endpoints
-    name: api_requests
-    type: quota
-    metric: requests
-    limit: 1000
-    timeFrame: month
-    geo: global
-    domains:
-    - https://api.golioth.io
-    unit: 1
-    price: '0.00'
-    userMultiplied: false
-  - label: Rate Limit
-    description: Maximum requests per minute on the free tier
-    name: rate_limit
-    type: rate
-    metric: requests_per_minute
-    limit: 10
-    timeFrame: minute
-    geo: global
-    domains:
-    - https://api.golioth.io
-    unit: 1
-    price: '0.00'
-references:
-- name: Golioth API Documentation
-  url: https://raw.githubusercontent.com/api-evangelist/golioth/refs/heads/main/apis.yml
+- name: Connect
+  price_text: $0.25 per connection
+  price: 0.25
+  currency: USD
+  period: per-use
+  unit: connection
+  included_quota: Charged per active device per month
+- name: Fleet Control
+  price_text: $0.0095 per MB
+  price: 0.0095
+  currency: USD
+  period: per-use
+  unit: MB
+  included_quota: Based on OTA update bandwidth
+- name: Pipelines
+  price_text: $0.0080 per MB
+  price: 0.008
+  currency: USD
+  period: per-use
+  unit: MB
+  included_quota: Based on total data processed and delivered
+- name: Application Services - Logs
+  price_text: $0.001 per MB
+  price: 0.001
+  currency: USD
+  period: per-use
+  unit: MB
+  included_quota: Only billed for long-term retention; free retention 14 days for Logs
+- name: LightDB Stream (Time-Series)
+  price_text: $0.001 per MB
+  price: 0.001
+  currency: USD
+  period: per-use
+  unit: MB
+  included_quota: Only billed for long-term retention; 30 days free retention
+- name: Location
+  price_text: $0.005 per request
+  price: 0.005
+  currency: USD
+  period: per-use
+  unit: API request
+  included_quota: Charged per API request
+- name: Free credits
+  price_text: $50 in free credits
+  price: 50
+  currency: USD
+  period: one-time
+  unit: credits
+  included_quota: Prototype for months before you pay
