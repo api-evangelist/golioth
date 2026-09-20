@@ -10,6 +10,10 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: developer-api
 pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: keyword-prefilter
+  read: '2026-09-20'
 published: true
 note: Usage-based pricing with no tiers; annual contracts offer 'save up to an additional 10%' and volume
   discounts as low as $0.008 per mb for streaming data.
