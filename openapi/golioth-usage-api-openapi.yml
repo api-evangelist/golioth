@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Usage API
+  title: Golioth Management Usage API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -45,6 +45,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Usage
+      summary: Usage list projects
+      x-summary-source: derived
   /v1/organizations/{organizationId}/usage/{projectId}/devices:
     get:
       operationId: Usage_ListDevices
@@ -84,6 +86,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Usage
+      summary: Usage list devices
+      x-summary-source: derived
   /v1/organizations/{organizationId}/usage/{projectId}/devices/{id}:
     get:
       operationId: Usage_GetDevice
@@ -128,6 +132,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Usage
+      summary: Usage get device
+      x-summary-source: derived
   /v1/organizations/{organizationId}/usage/{projectId}/pipelines:
     get:
       operationId: Usage_ListPipelines
@@ -167,6 +173,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Usage
+      summary: Usage list pipelines
+      x-summary-source: derived
   /v1/organizations/{organizationId}/usage/{projectId}/pipelines/{id}:
     get:
       operationId: Usage_GetPipeline
@@ -211,8 +219,28 @@ paths:
           description: An unexpected error response.
       tags:
       - Usage
+      summary: Usage get pipeline
+      x-summary-source: derived
 components:
   schemas:
+    ListUsageResponseUsageEntity:
+      default: PROJECT
+      enum:
+      - PROJECT
+      - DEVICE
+      - PIPELINE
+      type: string
+    goliothListUsageResponse:
+      properties:
+        dates:
+          additionalProperties:
+            $ref: '#/components/schemas/goliothUsageSummaries'
+          type: object
+        entity:
+          $ref: '#/components/schemas/ListUsageResponseUsageEntity'
+        unit:
+          $ref: '#/components/schemas/goliothUsageUnit'
+      type: object
     protobufAny:
       additionalProperties: {}
       properties:
@@ -231,34 +259,6 @@ components:
         message:
           type: string
       type: object
-    goliothListUsageResponse:
-      properties:
-        dates:
-          additionalProperties:
-            $ref: '#/components/schemas/goliothUsageSummaries'
-          type: object
-        entity:
-          $ref: '#/components/schemas/ListUsageResponseUsageEntity'
-        unit:
-          $ref: '#/components/schemas/goliothUsageUnit'
-      type: object
-    ListUsageResponseUsageEntity:
-      default: PROJECT
-      enum:
-      - PROJECT
-      - DEVICE
-      - PIPELINE
-      type: string
-    goliothUsageSummary:
-      properties:
-        id:
-          type: string
-        quantity:
-          format: uint64
-          type: string
-        service:
-          type: string
-      type: object
     goliothUsageUnit:
       default: KILOBYTES
       enum:
@@ -271,8 +271,18 @@ components:
             $ref: '#/components/schemas/goliothUsageSummary'
           type: array
       type: object
+    goliothUsageSummary:
+      properties:
+        id:
+          type: string
+        quantity:
+          format: uint64
+          type: string
+        service:
+          type: string
+      type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

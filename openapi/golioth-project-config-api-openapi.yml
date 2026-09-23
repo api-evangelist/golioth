@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Project Config API
+  title: Golioth Management Project Config API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -40,6 +40,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Project Config
+      summary: Project config list
+      x-summary-source: derived
   /v1/organizations/{organizationId}/projects/{projectId}/config/{settingId}:
     get:
       operationId: ProjectConfig_Get
@@ -74,6 +76,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Project Config
+      summary: Project config get
+      x-summary-source: derived
     put:
       operationId: ProjectConfig_Set
       parameters:
@@ -114,8 +118,54 @@ paths:
           description: An unexpected error response.
       tags:
       - Project Config
+      summary: Project config set
+      x-summary-source: derived
 components:
   schemas:
+    goliothListProjectConfigsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothProjectConfigSetting'
+          type: array
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    ProjectConfigSetBody:
+      properties:
+        value:
+          $ref: '#/components/schemas/goliothProjectConfigValue'
+      type: object
+    goliothProjectConfigValueRange:
+      properties:
+        max:
+          format: int32
+          type: integer
+        min:
+          format: int32
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothGetProjectConfigResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProjectConfigSetting'
+      type: object
     goliothProjectConfigValue:
       properties:
         boolean:
@@ -126,32 +176,17 @@ components:
         string:
           type: string
       type: object
-    ProjectConfigSetBody:
+    goliothProjectConfigDisabled:
       properties:
-        value:
-          $ref: '#/components/schemas/goliothProjectConfigValue'
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
+        description:
+          type: string
+        reason:
           type: string
       type: object
-    goliothListProjectConfigsResponse:
+    goliothSetProjectConfigResponse:
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothProjectConfigSetting'
-          type: array
-      type: object
-    goliothProjectConfigValueRange:
-      properties:
-        max:
-          format: int32
-          type: integer
-        min:
-          format: int32
-          type: integer
+        data:
+          $ref: '#/components/schemas/goliothProjectConfigSetting'
       type: object
     goliothProjectConfigSetting:
       properties:
@@ -175,37 +210,8 @@ components:
         value:
           $ref: '#/components/schemas/goliothProjectConfigValue'
       type: object
-    goliothProjectConfigDisabled:
-      properties:
-        description:
-          type: string
-        reason:
-          type: string
-      type: object
-    goliothSetProjectConfigResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProjectConfigSetting'
-      type: object
-    goliothGetProjectConfigResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProjectConfigSetting'
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

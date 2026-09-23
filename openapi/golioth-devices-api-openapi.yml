@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Devices API
+  title: Golioth Management Devices API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -307,74 +307,6 @@ components:
         '@type':
           type: string
       type: object
-    goliothCreateDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
-      type: object
-    goliothSettingsStatus:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/goliothSettingError'
-          title: List of setting errors reported by the device
-          type: array
-        reportedVersion:
-          title: Version of the settings reported by the device, if any
-          type: string
-        status:
-          title: 'Overall status of the settings, if known.
-
-            Possible values:
-
-            - "no-settings": There are no settings for this device
-
-            - "in-sync": The device settings are in sync with the server
-
-            - "out-of-sync": The device settings are out of sync with the server'
-          type: string
-        statusDetail:
-          title: Optional detailed status message
-          type: string
-        syncTime:
-          format: date-time
-          title: Timestamp of the last settings sync
-          type: string
-      type: object
-    goliothGetDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
-      type: object
-    goliothUpdateDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
-      type: object
-    goliothDevicesCreateBody:
-      properties:
-        blueprintId:
-          title: Optional Blueprint ID to assign to the device
-          type: string
-        cohortId:
-          title: Optional Cohort ID to assign the device to
-          type: string
-        hardwareIds:
-          items:
-            type: string
-          title: Optional list of hardware IDs to add to the device. A single hardware ID will be generated if none are specified
-          type: array
-        name:
-          title: Name of the device. Must be unique within the project
-          type: string
-        tagIds:
-          items:
-            type: string
-          title: Optional list of tag IDs to attach to the device
-          type: array
-      type: object
-    goliothDeleteDeviceResponse:
-      type: object
     goliothDeviceUpdate:
       properties:
         addHardwareId:
@@ -421,6 +353,60 @@ components:
             type: string
           title: Full list of tag IDs to set for this device, replacing any existing ones
           type: array
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothDevicesCreateBody:
+      properties:
+        blueprintId:
+          title: Optional Blueprint ID to assign to the device
+          type: string
+        cohortId:
+          title: Optional Cohort ID to assign the device to
+          type: string
+        hardwareIds:
+          items:
+            type: string
+          title: Optional list of hardware IDs to add to the device. A single hardware ID will be generated if none are specified
+          type: array
+        name:
+          title: Name of the device. Must be unique within the project
+          type: string
+        tagIds:
+          items:
+            type: string
+          title: Optional list of tag IDs to attach to the device
+          type: array
+      type: object
+    goliothListDeviceResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothDevice'
+          title: List of devices
+          type: array
+        page:
+          format: int64
+          title: Pagination page number
+          type: integer
+        perPage:
+          format: int64
+          title: Pagination items per page
+          type: integer
+        total:
+          format: int64
+          title: Total number of devices matching the request
+          type: integer
       type: object
     goliothDevice:
       properties:
@@ -472,6 +458,11 @@ components:
           format: date-time
           title: Timestamp of the last update to the device
           type: string
+      type: object
+    goliothCreateDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
       type: object
     goliothSettingError:
       properties:
@@ -528,40 +519,49 @@ components:
           description: Latest Firmware Update information.
           type: object
       type: object
-    goliothListDeviceResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothDevice'
-          title: List of devices
-          type: array
-        page:
-          format: int64
-          title: Pagination page number
-          type: integer
-        perPage:
-          format: int64
-          title: Pagination items per page
-          type: integer
-        total:
-          format: int64
-          title: Total number of devices matching the request
-          type: integer
+    goliothDeleteDeviceResponse:
       type: object
-    rpcStatus:
+    goliothUpdateDeviceResponse:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
+    goliothGetDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
+    goliothSettingsStatus:
+      properties:
+        errors:
           items:
-            $ref: '#/components/schemas/protobufAny'
+            $ref: '#/components/schemas/goliothSettingError'
+          title: List of setting errors reported by the device
           type: array
-        message:
+        reportedVersion:
+          title: Version of the settings reported by the device, if any
+          type: string
+        status:
+          title: 'Overall status of the settings, if known.
+
+            Possible values:
+
+            - "no-settings": There are no settings for this device
+
+            - "in-sync": The device settings are in sync with the server
+
+            - "out-of-sync": The device settings are out of sync with the server'
+          type: string
+        statusDetail:
+          title: Optional detailed status message
+          type: string
+        syncTime:
+          format: date-time
+          title: Timestamp of the last settings sync
           type: string
       type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

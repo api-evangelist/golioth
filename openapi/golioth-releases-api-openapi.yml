@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Releases API
+  title: Golioth Management Releases API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -71,6 +71,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Releases
+      summary: Releases list
+      x-summary-source: derived
     post:
       operationId: Releases_Create
       parameters:
@@ -101,6 +103,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Releases
+      summary: Releases create
+      x-summary-source: derived
   /v1/projects/{projectId}/releases/{releaseId}:
     delete:
       operationId: Releases_Delete
@@ -130,6 +134,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Releases
+      summary: Releases delete
+      x-summary-source: derived
     get:
       operationId: Releases_Get
       parameters:
@@ -158,6 +164,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Releases
+      summary: Releases get
+      x-summary-source: derived
     patch:
       operationId: Releases_Update2
       parameters:
@@ -193,6 +201,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Releases
+      summary: Releases update2
+      x-summary-source: derived
     put:
       operationId: Releases_Update
       parameters:
@@ -232,6 +242,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Releases
+      summary: Releases update
+      x-summary-source: derived
 components:
   schemas:
     protobufAny:
@@ -239,6 +251,16 @@ components:
       properties:
         '@type':
           type: string
+      type: object
+    goliothUpdateReleaseResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+      type: object
+    goliothGetReleaseResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
       type: object
     goliothReleasesCreateBody:
       properties:
@@ -257,43 +279,19 @@ components:
         rollout:
           type: boolean
       type: object
-    goliothReleaseUpdate:
+    rpcStatus:
       properties:
-        addDeviceTagId:
+        code:
+          format: int32
+          type: integer
+        details:
           items:
-            type: string
+            $ref: '#/components/schemas/protobufAny'
           type: array
-        addReleaseTag:
-          items:
-            type: string
-          type: array
-        deviceTagIds:
-          items:
-            type: string
-          type: array
-        releaseTags:
-          items:
-            type: string
-          type: array
-        removeDeviceTagId:
-          items:
-            type: string
-          type: array
-        removeReleaseTag:
-          items:
-            type: string
-          type: array
-        rollout:
-          type: boolean
+        message:
+          type: string
       type: object
     goliothCreateReleaseResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothRelease'
-      type: object
-    goliothDeleteReleaseResponse:
-      type: object
-    goliothGetReleaseResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothRelease'
@@ -332,6 +330,8 @@ components:
           format: date-time
           type: string
       type: object
+    goliothDeleteReleaseResponse:
+      type: object
     goliothListReleaseResponse:
       properties:
         list:
@@ -348,25 +348,37 @@ components:
           format: int64
           type: integer
       type: object
-    rpcStatus:
+    goliothReleaseUpdate:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
+        addDeviceTagId:
           items:
-            $ref: '#/components/schemas/protobufAny'
+            type: string
           type: array
-        message:
-          type: string
-      type: object
-    goliothUpdateReleaseResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothRelease'
+        addReleaseTag:
+          items:
+            type: string
+          type: array
+        deviceTagIds:
+          items:
+            type: string
+          type: array
+        releaseTags:
+          items:
+            type: string
+          type: array
+        removeDeviceTagId:
+          items:
+            type: string
+          type: array
+        removeReleaseTag:
+          items:
+            type: string
+          type: array
+        rollout:
+          type: boolean
       type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

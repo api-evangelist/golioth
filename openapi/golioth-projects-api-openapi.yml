@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Projects API
+  title: Golioth Management Projects API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -34,6 +34,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Projects
+      summary: Projects list
+      x-summary-source: derived
     post:
       operationId: Projects_Create
       requestBody:
@@ -58,6 +60,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Projects
+      summary: Projects create
+      x-summary-source: derived
   /v1/projects/{projectId}:
     delete:
       operationId: Projects_Delete
@@ -82,6 +86,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Projects
+      summary: Projects delete
+      x-summary-source: derived
     get:
       operationId: Projects_Get
       parameters:
@@ -105,6 +111,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Projects
+      summary: Projects get
+      x-summary-source: derived
     patch:
       operationId: Projects_Update2
       parameters:
@@ -135,6 +143,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Projects
+      summary: Projects update2
+      x-summary-source: derived
     put:
       operationId: Projects_Update
       parameters:
@@ -169,8 +179,57 @@ paths:
           description: An unexpected error response.
       tags:
       - Projects
+      summary: Projects update
+      x-summary-source: derived
 components:
   schemas:
+    goliothUpdateProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothCreateProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    goliothGetProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    goliothCreateProjectRequest:
+      properties:
+        name:
+          type: string
+        organizationId:
+          type: string
+      type: object
+    goliothListProjectResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothProject'
+          type: array
+      type: object
     goliothProject:
       properties:
         createdAt:
@@ -190,62 +249,15 @@ components:
           format: date-time
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothGetProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
-    goliothCreateProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
-    goliothUpdateProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
+    goliothDeleteProjectResponse:
       type: object
     goliothProjectUpdate:
       properties:
         name:
           type: string
       type: object
-    goliothCreateProjectRequest:
-      properties:
-        name:
-          type: string
-        organizationId:
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothDeleteProjectResponse:
-      type: object
-    goliothListProjectResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothProject'
-          type: array
-      type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

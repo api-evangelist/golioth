@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Logs API
+  title: Golioth Management Logs API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -45,6 +45,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Logs
+      summary: Logs get latest device activity logs
+      x-summary-source: derived
   /v1/projects/{projectId}/logs:
     get:
       operationId: Logs_GetLogs
@@ -108,14 +110,39 @@ paths:
           description: An unexpected error response.
       tags:
       - Logs
+      summary: Logs get logs
+      x-summary-source: derived
 components:
   schemas:
+    goliothGetLatestDeviceActivityLogsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothDeviceActivityLog'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
     protobufAny:
       additionalProperties: {}
       properties:
         '@type':
           type: string
       type: object
+    goliothDeviceLogType:
+      default: LOGGING
+      enum:
+      - LOGGING
+      - DIAGNOSTICS
+      - METRICS
+      type: string
     goliothDeviceLogEntry:
       description: Event generated when a device sends logs.
       example:
@@ -147,38 +174,6 @@ components:
         type:
           $ref: '#/components/schemas/goliothDeviceLogType'
       type: object
-    goliothGetLatestDeviceActivityLogsResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothDeviceActivityLog'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothGetLogsResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothDeviceLogEntry'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
     goliothDeviceLogLevel:
       default: NONE
       enum:
@@ -188,13 +183,18 @@ components:
       - WARN
       - ERROR
       type: string
-    goliothDeviceLogType:
-      default: LOGGING
-      enum:
-      - LOGGING
-      - DIAGNOSTICS
-      - METRICS
-      type: string
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
     goliothDeviceActivityLog:
       properties:
         deviceId:
@@ -215,20 +215,24 @@ components:
         status:
           type: string
       type: object
-    rpcStatus:
+    goliothGetLogsResponse:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
+        list:
           items:
-            $ref: '#/components/schemas/protobufAny'
+            $ref: '#/components/schemas/goliothDeviceLogEntry'
           type: array
-        message:
-          type: string
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

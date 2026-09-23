@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Certificates API
+  title: Golioth Management Certificates API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -46,6 +46,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Certificates
+      summary: Certificates list
+      x-summary-source: derived
     post:
       operationId: Certificates_Create
       parameters:
@@ -76,6 +78,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Certificates
+      summary: Certificates create
+      x-summary-source: derived
   /v1/projects/{projectId}/certificates/{certificateId}:
     delete:
       operationId: Certificates_Delete
@@ -105,6 +109,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Certificates
+      summary: Certificates delete
+      x-summary-source: derived
     get:
       operationId: Certificates_Get
       parameters:
@@ -133,32 +139,10 @@ paths:
           description: An unexpected error response.
       tags:
       - Certificates
+      summary: Certificates get
+      x-summary-source: derived
 components:
   schemas:
-    goliothDeleteCertificateResponse:
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothListCertificateResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothCertificate'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
     goliothCertificatesCreateBody:
       properties:
         certFile:
@@ -169,15 +153,11 @@ components:
         demo:
           type: boolean
       type: object
-    goliothGetCertificateResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        data:
-          $ref: '#/components/schemas/goliothCertificate'
-      type: object
-    goliothCreateCertificateResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothCertificate'
+        '@type':
+          type: string
       type: object
     goliothCertificate:
       properties:
@@ -196,6 +176,46 @@ components:
           type: string
         projectId:
           type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothListCertificateResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothCertificate'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothDeleteCertificateResponse:
+      type: object
+    goliothCreateCertificateResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
+      type: object
+    goliothGetCertificateResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
       type: object
     goliothCertificateContent:
       properties:
@@ -229,20 +249,8 @@ components:
           format: int64
           type: integer
       type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

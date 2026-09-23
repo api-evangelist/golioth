@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Boards API
+  title: Golioth Management Boards API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -38,6 +38,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Boards
+      summary: Boards list
+      x-summary-source: derived
   /v1/boards/{id}:
     get:
       operationId: Boards_Get
@@ -62,6 +64,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Boards
+      summary: Boards get
+      x-summary-source: derived
 components:
   schemas:
     protobufAny:
@@ -69,16 +73,6 @@ components:
       properties:
         '@type':
           type: string
-      type: object
-    goliothListBoardsResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothBoard'
-          type: array
-        total:
-          format: int64
-          type: integer
       type: object
     goliothBoard:
       properties:
@@ -93,11 +87,6 @@ components:
             type: string
           type: array
       type: object
-    goliothGetBoardsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBoard'
-      type: object
     rpcStatus:
       properties:
         code:
@@ -110,8 +99,23 @@ components:
         message:
           type: string
       type: object
+    goliothGetBoardsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBoard'
+      type: object
+    goliothListBoardsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothBoard'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

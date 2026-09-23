@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Firmware API
+  title: Golioth Management Firmware API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -77,28 +77,20 @@ paths:
           description: An unexpected error response.
       tags:
       - Firmware
+      summary: Firmwares logs
+      x-summary-source: derived
 components:
   schemas:
-    goliothFirmwareLogEntry:
+    rpcStatus:
       properties:
-        deviceId:
-          type: string
-        package:
-          type: string
-        reason:
-          type: string
-        reasonCode:
-          type: string
-        state:
-          type: string
-        stateCode:
-          type: string
-        target:
-          type: string
-        time:
-          format: date-time
-          type: string
-        version:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
       type: object
     protobufAny:
@@ -123,20 +115,30 @@ components:
           format: int64
           type: integer
       type: object
-    rpcStatus:
+    goliothFirmwareLogEntry:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
+        deviceId:
+          type: string
+        package:
+          type: string
+        reason:
+          type: string
+        reasonCode:
+          type: string
+        state:
+          type: string
+        stateCode:
+          type: string
+        target:
+          type: string
+        time:
+          format: date-time
+          type: string
+        version:
           type: string
       type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

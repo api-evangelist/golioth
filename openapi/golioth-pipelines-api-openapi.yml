@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Pipelines API
+  title: Golioth Management Pipelines API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -40,6 +40,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines get unmatched data
+      x-summary-source: derived
   /v1/organizations/{organizationId}/projects/{projectId}/pipelines:
     get:
       operationId: Pipelines_List
@@ -69,6 +71,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines list
+      x-summary-source: derived
     post:
       operationId: Pipelines_Create
       parameters:
@@ -104,6 +108,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines create
+      x-summary-source: derived
   /v1/organizations/{organizationId}/projects/{projectId}/pipelines/errors:
     get:
       operationId: Pipelines_GetPipelineErrorStats
@@ -143,6 +149,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines get pipeline error stats
+      x-summary-source: derived
   /v1/organizations/{organizationId}/projects/{projectId}/pipelines/{pipelineId}:
     delete:
       operationId: Pipelines_Delete
@@ -177,6 +185,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines delete
+      x-summary-source: derived
     get:
       operationId: Pipelines_Get
       parameters:
@@ -210,6 +220,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines get
+      x-summary-source: derived
     put:
       operationId: Pipelines_Update
       parameters:
@@ -250,6 +262,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines update
+      x-summary-source: derived
   /v1/organizations/{organizationId}/projects/{projectId}/pipelines/{pipelineId}/errors:
     get:
       operationId: Pipelines_GetPipelineErrors
@@ -299,6 +313,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Pipelines
+      summary: Pipelines get pipeline errors
+      x-summary-source: derived
 components:
   schemas:
     protobufAny:
@@ -307,19 +323,38 @@ components:
         '@type':
           type: string
       type: object
-    goliothPipelineMetadata:
+    goliothPipelineUnmatchedDataResponse:
       properties:
-        createdAt:
-          format: date-time
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPipelineUnmatchedData'
+          type: array
+      type: object
+    goliothPipelineErrors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothPipelineError'
+          type: array
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
-        enabled:
-          type: boolean
-        name:
-          type: string
-        pipelineId:
-          type: string
-        updatedAt:
-          format: date-time
+      type: object
+    goliothPipelineErrorCount:
+      properties:
+        errors:
+          format: int64
+          type: integer
+        id:
           type: string
       type: object
     goliothPipelineError:
@@ -337,49 +372,20 @@ components:
         type:
           type: string
       type: object
-    goliothPipelineErrorSummaries:
+    goliothPipelineMetadata:
       properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/goliothPipelineErrorCount'
-          type: array
-      type: object
-    goliothPipelineErrorCount:
-      properties:
-        errors:
-          format: int64
-          type: integer
-        id:
+        createdAt:
+          format: date-time
           type: string
-      type: object
-    goliothPipelineErrors:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/goliothPipelineError'
-          type: array
-      type: object
-    goliothUpdatePipelineResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPipeline'
-      type: object
-    goliothPipelineUpdate:
-      properties:
         enabled:
           type: boolean
         name:
           type: string
-        pipeline:
-          format: byte
+        pipelineId:
           type: string
-      type: object
-    goliothGetErrorStatsResponse:
-      properties:
-        errors:
-          additionalProperties:
-            $ref: '#/components/schemas/goliothPipelineErrorSummaries'
-          type: object
+        updatedAt:
+          format: date-time
+          type: string
       type: object
     goliothPipelinesCreateBody:
       properties:
@@ -392,28 +398,6 @@ components:
           type: string
       type: object
     goliothGetPipelineResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPipeline'
-      type: object
-    goliothPipelineUnmatchedDataResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothPipelineUnmatchedData'
-          type: array
-      type: object
-    goliothPipelineUnmatchedData:
-      properties:
-        contentType:
-          type: string
-        path:
-          type: string
-        timestamp:
-          format: date-time
-          type: string
-      type: object
-    goliothCreatePipelineResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothPipeline'
@@ -443,22 +427,54 @@ components:
           format: date-time
           type: string
       type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
     goliothDeletePipelineResponse:
       type: object
+    goliothCreatePipelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPipeline'
+      type: object
+    goliothUpdatePipelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPipeline'
+      type: object
+    goliothPipelineUpdate:
+      properties:
+        enabled:
+          type: boolean
+        name:
+          type: string
+        pipeline:
+          format: byte
+          type: string
+      type: object
+    goliothGetErrorStatsResponse:
+      properties:
+        errors:
+          additionalProperties:
+            $ref: '#/components/schemas/goliothPipelineErrorSummaries'
+          type: object
+      type: object
+    goliothPipelineUnmatchedData:
+      properties:
+        contentType:
+          type: string
+        path:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    goliothPipelineErrorSummaries:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothPipelineErrorCount'
+          type: array
+      type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey

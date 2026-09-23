@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Golioth Management Access Deployments API
+  title: Golioth Management Deployments API
   version: '1.0'
   description: 'Golioth IoT Device Management REST API. Authenticate with project-scoped API keys passed in the x-api-key header. Upstream OpenAPI: https://api.golioth.io/openapi.json'
 servers:
@@ -59,6 +59,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Deployments
+      summary: Deployments list
+      x-summary-source: derived
     post:
       operationId: Deployments_Create
       parameters:
@@ -99,6 +101,8 @@ paths:
           description: An unexpected error response.
       tags:
       - Deployments
+      summary: Deployments create
+      x-summary-source: derived
   /v1/organizations/{organizationId}/projects/{projectId}/cohorts/{cohortId}/deployments/{deploymentId}:
     get:
       operationId: Deployments_Get
@@ -138,8 +142,28 @@ paths:
           description: An unexpected error response.
       tags:
       - Deployments
+      summary: Deployments get
+      x-summary-source: derived
 components:
   schemas:
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
     goliothDeploymentsCreateBody:
       properties:
         artifactIds:
@@ -149,11 +173,24 @@ components:
         name:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothDeployment:
       properties:
-        '@type':
+        artifactIds:
+          items:
+            type: string
+          type: array
+        createdAt:
+          format: date-time
           type: string
+        deploymentId:
+          type: string
+        name:
+          type: string
+      type: object
+    goliothCreateDeploymentResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDeployment'
       type: object
     goliothListDeploymentResponse:
       properties:
@@ -171,44 +208,13 @@ components:
           format: int64
           type: integer
       type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
     goliothGetDeploymentResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothDeployment'
       type: object
-    goliothCreateDeploymentResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDeployment'
-      type: object
-    goliothDeployment:
-      properties:
-        artifactIds:
-          items:
-            type: string
-          type: array
-        createdAt:
-          format: date-time
-          type: string
-        deploymentId:
-          type: string
-        name:
-          type: string
-      type: object
   securitySchemes:
-    API Key:
+    API_Key:
       in: header
       name: x-api-key
       type: apiKey
