@@ -84,11 +84,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    protobufAny:
-      additionalProperties: {}
+    goliothProvisionDeviceResponse:
       properties:
-        '@type':
-          type: string
+        data:
+          $ref: '#/components/schemas/goliothProvisionData'
       type: object
     rpcStatus:
       properties:
@@ -100,6 +99,11 @@ components:
             $ref: '#/components/schemas/protobufAny'
           type: array
         message:
+          type: string
+      type: object
+    goliothProvisionData:
+      properties:
+        deviceId:
           type: string
       type: object
     goliothCredentialType:
@@ -134,14 +138,10 @@ components:
         type:
           $ref: '#/components/schemas/goliothCredentialType'
       type: object
-    goliothProvisionDeviceResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        data:
-          $ref: '#/components/schemas/goliothProvisionData'
-      type: object
-    goliothProvisionData:
-      properties:
-        deviceId:
+        '@type':
           type: string
       type: object
   securitySchemes:

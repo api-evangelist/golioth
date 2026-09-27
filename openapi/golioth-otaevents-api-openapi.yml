@@ -140,52 +140,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothOTAStatsEventTypeEntry:
+    goliothListOTAEventsResponse:
       properties:
-        duration:
-          format: int64
-          type: integer
-        stats:
+        list:
           items:
-            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
+            $ref: '#/components/schemas/goliothOTAEvent'
           type: array
-        timestamp:
-          format: date-time
+        nextPageToken:
+          title: Token to get the next page
           type: string
-      type: object
-    goliothOTAStatsEventTypeCount:
-      properties:
-        count:
-          format: int64
-          type: integer
-        eventType:
-          type: string
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothOTAEvent:
-      properties:
-        currentVersion:
-          type: string
-        deviceId:
-          type: string
-        eventType:
-          type: string
-        message:
-          type: string
-        packageId:
-          type: string
-        status:
-          format: int32
-          type: integer
-        targetVersion:
-          type: string
-        timestamp:
-          format: date-time
+        prevPageToken:
+          title: Token to get the previous page
           type: string
       type: object
     rpcStatus:
@@ -213,17 +178,52 @@ components:
           format: date-time
           type: string
       type: object
-    goliothListOTAEventsResponse:
+    goliothOTAStatsEventTypeEntry:
       properties:
-        list:
+        duration:
+          format: int64
+          type: integer
+        stats:
           items:
-            $ref: '#/components/schemas/goliothOTAEvent'
+            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
           type: array
-        nextPageToken:
-          title: Token to get the next page
+        timestamp:
+          format: date-time
           type: string
-        prevPageToken:
-          title: Token to get the previous page
+      type: object
+    goliothOTAEvent:
+      properties:
+        currentVersion:
+          type: string
+        deviceId:
+          type: string
+        eventType:
+          type: string
+        message:
+          type: string
+        packageId:
+          type: string
+        status:
+          format: int32
+          type: integer
+        targetVersion:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    goliothOTAStatsEventTypeCount:
+      properties:
+        count:
+          format: int64
+          type: integer
+        eventType:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
   securitySchemes:

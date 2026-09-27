@@ -230,16 +230,34 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothDeleteTagResponse:
+      type: object
+    goliothUpdateTagResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
     goliothTagsCreateBody:
       properties:
         name:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothGetTagResponse:
       properties:
-        '@type':
-          type: string
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
       type: object
     goliothListTagResponse:
       properties:
@@ -257,6 +275,16 @@ components:
           format: int64
           type: integer
       type: object
+    goliothTagUpdate:
+      properties:
+        name:
+          type: string
+      type: object
+    goliothCreateTagResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+      type: object
     comgoliothTag:
       properties:
         createdAt:
@@ -270,39 +298,11 @@ components:
           format: date-time
           type: string
       type: object
-    rpcStatus:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
+        '@type':
           type: string
-      type: object
-    goliothGetTagResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/comgoliothTag'
-      type: object
-    goliothCreateTagResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/comgoliothTag'
-      type: object
-    goliothUpdateTagResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/comgoliothTag'
-      type: object
-    goliothTagUpdate:
-      properties:
-        name:
-          type: string
-      type: object
-    goliothDeleteTagResponse:
       type: object
   securitySchemes:
     API_Key:

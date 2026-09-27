@@ -217,7 +217,7 @@ apis:
   - type: Repository
     url: https://github.com/golioth/python-golioth-tools
 - aid: golioth:tinymcp
-  name: Golioth tinymcp
+  name: Golioth Tinymcp API
   description: >-
     Open-source implementation of the Model Context Protocol (MCP) for resource-constrained embedded devices,
     enabling large language models to observe and control firmware via MCP tools.

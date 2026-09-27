@@ -238,17 +238,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothUpdateBlueprintResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBlueprint'
-      type: object
     rpcStatus:
       properties:
         code:
@@ -260,6 +249,16 @@ components:
           type: array
         message:
           type: string
+      type: object
+    goliothGetBlueprintResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
+    goliothCreateBlueprintResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
       type: object
     goliothBlueprint:
       properties:
@@ -277,18 +276,6 @@ components:
         updatedAt:
           format: date-time
           type: string
-      type: object
-    goliothCreateBlueprintResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBlueprint'
-      type: object
-    goliothDeleteBlueprintResponse:
-      type: object
-    goliothGetBlueprintResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBlueprint'
       type: object
     goliothListBlueprintResponse:
       properties:
@@ -315,6 +302,13 @@ components:
         platform:
           type: string
       type: object
+    goliothDeleteBlueprintResponse:
+      type: object
+    goliothUpdateBlueprintResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
     goliothBlueprintUpdate:
       properties:
         boardId:
@@ -322,6 +316,12 @@ components:
         name:
           type: string
         platform:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
   securitySchemes:

@@ -246,25 +246,13 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    protobufAny:
-      additionalProperties: {}
+    goliothReleaseUpdate:
       properties:
-        '@type':
-          type: string
-      type: object
-    goliothUpdateReleaseResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothRelease'
-      type: object
-    goliothGetReleaseResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothRelease'
-      type: object
-    goliothReleasesCreateBody:
-      properties:
-        artifactIds:
+        addDeviceTagId:
+          items:
+            type: string
+          type: array
+        addReleaseTag:
           items:
             type: string
           type: array
@@ -276,8 +264,21 @@ components:
           items:
             type: string
           type: array
+        removeDeviceTagId:
+          items:
+            type: string
+          type: array
+        removeReleaseTag:
+          items:
+            type: string
+          type: array
         rollout:
           type: boolean
+      type: object
+    goliothGetReleaseResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
       type: object
     rpcStatus:
       properties:
@@ -290,11 +291,6 @@ components:
           type: array
         message:
           type: string
-      type: object
-    goliothCreateReleaseResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothRelease'
       type: object
     goliothRelease:
       properties:
@@ -330,7 +326,22 @@ components:
           format: date-time
           type: string
       type: object
-    goliothDeleteReleaseResponse:
+    goliothReleasesCreateBody:
+      properties:
+        artifactIds:
+          items:
+            type: string
+          type: array
+        deviceTagIds:
+          items:
+            type: string
+          type: array
+        releaseTags:
+          items:
+            type: string
+          type: array
+        rollout:
+          type: boolean
       type: object
     goliothListReleaseResponse:
       properties:
@@ -348,34 +359,23 @@ components:
           format: int64
           type: integer
       type: object
-    goliothReleaseUpdate:
+    goliothCreateReleaseResponse:
       properties:
-        addDeviceTagId:
-          items:
-            type: string
-          type: array
-        addReleaseTag:
-          items:
-            type: string
-          type: array
-        deviceTagIds:
-          items:
-            type: string
-          type: array
-        releaseTags:
-          items:
-            type: string
-          type: array
-        removeDeviceTagId:
-          items:
-            type: string
-          type: array
-        removeReleaseTag:
-          items:
-            type: string
-          type: array
-        rollout:
-          type: boolean
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+      type: object
+    goliothUpdateReleaseResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothRelease'
+      type: object
+    goliothDeleteReleaseResponse:
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
       type: object
   securitySchemes:
     API_Key:

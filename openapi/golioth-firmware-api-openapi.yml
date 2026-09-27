@@ -81,40 +81,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothListFirmwareLogsResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothFirmwareLogEntry'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
     goliothFirmwareLogEntry:
       properties:
         deviceId:
@@ -135,6 +101,40 @@ components:
           format: date-time
           type: string
         version:
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothListFirmwareLogsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothFirmwareLogEntry'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
   securitySchemes:

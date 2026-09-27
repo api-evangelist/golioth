@@ -46,6 +46,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothCreateCustomerPortalResponse:
+      properties:
+        url:
+          type: string
+      type: object
+    BillingCreateCustomerPortalSessionBody:
+      properties:
+        callbackPath:
+          type: string
+      type: object
     rpcStatus:
       properties:
         code:
@@ -62,16 +72,6 @@ components:
       additionalProperties: {}
       properties:
         '@type':
-          type: string
-      type: object
-    BillingCreateCustomerPortalSessionBody:
-      properties:
-        callbackPath:
-          type: string
-      type: object
-    goliothCreateCustomerPortalResponse:
-      properties:
-        url:
           type: string
       type: object
   securitySchemes:

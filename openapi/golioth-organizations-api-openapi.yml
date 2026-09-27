@@ -153,6 +153,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothListOrganizationResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothOrganization'
+          type: array
+      type: object
+    goliothUpdateOrganizationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+      type: object
     goliothOrganization:
       properties:
         createdAt:
@@ -176,12 +188,6 @@ components:
         website:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
     rpcStatus:
       properties:
         code:
@@ -194,17 +200,19 @@ components:
         message:
           type: string
       type: object
-    goliothGetOrganizationResponse:
+    goliothOrganizationUpdate:
       properties:
-        data:
-          $ref: '#/components/schemas/goliothOrganization'
+        name:
+          type: string
+        website:
+          type: string
       type: object
     goliothCreateOrganizationResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothOrganization'
       type: object
-    goliothUpdateOrganizationResponse:
+    goliothGetOrganizationResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothOrganization'
@@ -216,18 +224,10 @@ components:
         website:
           type: string
       type: object
-    goliothListOrganizationResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothOrganization'
-          type: array
-      type: object
-    goliothOrganizationUpdate:
-      properties:
-        name:
-          type: string
-        website:
+        '@type':
           type: string
       type: object
   securitySchemes:

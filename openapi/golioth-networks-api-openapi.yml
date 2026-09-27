@@ -167,6 +167,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothRecentDevice:
+      properties:
+        id:
+          type: string
+        lastSeen:
+          format: date-time
+          type: string
+        name:
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
     goliothNetwork:
       properties:
         deviceCount:
@@ -182,11 +204,11 @@ components:
           format: date-time
           type: string
       type: object
-    goliothListNetworkDevicesResponse:
+    goliothListNetworksResponse:
       properties:
         list:
           items:
-            $ref: '#/components/schemas/goliothNetworkDevice'
+            $ref: '#/components/schemas/goliothNetwork'
           type: array
         page:
           format: int64
@@ -198,34 +220,11 @@ components:
           format: int64
           type: integer
       type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothNetworkResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothNetwork'
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothListNetworksResponse:
+    goliothListNetworkDevicesResponse:
       properties:
         list:
           items:
-            $ref: '#/components/schemas/goliothNetwork'
+            $ref: '#/components/schemas/goliothNetworkDevice'
           type: array
         page:
           format: int64
@@ -250,14 +249,15 @@ components:
           format: date-time
           type: string
       type: object
-    goliothRecentDevice:
+    goliothNetworkResponse:
       properties:
-        id:
-          type: string
-        lastSeen:
-          format: date-time
-          type: string
-        name:
+        data:
+          $ref: '#/components/schemas/goliothNetwork'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
   securitySchemes:

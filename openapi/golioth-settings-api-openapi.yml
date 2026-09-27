@@ -235,31 +235,21 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothGetSettingResponse:
+    goliothSettingUpdate:
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothSetting'
-          type: array
-        total:
-          format: int64
-          type: integer
+        value: {}
       type: object
-    protobufAny:
-      additionalProperties: {}
+    rpcStatus:
       properties:
-        '@type':
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
-      type: object
-    goliothListAllowedSettingsDataTypesResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothSettingDataType'
-          type: array
-        total:
-          format: int64
-          type: integer
       type: object
     goliothSetting:
       properties:
@@ -283,34 +273,6 @@ components:
           type: string
         value: {}
       type: object
-    goliothSettingDataType:
-      properties:
-        type:
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothUpdateSettingResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothSetting'
-      type: object
-    goliothDeleteSettingResponse:
-      type: object
-    goliothSettingUpdate:
-      properties:
-        value: {}
-      type: object
     goliothSettingsCreateBody:
       properties:
         blueprintId:
@@ -323,6 +285,16 @@ components:
           type: string
         value: {}
       type: object
+    goliothCreateSettingResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
+      type: object
+    goliothSettingDataType:
+      properties:
+        type:
+          type: string
+      type: object
     goliothListSettingResponse:
       properties:
         list:
@@ -333,10 +305,38 @@ components:
           format: int64
           type: integer
       type: object
-    goliothCreateSettingResponse:
+    goliothListAllowedSettingsDataTypesResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSettingDataType'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothDeleteSettingResponse:
+      type: object
+    goliothUpdateSettingResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothSetting'
+      type: object
+    goliothGetSettingResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSetting'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
       type: object
   securitySchemes:
     API_Key:

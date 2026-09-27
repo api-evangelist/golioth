@@ -301,10 +301,55 @@ paths:
       - Devices
 components:
   schemas:
-    protobufAny:
-      additionalProperties: {}
+    goliothDevice:
       properties:
-        '@type':
+        blueprintId:
+          title: Blueprint ID assigned to the device
+          type: string
+        certificateId:
+          title: Certificate ID assigned to the device, if the device uses certificate-based authentication
+          type: string
+        cohortId:
+          title: Cohort ID of the cohort the device belongs to
+          type: string
+        createdAt:
+          format: date-time
+          title: Timestamp of device creation
+          type: string
+        data:
+          title: Requested device data
+          type: object
+        enabled:
+          title: Whether the device is enabled
+          type: boolean
+        hardwareIds:
+          items:
+            type: string
+          title: List of hardware IDs associated with the device
+          type: array
+        id:
+          title: Unique device ID
+          type: string
+        lastReport:
+          format: date-time
+          title: 'Deprecated: Use metadata.last_report instead'
+          type: string
+        metadata:
+          $ref: '#/components/schemas/goliothDeviceMetadata'
+        name:
+          title: Name of the device
+          type: string
+        status:
+          title: 'Deprecated: Use metadata.status instead'
+          type: string
+        tagIds:
+          items:
+            type: string
+          title: List of tag IDs attached to the device
+          type: array
+        updatedAt:
+          format: date-time
+          title: Timestamp of the last update to the device
           type: string
       type: object
     goliothDeviceUpdate:
@@ -366,6 +411,47 @@ components:
         message:
           type: string
       type: object
+    goliothDeleteDeviceResponse:
+      type: object
+    goliothSettingsStatus:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothSettingError'
+          title: List of setting errors reported by the device
+          type: array
+        reportedVersion:
+          title: Version of the settings reported by the device, if any
+          type: string
+        status:
+          title: 'Overall status of the settings, if known.
+
+            Possible values:
+
+            - "no-settings": There are no settings for this device
+
+            - "in-sync": The device settings are in sync with the server
+
+            - "out-of-sync": The device settings are out of sync with the server'
+          type: string
+        statusDetail:
+          title: Optional detailed status message
+          type: string
+        syncTime:
+          format: date-time
+          title: Timestamp of the last settings sync
+          type: string
+      type: object
+    goliothGetDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
+    goliothCreateDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
     goliothDevicesCreateBody:
       properties:
         blueprintId:
@@ -407,62 +493,6 @@ components:
           format: int64
           title: Total number of devices matching the request
           type: integer
-      type: object
-    goliothDevice:
-      properties:
-        blueprintId:
-          title: Blueprint ID assigned to the device
-          type: string
-        certificateId:
-          title: Certificate ID assigned to the device, if the device uses certificate-based authentication
-          type: string
-        cohortId:
-          title: Cohort ID of the cohort the device belongs to
-          type: string
-        createdAt:
-          format: date-time
-          title: Timestamp of device creation
-          type: string
-        data:
-          title: Requested device data
-          type: object
-        enabled:
-          title: Whether the device is enabled
-          type: boolean
-        hardwareIds:
-          items:
-            type: string
-          title: List of hardware IDs associated with the device
-          type: array
-        id:
-          title: Unique device ID
-          type: string
-        lastReport:
-          format: date-time
-          title: 'Deprecated: Use metadata.last_report instead'
-          type: string
-        metadata:
-          $ref: '#/components/schemas/goliothDeviceMetadata'
-        name:
-          title: Name of the device
-          type: string
-        status:
-          title: 'Deprecated: Use metadata.status instead'
-          type: string
-        tagIds:
-          items:
-            type: string
-          title: List of tag IDs attached to the device
-          type: array
-        updatedAt:
-          format: date-time
-          title: Timestamp of the last update to the device
-          type: string
-      type: object
-    goliothCreateDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
       type: object
     goliothSettingError:
       properties:
@@ -519,45 +549,15 @@ components:
           description: Latest Firmware Update information.
           type: object
       type: object
-    goliothDeleteDeviceResponse:
-      type: object
     goliothUpdateDeviceResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothDevice'
       type: object
-    goliothGetDeviceResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
-      type: object
-    goliothSettingsStatus:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/goliothSettingError'
-          title: List of setting errors reported by the device
-          type: array
-        reportedVersion:
-          title: Version of the settings reported by the device, if any
-          type: string
-        status:
-          title: 'Overall status of the settings, if known.
-
-            Possible values:
-
-            - "no-settings": There are no settings for this device
-
-            - "in-sync": The device settings are in sync with the server
-
-            - "out-of-sync": The device settings are out of sync with the server'
-          type: string
-        statusDetail:
-          title: Optional detailed status message
-          type: string
-        syncTime:
-          format: date-time
-          title: Timestamp of the last settings sync
+        '@type':
           type: string
       type: object
   securitySchemes:

@@ -223,6 +223,33 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothUsageUnit:
+      default: KILOBYTES
+      enum:
+      - KILOBYTES
+      type: string
+    goliothUsageSummary:
+      properties:
+        id:
+          type: string
+        quantity:
+          format: uint64
+          type: string
+        service:
+          type: string
+      type: object
     ListUsageResponseUsageEntity:
       default: PROJECT
       enum:
@@ -241,29 +268,6 @@ components:
         unit:
           $ref: '#/components/schemas/goliothUsageUnit'
       type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothUsageUnit:
-      default: KILOBYTES
-      enum:
-      - KILOBYTES
-      type: string
     goliothUsageSummaries:
       properties:
         summaries:
@@ -271,14 +275,10 @@ components:
             $ref: '#/components/schemas/goliothUsageSummary'
           type: array
       type: object
-    goliothUsageSummary:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        id:
-          type: string
-        quantity:
-          format: uint64
-          type: string
-        service:
+        '@type':
           type: string
       type: object
   securitySchemes:

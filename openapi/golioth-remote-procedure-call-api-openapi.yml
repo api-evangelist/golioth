@@ -51,17 +51,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    rpcStatus:
+    goliothRemoteProcedureCallResponse:
       properties:
-        code:
-          format: int32
+        detail: {}
+        statusCode:
+          format: int64
           type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
       type: object
     DeviceRemoteProcedureCallRemoteProcedureCallBody:
       properties:
@@ -74,18 +69,23 @@ components:
           format: int64
           type: integer
       type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
     protobufAny:
       additionalProperties: {}
       properties:
         '@type':
           type: string
-      type: object
-    goliothRemoteProcedureCallResponse:
-      properties:
-        detail: {}
-        statusCode:
-          format: int64
-          type: integer
       type: object
   securitySchemes:
     API_Key:

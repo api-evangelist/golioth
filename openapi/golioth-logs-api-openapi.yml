@@ -114,28 +114,47 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothGetLatestDeviceActivityLogsResponse:
+    goliothDeviceActivityLog:
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothDeviceActivityLog'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
+        deviceId:
+          type: string
+        deviceName:
+          type: string
+        id:
+          type: string
+        lastReport:
+          format: date-time
+          type: string
+        lastSeenOffline:
+          format: date-time
+          type: string
+        lastSeenOnline:
+          format: date-time
+          type: string
+        status:
           type: string
       type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothDeviceLogLevel:
+      default: NONE
+      enum:
+      - NONE
+      - DEBUG
+      - INFO
+      - WARN
+      - ERROR
+      type: string
     goliothDeviceLogType:
       default: LOGGING
       enum:
@@ -174,47 +193,6 @@ components:
         type:
           $ref: '#/components/schemas/goliothDeviceLogType'
       type: object
-    goliothDeviceLogLevel:
-      default: NONE
-      enum:
-      - NONE
-      - DEBUG
-      - INFO
-      - WARN
-      - ERROR
-      type: string
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothDeviceActivityLog:
-      properties:
-        deviceId:
-          type: string
-        deviceName:
-          type: string
-        id:
-          type: string
-        lastReport:
-          format: date-time
-          type: string
-        lastSeenOffline:
-          format: date-time
-          type: string
-        lastSeenOnline:
-          format: date-time
-          type: string
-        status:
-          type: string
-      type: object
     goliothGetLogsResponse:
       properties:
         list:
@@ -230,6 +208,28 @@ components:
         total:
           format: int64
           type: integer
+      type: object
+    goliothGetLatestDeviceActivityLogsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothDeviceActivityLog'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
       type: object
   securitySchemes:
     API_Key:

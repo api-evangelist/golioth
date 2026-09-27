@@ -221,10 +221,27 @@ components:
           format: date-time
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    rpcStatus:
       properties:
-        '@type':
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothPackagesCreateBody:
+      properties:
+        description:
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        packageId:
           type: string
       type: object
     goliothListPackageResponse:
@@ -243,24 +260,17 @@ components:
           format: int64
           type: integer
       type: object
-    goliothCreatePackageResponse:
+    goliothUpdatePackageResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothPackage'
       type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
     goliothDeletePackageResponse:
+      type: object
+    goliothGetPackageResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPackage'
       type: object
     goliothPackageUpdate:
       properties:
@@ -271,26 +281,16 @@ components:
             type: string
           type: object
       type: object
-    goliothGetPackageResponse:
+    goliothCreatePackageResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothPackage'
       type: object
-    goliothPackagesCreateBody:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        description:
+        '@type':
           type: string
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-        packageId:
-          type: string
-      type: object
-    goliothUpdatePackageResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPackage'
       type: object
   securitySchemes:
     API_Key:
