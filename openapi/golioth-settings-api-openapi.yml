@@ -235,9 +235,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothSettingUpdate:
+    goliothGetSettingResponse:
       properties:
-        value: {}
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSetting'
+          type: array
+        total:
+          format: int64
+          type: integer
       type: object
     rpcStatus:
       properties:
@@ -273,27 +279,22 @@ components:
           type: string
         value: {}
       type: object
-    goliothSettingsCreateBody:
-      properties:
-        blueprintId:
-          type: string
-        dataType:
-          type: string
-        deviceId:
-          type: string
-        key:
-          type: string
-        value: {}
-      type: object
-    goliothCreateSettingResponse:
+    goliothUpdateSettingResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothSetting'
+      type: object
+    goliothDeleteSettingResponse:
       type: object
     goliothSettingDataType:
       properties:
         type:
           type: string
+      type: object
+    goliothCreateSettingResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
       type: object
     goliothListSettingResponse:
       properties:
@@ -315,22 +316,21 @@ components:
           format: int64
           type: integer
       type: object
-    goliothDeleteSettingResponse:
-      type: object
-    goliothUpdateSettingResponse:
+    goliothSettingUpdate:
       properties:
-        data:
-          $ref: '#/components/schemas/goliothSetting'
+        value: {}
       type: object
-    goliothGetSettingResponse:
+    goliothSettingsCreateBody:
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothSetting'
-          type: array
-        total:
-          format: int64
-          type: integer
+        blueprintId:
+          type: string
+        dataType:
+          type: string
+        deviceId:
+          type: string
+        key:
+          type: string
+        value: {}
       type: object
     protobufAny:
       additionalProperties: {}

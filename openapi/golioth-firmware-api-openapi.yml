@@ -81,40 +81,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothFirmwareLogEntry:
-      properties:
-        deviceId:
-          type: string
-        package:
-          type: string
-        reason:
-          type: string
-        reasonCode:
-          type: string
-        state:
-          type: string
-        stateCode:
-          type: string
-        target:
-          type: string
-        time:
-          format: date-time
-          type: string
-        version:
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
     goliothListFirmwareLogsResponse:
       properties:
         list:
@@ -135,6 +101,40 @@ components:
       additionalProperties: {}
       properties:
         '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothFirmwareLogEntry:
+      properties:
+        deviceId:
+          type: string
+        package:
+          type: string
+        reason:
+          type: string
+        reasonCode:
+          type: string
+        state:
+          type: string
+        stateCode:
+          type: string
+        target:
+          type: string
+        time:
+          format: date-time
+          type: string
+        version:
           type: string
       type: object
   securitySchemes:

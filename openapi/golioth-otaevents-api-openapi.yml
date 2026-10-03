@@ -165,30 +165,12 @@ components:
         message:
           type: string
       type: object
-    goliothListOTAEventStatsResponse:
+    goliothOTAStatsEventTypeCount:
       properties:
-        endTime:
-          format: date-time
-          type: string
-        list:
-          items:
-            $ref: '#/components/schemas/goliothOTAStatsEventTypeEntry'
-          type: array
-        startTime:
-          format: date-time
-          type: string
-      type: object
-    goliothOTAStatsEventTypeEntry:
-      properties:
-        duration:
+        count:
           format: int64
           type: integer
-        stats:
-          items:
-            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
-          type: array
-        timestamp:
-          format: date-time
+        eventType:
           type: string
       type: object
     goliothOTAEvent:
@@ -212,12 +194,30 @@ components:
           format: date-time
           type: string
       type: object
-    goliothOTAStatsEventTypeCount:
+    goliothOTAStatsEventTypeEntry:
       properties:
-        count:
+        duration:
           format: int64
           type: integer
-        eventType:
+        stats:
+          items:
+            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
+          type: array
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    goliothListOTAEventStatsResponse:
+      properties:
+        endTime:
+          format: date-time
+          type: string
+        list:
+          items:
+            $ref: '#/components/schemas/goliothOTAStatsEventTypeEntry'
+          type: array
+        startTime:
+          format: date-time
           type: string
       type: object
     protobufAny:

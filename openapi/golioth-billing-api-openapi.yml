@@ -46,14 +46,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothCreateCustomerPortalResponse:
-      properties:
-        url:
-          type: string
-      type: object
     BillingCreateCustomerPortalSessionBody:
       properties:
         callbackPath:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
     rpcStatus:
@@ -68,10 +69,9 @@ components:
         message:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothCreateCustomerPortalResponse:
       properties:
-        '@type':
+        url:
           type: string
       type: object
   securitySchemes:

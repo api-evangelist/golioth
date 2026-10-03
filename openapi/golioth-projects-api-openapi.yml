@@ -183,7 +183,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothGetProjectResponse:
+    goliothUpdateProjectResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothProject'
@@ -200,19 +200,14 @@ components:
         message:
           type: string
       type: object
-    goliothUpdateProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
-    goliothCreateProjectRequest:
-      properties:
-        name:
-          type: string
-        organizationId:
-          type: string
-      type: object
     goliothDeleteProjectResponse:
+      type: object
+    goliothListProjectResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothProject'
+          type: array
       type: object
     goliothProject:
       properties:
@@ -233,19 +228,19 @@ components:
           format: date-time
           type: string
       type: object
-    goliothProjectUpdate:
+    goliothCreateProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    goliothCreateProjectRequest:
       properties:
         name:
           type: string
+        organizationId:
+          type: string
       type: object
-    goliothListProjectResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothProject'
-          type: array
-      type: object
-    goliothCreateProjectResponse:
+    goliothGetProjectResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothProject'
@@ -254,6 +249,11 @@ components:
       additionalProperties: {}
       properties:
         '@type':
+          type: string
+      type: object
+    goliothProjectUpdate:
+      properties:
+        name:
           type: string
       type: object
   securitySchemes:

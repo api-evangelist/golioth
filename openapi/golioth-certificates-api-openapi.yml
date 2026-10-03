@@ -143,6 +143,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothDeleteCertificateResponse:
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
     goliothCertificateContent:
       properties:
         issuer:
@@ -175,19 +189,26 @@ components:
           format: int64
           type: integer
       type: object
-    rpcStatus:
+    goliothCreateCertificateResponse:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
       type: object
-    goliothDeleteCertificateResponse:
+    goliothListCertificateResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothCertificate'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
     goliothCertificate:
       properties:
@@ -207,21 +228,10 @@ components:
         projectId:
           type: string
       type: object
-    goliothListCertificateResponse:
+    goliothGetCertificateResponse:
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothCertificate'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
+        data:
+          $ref: '#/components/schemas/goliothCertificate'
       type: object
     goliothCertificatesCreateBody:
       properties:
@@ -232,16 +242,6 @@ components:
           type: string
         demo:
           type: boolean
-      type: object
-    goliothCreateCertificateResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothCertificate'
-      type: object
-    goliothGetCertificateResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothCertificate'
       type: object
     protobufAny:
       additionalProperties: {}

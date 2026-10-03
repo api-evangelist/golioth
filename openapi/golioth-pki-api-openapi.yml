@@ -411,25 +411,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothDeleteProviderResponse:
-      type: object
-    goliothGetPKIPolicyResponse:
+    goliothAWSAuthOptionsWebIdentity:
       properties:
-        data:
-          $ref: '#/components/schemas/goliothPKIPolicy'
-      type: object
-    goliothProvider:
-      properties:
-        aws:
-          $ref: '#/components/schemas/goliothAWSProviderOptionsResponse'
-        createdAt:
-          format: date-time
+        roleArn:
+          description: ARN for the AWS IAM Role the Golioth PKI Service should assume.
           type: string
-        id:
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
+      title: WebIdentity based authentication
       type: object
     goliothGetProviderStatusResponse:
       properties:
@@ -441,82 +428,15 @@ components:
         id:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothAWSProviderOptionsResponse:
       properties:
-        '@type':
+        accessKey:
           type: string
-      type: object
-    goliothDeletePKIPolicyResponse:
-      type: object
-    goliothUpdatePKIPolicyResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPKIPolicy'
-      type: object
-    PKIUpdatePKIPolicyBody:
-      properties:
-        providerId:
+        region:
+          title: AWS region, e.g. us-east-1
           type: string
-        type:
-          type: string
-      type: object
-    goliothPKIPolicy:
-      properties:
-        createdAt:
-          format: date-time
-          type: string
-        id:
-          type: string
-        providerId:
-          type: string
-        type:
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      type: object
-    goliothAWSAuthOptionsAccessKey:
-      properties:
-        accessKeyId:
-          type: string
-        secretAccessKey:
-          type: string
-      title: Access key based authentication
-      type: object
-    goliothProviderConfig:
-      properties:
-        aws:
-          $ref: '#/components/schemas/goliothAWSProviderOptions'
-      type: object
-    goliothUpdateProviderResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProvider'
-      type: object
-    goliothListProviderResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothProvider'
-          type: array
-      type: object
-    goliothGetProviderResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProvider'
-      type: object
-    goliothAWSAuthOptionsWebIdentity:
-      properties:
-        roleArn:
-          description: ARN for the AWS IAM Role the Golioth PKI Service should assume.
-          type: string
-      title: WebIdentity based authentication
-      type: object
-    goliothAddProviderResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProvider'
+        webIdentity:
+          $ref: '#/components/schemas/goliothAWSAuthOptionsWebIdentity'
       type: object
     goliothCreatePKIPolicyResponse:
       properties:
@@ -535,6 +455,56 @@ components:
         message:
           type: string
       type: object
+    PKIUpdatePKIPolicyBody:
+      properties:
+        providerId:
+          type: string
+        type:
+          type: string
+      type: object
+    goliothAWSAuthOptionsAccessKey:
+      properties:
+        accessKeyId:
+          type: string
+        secretAccessKey:
+          type: string
+      title: Access key based authentication
+      type: object
+    goliothUpdateProviderResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvider'
+      type: object
+    goliothGetProviderResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvider'
+      type: object
+    goliothAddProviderResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvider'
+      type: object
+    goliothProviderConfig:
+      properties:
+        aws:
+          $ref: '#/components/schemas/goliothAWSProviderOptions'
+      type: object
+    goliothPKIPolicy:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        providerId:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
     PKICreatePKIPolicyBody:
       properties:
         policyId:
@@ -544,15 +514,44 @@ components:
         type:
           type: string
       type: object
-    goliothAWSProviderOptionsResponse:
+    goliothListPKIPoliciesResponse:
       properties:
-        accessKey:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPKIPolicy'
+          type: array
+      type: object
+    goliothDeleteProviderResponse:
+      type: object
+    goliothProvider:
+      properties:
+        aws:
+          $ref: '#/components/schemas/goliothAWSProviderOptionsResponse'
+        createdAt:
+          format: date-time
           type: string
-        region:
-          title: AWS region, e.g. us-east-1
+        id:
           type: string
-        webIdentity:
-          $ref: '#/components/schemas/goliothAWSAuthOptionsWebIdentity'
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothListProviderResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothProvider'
+          type: array
+      type: object
+    goliothUpdatePKIPolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPKIPolicy'
+      type: object
+    goliothGetPKIPolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPKIPolicy'
       type: object
     goliothAWSProviderOptions:
       properties:
@@ -564,12 +563,13 @@ components:
         webIdentity:
           $ref: '#/components/schemas/goliothAWSAuthOptionsWebIdentity'
       type: object
-    goliothListPKIPoliciesResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothPKIPolicy'
-          type: array
+        '@type':
+          type: string
+      type: object
+    goliothDeletePKIPolicyResponse:
       type: object
   securitySchemes:
     API_Key:

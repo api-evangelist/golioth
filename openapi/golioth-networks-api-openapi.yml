@@ -167,15 +167,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothRecentDevice:
+    goliothNetworkDevice:
       properties:
+        firstSeenOnGateway:
+          format: date-time
+          type: string
+        gatewayId:
+          type: string
         id:
           type: string
         lastSeen:
           format: date-time
           type: string
-        name:
-          type: string
+      type: object
+    goliothNetworkResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothNetwork'
       type: object
     rpcStatus:
       properties:
@@ -204,22 +212,6 @@ components:
           format: date-time
           type: string
       type: object
-    goliothListNetworksResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothNetwork'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
     goliothListNetworkDevicesResponse:
       properties:
         list:
@@ -236,28 +228,36 @@ components:
           format: int64
           type: integer
       type: object
-    goliothNetworkDevice:
+    goliothListNetworksResponse:
       properties:
-        firstSeenOnGateway:
-          format: date-time
-          type: string
-        gatewayId:
-          type: string
-        id:
-          type: string
-        lastSeen:
-          format: date-time
-          type: string
-      type: object
-    goliothNetworkResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothNetwork'
+        list:
+          items:
+            $ref: '#/components/schemas/goliothNetwork'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
     protobufAny:
       additionalProperties: {}
       properties:
         '@type':
+          type: string
+      type: object
+    goliothRecentDevice:
+      properties:
+        id:
+          type: string
+        lastSeen:
+          format: date-time
+          type: string
+        name:
           type: string
       type: object
   securitySchemes:

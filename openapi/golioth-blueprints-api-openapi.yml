@@ -250,12 +250,32 @@ components:
         message:
           type: string
       type: object
+    goliothBlueprintUpdate:
+      properties:
+        boardId:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+      type: object
+    goliothBlueprintsCreateBody:
+      properties:
+        boardId:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+      type: object
     goliothGetBlueprintResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothBlueprint'
       type: object
-    goliothCreateBlueprintResponse:
+    goliothDeleteBlueprintResponse:
+      type: object
+    goliothUpdateBlueprintResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothBlueprint'
@@ -277,6 +297,17 @@ components:
           format: date-time
           type: string
       type: object
+    goliothCreateBlueprintResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
     goliothListBlueprintResponse:
       properties:
         list:
@@ -292,37 +323,6 @@ components:
         total:
           format: int64
           type: integer
-      type: object
-    goliothBlueprintsCreateBody:
-      properties:
-        boardId:
-          type: string
-        name:
-          type: string
-        platform:
-          type: string
-      type: object
-    goliothDeleteBlueprintResponse:
-      type: object
-    goliothUpdateBlueprintResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBlueprint'
-      type: object
-    goliothBlueprintUpdate:
-      properties:
-        boardId:
-          type: string
-        name:
-          type: string
-        platform:
-          type: string
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
       type: object
   securitySchemes:
     API_Key:

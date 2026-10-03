@@ -58,16 +58,11 @@ components:
           format: int64
           type: integer
       type: object
-    DeviceRemoteProcedureCallRemoteProcedureCallBody:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        method:
+        '@type':
           type: string
-        params:
-          items: {}
-          type: array
-        timeout:
-          format: int64
-          type: integer
       type: object
     rpcStatus:
       properties:
@@ -81,11 +76,16 @@ components:
         message:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    DeviceRemoteProcedureCallRemoteProcedureCallBody:
       properties:
-        '@type':
+        method:
           type: string
+        params:
+          items: {}
+          type: array
+        timeout:
+          format: int64
+          type: integer
       type: object
   securitySchemes:
     API_Key:

@@ -204,6 +204,30 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothGetPackageResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPackage'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothCreatePackageResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPackage'
+      type: object
+    goliothDeletePackageResponse:
+      type: object
     goliothPackage:
       properties:
         createdAt:
@@ -221,19 +245,7 @@ components:
           format: date-time
           type: string
       type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothPackagesCreateBody:
+    goliothPackageUpdate:
       properties:
         description:
           type: string
@@ -241,8 +253,6 @@ components:
           additionalProperties:
             type: string
           type: object
-        packageId:
-          type: string
       type: object
     goliothListPackageResponse:
       properties:
@@ -260,19 +270,7 @@ components:
           format: int64
           type: integer
       type: object
-    goliothUpdatePackageResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPackage'
-      type: object
-    goliothDeletePackageResponse:
-      type: object
-    goliothGetPackageResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPackage'
-      type: object
-    goliothPackageUpdate:
+    goliothPackagesCreateBody:
       properties:
         description:
           type: string
@@ -280,8 +278,10 @@ components:
           additionalProperties:
             type: string
           type: object
+        packageId:
+          type: string
       type: object
-    goliothCreatePackageResponse:
+    goliothUpdatePackageResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothPackage'

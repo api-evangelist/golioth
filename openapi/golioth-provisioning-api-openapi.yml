@@ -84,11 +84,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothProvisionDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProvisionData'
-      type: object
     rpcStatus:
       properties:
         code:
@@ -106,12 +101,6 @@ components:
         deviceId:
           type: string
       type: object
-    goliothCredentialType:
-      default: PRE_SHARED_KEY
-      enum:
-      - PRE_SHARED_KEY
-      - ASYMMETRIC_KEY_PAIR
-      type: string
     ProvisioningProvisionDeviceBody:
       properties:
         blueprintId:
@@ -137,6 +126,17 @@ components:
           type: array
         type:
           $ref: '#/components/schemas/goliothCredentialType'
+      type: object
+    goliothCredentialType:
+      default: PRE_SHARED_KEY
+      enum:
+      - PRE_SHARED_KEY
+      - ASYMMETRIC_KEY_PAIR
+      type: string
+    goliothProvisionDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProvisionData'
       type: object
     protobufAny:
       additionalProperties: {}

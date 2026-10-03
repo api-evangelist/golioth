@@ -230,13 +230,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothDeleteTagResponse:
-      type: object
-    goliothUpdateTagResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/comgoliothTag'
-      type: object
     rpcStatus:
       properties:
         code:
@@ -249,10 +242,36 @@ components:
         message:
           type: string
       type: object
-    goliothTagsCreateBody:
+    goliothTagUpdate:
       properties:
         name:
           type: string
+      type: object
+    comgoliothTag:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothUpdateTagResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothDeleteTagResponse:
       type: object
     goliothGetTagResponse:
       properties:
@@ -275,7 +294,7 @@ components:
           format: int64
           type: integer
       type: object
-    goliothTagUpdate:
+    goliothTagsCreateBody:
       properties:
         name:
           type: string
@@ -284,25 +303,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/comgoliothTag'
-      type: object
-    comgoliothTag:
-      properties:
-        createdAt:
-          format: date-time
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
       type: object
   securitySchemes:
     API_Key:

@@ -234,21 +234,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothArtifactUpdate:
-      type: object
-    goliothCreateArtifactRequest:
-      properties:
-        blueprintId:
-          type: string
-        content:
-          format: byte
-          type: string
-        package:
-          type: string
-        projectId:
-          type: string
-        version:
-          type: string
+    goliothDeleteArtifactResponse:
       type: object
     rpcStatus:
       properties:
@@ -262,23 +248,10 @@ components:
         message:
           type: string
       type: object
-    goliothDeleteArtifactResponse:
-      type: object
-    goliothListArtifactResponse:
+    goliothCreateArtifactResponse:
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothArtifact'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
       type: object
     goliothGetArtifactResponse:
       properties:
@@ -307,10 +280,35 @@ components:
         version:
           type: string
       type: object
-    goliothCreateArtifactResponse:
+    goliothCreateArtifactRequest:
       properties:
-        data:
-          $ref: '#/components/schemas/goliothArtifact'
+        blueprintId:
+          type: string
+        content:
+          format: byte
+          type: string
+        package:
+          type: string
+        projectId:
+          type: string
+        version:
+          type: string
+      type: object
+    goliothListArtifactResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothArtifact'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
     goliothUpdateArtifactResponse:
       properties:
@@ -322,6 +320,8 @@ components:
       properties:
         '@type':
           type: string
+      type: object
+    goliothArtifactUpdate:
       type: object
   securitySchemes:
     API_Key:

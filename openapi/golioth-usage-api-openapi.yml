@@ -235,28 +235,13 @@ components:
         message:
           type: string
       type: object
-    goliothUsageUnit:
-      default: KILOBYTES
-      enum:
-      - KILOBYTES
-      type: string
-    goliothUsageSummary:
+    goliothUsageSummaries:
       properties:
-        id:
-          type: string
-        quantity:
-          format: uint64
-          type: string
-        service:
-          type: string
+        summaries:
+          items:
+            $ref: '#/components/schemas/goliothUsageSummary'
+          type: array
       type: object
-    ListUsageResponseUsageEntity:
-      default: PROJECT
-      enum:
-      - PROJECT
-      - DEVICE
-      - PIPELINE
-      type: string
     goliothListUsageResponse:
       properties:
         dates:
@@ -268,12 +253,27 @@ components:
         unit:
           $ref: '#/components/schemas/goliothUsageUnit'
       type: object
-    goliothUsageSummaries:
+    goliothUsageUnit:
+      default: KILOBYTES
+      enum:
+      - KILOBYTES
+      type: string
+    ListUsageResponseUsageEntity:
+      default: PROJECT
+      enum:
+      - PROJECT
+      - DEVICE
+      - PIPELINE
+      type: string
+    goliothUsageSummary:
       properties:
-        summaries:
-          items:
-            $ref: '#/components/schemas/goliothUsageSummary'
-          type: array
+        id:
+          type: string
+        quantity:
+          format: uint64
+          type: string
+        service:
+          type: string
       type: object
     protobufAny:
       additionalProperties: {}

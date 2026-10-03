@@ -67,12 +67,11 @@ components:
           format: date-time
           type: string
       type: object
-    goliothListLocationPointsResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothLocationPoint'
-          type: array
+        '@type':
+          type: string
       type: object
     rpcStatus:
       properties:
@@ -86,11 +85,12 @@ components:
         message:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothListLocationPointsResponse:
       properties:
-        '@type':
-          type: string
+        list:
+          items:
+            $ref: '#/components/schemas/goliothLocationPoint'
+          type: array
       type: object
   securitySchemes:
     API_Key:
