@@ -215,27 +215,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DeviceStreamGetDeviceStreamBody:
-      properties:
-        encodedQuery:
-          type: string
-        end:
-          format: date-time
-          type: string
-        interval:
-          type: string
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        query:
-          $ref: '#/components/schemas/goliothDeviceStreamQuery'
-        start:
-          format: date-time
-          type: string
-      type: object
     goliothQueryFilter:
       properties:
         filters:
@@ -248,59 +227,10 @@ components:
           type: string
         value: {}
       type: object
-    rpcStatus:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothGetDeviceStreamResponse:
-      properties:
-        list:
-          items: {}
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothGetProjectStreamResponse:
-      properties:
-        list:
-          items: {}
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothDeviceStreamQuery:
-      properties:
-        fields:
-          items:
-            $ref: '#/components/schemas/goliothQueryField'
-          type: array
-        filters:
-          items:
-            $ref: '#/components/schemas/goliothQueryFilter'
-          type: array
-        timeBucket:
+        '@type':
           type: string
       type: object
     DeviceStreamGetProjectStreamBody:
@@ -332,6 +262,69 @@ components:
             type: string
           type: array
       type: object
+    DeviceStreamGetDeviceStreamBody:
+      properties:
+        encodedQuery:
+          type: string
+        end:
+          format: date-time
+          type: string
+        interval:
+          type: string
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        query:
+          $ref: '#/components/schemas/goliothDeviceStreamQuery'
+        start:
+          format: date-time
+          type: string
+      type: object
+    goliothGetDeviceStreamResponse:
+      properties:
+        list:
+          items: {}
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothGetProjectStreamResponse:
+      properties:
+        list:
+          items: {}
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
     goliothQueryField:
       properties:
         agg:
@@ -343,10 +336,17 @@ components:
         type:
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothDeviceStreamQuery:
       properties:
-        '@type':
+        fields:
+          items:
+            $ref: '#/components/schemas/goliothQueryField'
+          type: array
+        filters:
+          items:
+            $ref: '#/components/schemas/goliothQueryFilter'
+          type: array
+        timeBucket:
           type: string
       type: object
   securitySchemes:

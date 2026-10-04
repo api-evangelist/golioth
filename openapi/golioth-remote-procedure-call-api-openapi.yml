@@ -51,18 +51,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothRemoteProcedureCallResponse:
+    DeviceRemoteProcedureCallRemoteProcedureCallBody:
       properties:
-        detail: {}
-        statusCode:
+        method:
+          type: string
+        params:
+          items: {}
+          type: array
+        timeout:
           format: int64
           type: integer
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
       type: object
     rpcStatus:
       properties:
@@ -76,14 +74,16 @@ components:
         message:
           type: string
       type: object
-    DeviceRemoteProcedureCallRemoteProcedureCallBody:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        method:
+        '@type':
           type: string
-        params:
-          items: {}
-          type: array
-        timeout:
+      type: object
+    goliothRemoteProcedureCallResponse:
+      properties:
+        detail: {}
+        statusCode:
           format: int64
           type: integer
       type: object

@@ -183,24 +183,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothUpdateProjectResponse:
+    goliothCreateProjectRequest:
       properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
+        name:
           type: string
-      type: object
-    goliothDeleteProjectResponse:
+        organizationId:
+          type: string
       type: object
     goliothListProjectResponse:
       properties:
@@ -228,23 +216,6 @@ components:
           format: date-time
           type: string
       type: object
-    goliothCreateProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
-    goliothCreateProjectRequest:
-      properties:
-        name:
-          type: string
-        organizationId:
-          type: string
-      type: object
-    goliothGetProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
     protobufAny:
       additionalProperties: {}
       properties:
@@ -255,6 +226,35 @@ components:
       properties:
         name:
           type: string
+      type: object
+    goliothCreateProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    goliothDeleteProjectResponse:
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothUpdateProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    goliothGetProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
       type: object
   securitySchemes:
     API_Key:

@@ -146,29 +146,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothCreateDeploymentResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDeployment'
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
     goliothDeployment:
       properties:
         artifactIds:
@@ -183,6 +160,17 @@ components:
         name:
           type: string
       type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothCreateDeploymentResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDeployment'
+      type: object
     goliothDeploymentsCreateBody:
       properties:
         artifactIds:
@@ -191,6 +179,23 @@ components:
           type: array
         name:
           type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothGetDeploymentResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDeployment'
       type: object
     goliothListDeploymentResponse:
       properties:
@@ -207,11 +212,6 @@ components:
         total:
           format: int64
           type: integer
-      type: object
-    goliothGetDeploymentResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDeployment'
       type: object
   securitySchemes:
     API_Key:

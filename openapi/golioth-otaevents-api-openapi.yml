@@ -140,29 +140,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothListOTAEventsResponse:
+    goliothOTAStatsEventTypeEntry:
       properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothOTAEvent'
-          type: array
-        nextPageToken:
-          title: Token to get the next page
-          type: string
-        prevPageToken:
-          title: Token to get the previous page
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
+        duration:
+          format: int64
           type: integer
-        details:
+        stats:
           items:
-            $ref: '#/components/schemas/protobufAny'
+            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
           type: array
-        message:
+        timestamp:
+          format: date-time
           type: string
       type: object
     goliothOTAStatsEventTypeCount:
@@ -194,17 +182,35 @@ components:
           format: date-time
           type: string
       type: object
-    goliothOTAStatsEventTypeEntry:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        duration:
-          format: int64
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
           type: integer
-        stats:
+        details:
           items:
-            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
+            $ref: '#/components/schemas/protobufAny'
           type: array
-        timestamp:
-          format: date-time
+        message:
+          type: string
+      type: object
+    goliothListOTAEventsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothOTAEvent'
+          type: array
+        nextPageToken:
+          title: Token to get the next page
+          type: string
+        prevPageToken:
+          title: Token to get the previous page
           type: string
       type: object
     goliothListOTAEventStatsResponse:
@@ -218,12 +224,6 @@ components:
           type: array
         startTime:
           format: date-time
-          type: string
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
           type: string
       type: object
   securitySchemes:

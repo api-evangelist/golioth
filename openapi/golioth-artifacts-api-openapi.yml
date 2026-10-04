@@ -234,7 +234,48 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothDeleteArtifactResponse:
+    goliothArtifactUpdate:
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothListArtifactResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothArtifact'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothCreateArtifactRequest:
+      properties:
+        blueprintId:
+          type: string
+        content:
+          format: byte
+          type: string
+        package:
+          type: string
+        projectId:
+          type: string
+        version:
+          type: string
+      type: object
+    goliothGetArtifactResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothArtifact'
       type: object
     rpcStatus:
       properties:
@@ -249,11 +290,6 @@ components:
           type: string
       type: object
     goliothCreateArtifactResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothArtifact'
-      type: object
-    goliothGetArtifactResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothArtifact'
@@ -280,48 +316,12 @@ components:
         version:
           type: string
       type: object
-    goliothCreateArtifactRequest:
-      properties:
-        blueprintId:
-          type: string
-        content:
-          format: byte
-          type: string
-        package:
-          type: string
-        projectId:
-          type: string
-        version:
-          type: string
-      type: object
-    goliothListArtifactResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothArtifact'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
     goliothUpdateArtifactResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothArtifact'
       type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothArtifactUpdate:
+    goliothDeleteArtifactResponse:
       type: object
   securitySchemes:
     API_Key:

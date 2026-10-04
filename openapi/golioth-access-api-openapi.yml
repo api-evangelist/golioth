@@ -297,46 +297,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothInviteUserResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPolicy'
-      type: object
-    goliothListPolicyResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothPolicy'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothPermission:
-      properties:
-        action:
-          type: string
-        resource:
-          type: string
-      type: object
     goliothListRoleResponse:
       properties:
         list:
@@ -346,62 +306,23 @@ components:
       type: object
     goliothDeletePolicyResponse:
       type: object
-    goliothPolicy:
-      properties:
-        conditionals:
-          $ref: '#/components/schemas/goliothConditionalMap'
-        createdAt:
-          format: date-time
-          type: string
-        id:
-          type: string
-        resourceId:
-          type: string
-        resourceType:
-          type: string
-        roles:
-          items:
-            type: string
-          type: array
-        updatedAt:
-          format: date-time
-          type: string
-        userId:
-          type: string
-      type: object
-    goliothRole:
-      properties:
-        children:
-          items:
-            type: string
-          type: array
-        id:
-          type: string
-        name:
-          type: string
-        permissions:
-          items:
-            $ref: '#/components/schemas/goliothPermission'
-          type: array
-        type:
-          type: string
-      type: object
-    goliothListUsersResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothUser'
-          type: array
-      type: object
     goliothUpdatePolicyResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothPolicy'
       type: object
-    goliothGetPolicyResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        data:
-          $ref: '#/components/schemas/goliothPolicy'
+        '@type':
+          type: string
+      type: object
+    goliothListPermissionResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPermission'
+          type: array
       type: object
     goliothPolicyUpdate:
       properties:
@@ -430,29 +351,11 @@ components:
             type: string
           type: array
       type: object
-    AccessInviteUserBody:
+    goliothPermission:
       properties:
-        email:
+        action:
           type: string
-      type: object
-    goliothConditionalMap:
-      properties:
-        tags:
-          items:
-            type: string
-          type: array
-      type: object
-    goliothListPermissionResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothPermission'
-          type: array
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
+        resource:
           type: string
       type: object
     goliothUser:
@@ -473,6 +376,103 @@ components:
           items:
             type: string
           type: array
+      type: object
+    goliothGetPolicyResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+      type: object
+    goliothPolicy:
+      properties:
+        conditionals:
+          $ref: '#/components/schemas/goliothConditionalMap'
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        resourceId:
+          type: string
+        resourceType:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+        updatedAt:
+          format: date-time
+          type: string
+        userId:
+          type: string
+      type: object
+    AccessInviteUserBody:
+      properties:
+        email:
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothRole:
+      properties:
+        children:
+          items:
+            type: string
+          type: array
+        id:
+          type: string
+        name:
+          type: string
+        permissions:
+          items:
+            $ref: '#/components/schemas/goliothPermission'
+          type: array
+        type:
+          type: string
+      type: object
+    goliothConditionalMap:
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    goliothListUsersResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothUser'
+          type: array
+      type: object
+    goliothInviteUserResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPolicy'
+      type: object
+    goliothListPolicyResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothPolicy'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
   securitySchemes:
     API_Key:

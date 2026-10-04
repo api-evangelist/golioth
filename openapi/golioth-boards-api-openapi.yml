@@ -78,6 +78,17 @@ components:
           format: int64
           type: integer
       type: object
+    goliothGetBoardsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothBoard'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
     rpcStatus:
       properties:
         code:
@@ -89,11 +100,6 @@ components:
           type: array
         message:
           type: string
-      type: object
-    goliothGetBoardsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBoard'
       type: object
     goliothBoard:
       properties:
@@ -107,12 +113,6 @@ components:
           items:
             type: string
           type: array
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
       type: object
   securitySchemes:
     API_Key:

@@ -204,55 +204,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothUpdateCohortResponse:
+    goliothCreateCohortResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothCohort'
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothListCohortResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothCohort'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothCohortsCreateBody:
-      properties:
-        name:
-          type: string
       type: object
     goliothCohortUpdate:
       properties:
         name:
           type: string
-      type: object
-    goliothDeleteCohortResponse:
-      type: object
-    goliothGetCohortResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothCohort'
       type: object
     goliothCohort:
       properties:
@@ -278,10 +238,50 @@ components:
         '@type':
           type: string
       type: object
-    goliothCreateCohortResponse:
+    goliothListCohortResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothCohort'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothGetCohortResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothCohort'
+      type: object
+    goliothCohortsCreateBody:
+      properties:
+        name:
+          type: string
+      type: object
+    goliothUpdateCohortResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothCohort'
+      type: object
+    goliothDeleteCohortResponse:
       type: object
   securitySchemes:
     API_Key:

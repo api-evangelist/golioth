@@ -153,39 +153,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothAPIKeyUpdate:
+    goliothUpdateAPIKeyResponse:
       properties:
-        keyTags:
-          items:
-            type: string
-          type: array
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/goliothAPIKeyType'
-      type: object
-    goliothAPIKeysCreateBody:
-      properties:
-        keyTags:
-          items:
-            type: string
-          type: array
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/goliothAPIKeyType'
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
+        data:
+          $ref: '#/components/schemas/goliothAPIKey'
       type: object
     goliothAPIKey:
       properties:
@@ -213,12 +184,13 @@ components:
         type:
           $ref: '#/components/schemas/goliothAPIKeyType'
       type: object
-    goliothCreateAPIKeyResponse:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        data:
-          $ref: '#/components/schemas/goliothAPIKey'
+        '@type':
+          type: string
       type: object
-    goliothUpdateAPIKeyResponse:
+    goliothCreateAPIKeyResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothAPIKey'
@@ -239,13 +211,17 @@ components:
           format: int64
           type: integer
       type: object
-    protobufAny:
-      additionalProperties: {}
+    rpcStatus:
       properties:
-        '@type':
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
-      type: object
-    goliothDeleteAPIKeyResponse:
       type: object
     goliothAPIKeyType:
       default: API_KEY
@@ -254,6 +230,30 @@ components:
       - JWT_KEY
       - API_KEY_V2
       type: string
+    goliothAPIKeysCreateBody:
+      properties:
+        keyTags:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+      type: object
+    goliothDeleteAPIKeyResponse:
+      type: object
+    goliothAPIKeyUpdate:
+      properties:
+        keyTags:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+      type: object
   securitySchemes:
     API_Key:
       in: header

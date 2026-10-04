@@ -153,48 +153,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothOrganizationUpdate:
-      properties:
-        name:
-          type: string
-        website:
-          type: string
-      type: object
-    goliothCreateOrganizationRequest:
-      properties:
-        name:
-          type: string
-        website:
-          type: string
-      type: object
-    goliothUpdateOrganizationResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothOrganization'
-      type: object
-    goliothGetOrganizationResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothOrganization'
-      type: object
     goliothListOrganizationResponse:
       properties:
         list:
@@ -206,6 +164,12 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/goliothOrganization'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
       type: object
     goliothOrganization:
       properties:
@@ -226,6 +190,42 @@ components:
           type: string
         updatedAt:
           format: date-time
+          type: string
+        website:
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothUpdateOrganizationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+      type: object
+    goliothCreateOrganizationRequest:
+      properties:
+        name:
+          type: string
+        website:
+          type: string
+      type: object
+    goliothGetOrganizationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothOrganization'
+      type: object
+    goliothOrganizationUpdate:
+      properties:
+        name:
           type: string
         website:
           type: string

@@ -235,6 +235,35 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothListSettingResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSetting'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothSettingsCreateBody:
+      properties:
+        blueprintId:
+          type: string
+        dataType:
+          type: string
+        deviceId:
+          type: string
+        key:
+          type: string
+        value: {}
+      type: object
+    goliothDeleteSettingResponse:
+      type: object
+    goliothSettingDataType:
+      properties:
+        type:
+          type: string
+      type: object
     goliothGetSettingResponse:
       properties:
         list:
@@ -244,6 +273,36 @@ components:
         total:
           format: int64
           type: integer
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothSettingUpdate:
+      properties:
+        value: {}
+      type: object
+    goliothListAllowedSettingsDataTypesResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothSettingDataType'
+          type: array
+        total:
+          format: int64
+          type: integer
+      type: object
+    goliothCreateSettingResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
+      type: object
+    goliothUpdateSettingResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothSetting'
       type: object
     rpcStatus:
       properties:
@@ -278,65 +337,6 @@ components:
           format: date-time
           type: string
         value: {}
-      type: object
-    goliothUpdateSettingResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothSetting'
-      type: object
-    goliothDeleteSettingResponse:
-      type: object
-    goliothSettingDataType:
-      properties:
-        type:
-          type: string
-      type: object
-    goliothCreateSettingResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothSetting'
-      type: object
-    goliothListSettingResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothSetting'
-          type: array
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothListAllowedSettingsDataTypesResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothSettingDataType'
-          type: array
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothSettingUpdate:
-      properties:
-        value: {}
-      type: object
-    goliothSettingsCreateBody:
-      properties:
-        blueprintId:
-          type: string
-        dataType:
-          type: string
-        deviceId:
-          type: string
-        key:
-          type: string
-        value: {}
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
       type: object
   securitySchemes:
     API_Key:

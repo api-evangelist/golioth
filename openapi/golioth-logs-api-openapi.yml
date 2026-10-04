@@ -114,18 +114,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
     goliothDeviceLogType:
       default: LOGGING
       enum:
@@ -133,26 +121,6 @@ components:
       - DIAGNOSTICS
       - METRICS
       type: string
-    goliothDeviceActivityLog:
-      properties:
-        deviceId:
-          type: string
-        deviceName:
-          type: string
-        id:
-          type: string
-        lastReport:
-          format: date-time
-          type: string
-        lastSeenOffline:
-          format: date-time
-          type: string
-        lastSeenOnline:
-          format: date-time
-          type: string
-        status:
-          type: string
-      type: object
     goliothDeviceLogLevel:
       default: NONE
       enum:
@@ -162,6 +130,28 @@ components:
       - WARN
       - ERROR
       type: string
+    goliothGetLogsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothDeviceLogEntry'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
     goliothGetLatestDeviceActivityLogsResponse:
       properties:
         list:
@@ -178,21 +168,17 @@ components:
           format: int64
           type: integer
       type: object
-    goliothGetLogsResponse:
+    rpcStatus:
       properties:
-        list:
+        code:
+          format: int32
+          type: integer
+        details:
           items:
-            $ref: '#/components/schemas/goliothDeviceLogEntry'
+            $ref: '#/components/schemas/protobufAny'
           type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
+        message:
+          type: string
       type: object
     goliothDeviceLogEntry:
       description: Event generated when a device sends logs.
@@ -225,10 +211,24 @@ components:
         type:
           $ref: '#/components/schemas/goliothDeviceLogType'
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothDeviceActivityLog:
       properties:
-        '@type':
+        deviceId:
+          type: string
+        deviceName:
+          type: string
+        id:
+          type: string
+        lastReport:
+          format: date-time
+          type: string
+        lastSeenOffline:
+          format: date-time
+          type: string
+        lastSeenOnline:
+          format: date-time
+          type: string
+        status:
           type: string
       type: object
   securitySchemes:

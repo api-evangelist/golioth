@@ -223,25 +223,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothUsageSummaries:
-      properties:
-        summaries:
-          items:
-            $ref: '#/components/schemas/goliothUsageSummary'
-          type: array
-      type: object
     goliothListUsageResponse:
       properties:
         dates:
@@ -253,11 +234,6 @@ components:
         unit:
           $ref: '#/components/schemas/goliothUsageUnit'
       type: object
-    goliothUsageUnit:
-      default: KILOBYTES
-      enum:
-      - KILOBYTES
-      type: string
     ListUsageResponseUsageEntity:
       default: PROJECT
       enum:
@@ -280,6 +256,30 @@ components:
       properties:
         '@type':
           type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothUsageUnit:
+      default: KILOBYTES
+      enum:
+      - KILOBYTES
+      type: string
+    goliothUsageSummaries:
+      properties:
+        summaries:
+          items:
+            $ref: '#/components/schemas/goliothUsageSummary'
+          type: array
       type: object
   securitySchemes:
     API_Key:

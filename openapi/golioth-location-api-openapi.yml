@@ -50,6 +50,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothListLocationPointsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothLocationPoint'
+          type: array
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
     goliothLocationPoint:
       properties:
         accuracy:
@@ -66,31 +91,6 @@ components:
         timestamp:
           format: date-time
           type: string
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothListLocationPointsResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothLocationPoint'
-          type: array
       type: object
   securitySchemes:
     API_Key:

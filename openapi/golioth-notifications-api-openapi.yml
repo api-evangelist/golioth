@@ -58,23 +58,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    NotificationLevel:
-      default: INFO
-      enum:
-      - INFO
-      - WARNING
-      - ERROR
-      type: string
-    rpcStatus:
+    goliothListNotificationsResponse:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
+        list:
           items:
-            $ref: '#/components/schemas/protobufAny'
+            $ref: '#/components/schemas/goliothNotification'
           type: array
-        message:
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
     goliothNotification:
@@ -93,19 +87,25 @@ components:
         title:
           type: string
       type: object
-    goliothListNotificationsResponse:
+    rpcStatus:
       properties:
-        list:
+        code:
+          format: int32
+          type: integer
+        details:
           items:
-            $ref: '#/components/schemas/goliothNotification'
+            $ref: '#/components/schemas/protobufAny'
           type: array
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
+        message:
           type: string
       type: object
+    NotificationLevel:
+      default: INFO
+      enum:
+      - INFO
+      - WARNING
+      - ERROR
+      type: string
   securitySchemes:
     API_Key:
       in: header

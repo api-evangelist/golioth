@@ -336,10 +336,71 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothTestIntegrationResponse:
+    goliothDeleteIntegrationResponse:
+      type: object
+    goliothIntegrationUpdate:
       properties:
-        result:
+        configuration:
+          type: object
+        enabled:
+          type: boolean
+        name:
           type: string
+      type: object
+    goliothIntegrationType:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/goliothIntegrationTypeAttribute'
+          type: array
+        description:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+      type: object
+    IntegrationsTestBody:
+      properties:
+        data:
+          type: object
+      type: object
+    goliothIntegrationValidationResponse:
+      type: object
+    goliothIntegrationTypeAttribute:
+      properties:
+        description:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+        required:
+          type: boolean
+        type:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothIntegrationsCreateBody:
+      properties:
+        configuration:
+          type: object
+        enabled:
+          type: boolean
+        name:
+          type: string
+        type:
+          type: string
+      type: object
+    goliothCreateIntegrationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
       type: object
     goliothGetIntegrationResponse:
       properties:
@@ -358,39 +419,26 @@ components:
         message:
           type: string
       type: object
-    goliothIntegrationValidationResponse:
-      type: object
-    goliothUpdateIntegrationResponse:
+    goliothTestIntegrationResponse:
       properties:
-        data:
-          $ref: '#/components/schemas/goliothIntegration'
+        result:
+          type: string
       type: object
-    IntegrationsTestBody:
+    goliothListIntegrationResponse:
       properties:
-        data:
-          type: object
-      type: object
-    goliothIntegrationType:
-      properties:
-        attributes:
+        list:
           items:
-            $ref: '#/components/schemas/goliothIntegrationTypeAttribute'
+            $ref: '#/components/schemas/goliothIntegration'
           type: array
-        description:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-      type: object
-    goliothIntegrationUpdate:
-      properties:
-        configuration:
-          type: object
-        enabled:
-          type: boolean
-        name:
-          type: string
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
     IntegrationsValidateBody:
       properties:
@@ -402,6 +450,27 @@ components:
           type: string
         type:
           type: string
+      type: object
+    goliothUpdateIntegrationResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothIntegration'
+      type: object
+    goliothListIntegrationTypesResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothIntegrationType'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
     goliothIntegration:
       properties:
@@ -420,75 +489,6 @@ components:
           type: string
         updatedAt:
           format: date-time
-          type: string
-      type: object
-    goliothIntegrationTypeAttribute:
-      properties:
-        description:
-          type: string
-        displayName:
-          type: string
-        name:
-          type: string
-        required:
-          type: boolean
-        type:
-          type: string
-      type: object
-    goliothCreateIntegrationResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothIntegration'
-      type: object
-    goliothDeleteIntegrationResponse:
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothListIntegrationTypesResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothIntegrationType'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothListIntegrationResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothIntegration'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothIntegrationsCreateBody:
-      properties:
-        configuration:
-          type: object
-        enabled:
-          type: boolean
-        name:
-          type: string
-        type:
           type: string
       type: object
   securitySchemes:
