@@ -1,0 +1,12 @@
+{
+ "url": "https://api.golioth.io/swagger.json",
+ "requested_url": "https://api.golioth.io/swagger.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 255391,
+ "sha256": "3a7c2382781a11a8b6702fe86071d6cac8fe65504f8988e24d4e6627594eb729",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
