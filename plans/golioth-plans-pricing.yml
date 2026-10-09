@@ -69,3 +69,70 @@ plans:
   period: one-time
   unit: credits
   included_quota: Prototype for months before you pay
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units:
+  - credit
+  - data
+  - object
+  - request
+  plans:
+  - name: Connect
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - other
+  - name: Fleet Control
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: Pipelines
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: Application Services - Logs
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: LightDB Stream (Time-Series)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: Location
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - request
+    periods:
+    - other
+  - name: Free credits
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - one-time
