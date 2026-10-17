@@ -238,32 +238,32 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothDeleteBlueprintResponse:
-      type: object
-    goliothBlueprintUpdate:
+    goliothUpdateBlueprintResponse:
       properties:
-        boardId:
-          type: string
-        name:
-          type: string
-        platform:
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
-    goliothBlueprint:
+    goliothGetBlueprintResponse:
       properties:
-        boardId:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        platform:
-          type: string
-        updatedAt:
-          format: date-time
+        data:
+          $ref: '#/components/schemas/goliothBlueprint'
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
       type: object
     goliothListBlueprintResponse:
@@ -282,10 +282,13 @@ components:
           format: int64
           type: integer
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothBlueprintUpdate:
       properties:
-        '@type':
+        boardId:
+          type: string
+        name:
+          type: string
+        platform:
           type: string
       type: object
     goliothCreateBlueprintResponse:
@@ -293,17 +296,24 @@ components:
         data:
           $ref: '#/components/schemas/goliothBlueprint'
       type: object
-    rpcStatus:
+    goliothBlueprint:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
+        boardId:
           type: string
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      type: object
+    goliothDeleteBlueprintResponse:
       type: object
     goliothBlueprintsCreateBody:
       properties:
@@ -313,16 +323,6 @@ components:
           type: string
         platform:
           type: string
-      type: object
-    goliothGetBlueprintResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBlueprint'
-      type: object
-    goliothUpdateBlueprintResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothBlueprint'
       type: object
   securitySchemes:
     API_Key:

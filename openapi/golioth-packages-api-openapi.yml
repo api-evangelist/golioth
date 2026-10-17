@@ -204,12 +204,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothCreatePackageResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPackage'
-      type: object
-    goliothPackageUpdate:
+    goliothPackagesCreateBody:
       properties:
         description:
           type: string
@@ -217,13 +212,25 @@ components:
           additionalProperties:
             type: string
           type: object
-      type: object
-    goliothDeletePackageResponse:
+        packageId:
+          type: string
       type: object
     protobufAny:
       additionalProperties: {}
       properties:
         '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
       type: object
     goliothPackage:
@@ -242,11 +249,6 @@ components:
         updatedAt:
           format: date-time
           type: string
-      type: object
-    goliothUpdatePackageResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPackage'
       type: object
     goliothListPackageResponse:
       properties:
@@ -269,19 +271,19 @@ components:
         data:
           $ref: '#/components/schemas/goliothPackage'
       type: object
-    rpcStatus:
+    goliothCreatePackageResponse:
       properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
+        data:
+          $ref: '#/components/schemas/goliothPackage'
       type: object
-    goliothPackagesCreateBody:
+    goliothUpdatePackageResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPackage'
+      type: object
+    goliothDeletePackageResponse:
+      type: object
+    goliothPackageUpdate:
       properties:
         description:
           type: string
@@ -289,8 +291,6 @@ components:
           additionalProperties:
             type: string
           type: object
-        packageId:
-          type: string
       type: object
   securitySchemes:
     API_Key:

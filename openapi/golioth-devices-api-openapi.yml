@@ -301,7 +301,74 @@ paths:
       - Devices
 components:
   schemas:
-    goliothDeleteDeviceResponse:
+    goliothDevice:
+      properties:
+        blueprintId:
+          title: Blueprint ID assigned to the device
+          type: string
+        certificateId:
+          title: Certificate ID assigned to the device, if the device uses certificate-based authentication
+          type: string
+        cohortId:
+          title: Cohort ID of the cohort the device belongs to
+          type: string
+        createdAt:
+          format: date-time
+          title: Timestamp of device creation
+          type: string
+        data:
+          title: Requested device data
+          type: object
+        enabled:
+          title: Whether the device is enabled
+          type: boolean
+        hardwareIds:
+          items:
+            type: string
+          title: List of hardware IDs associated with the device
+          type: array
+        id:
+          title: Unique device ID
+          type: string
+        lastReport:
+          format: date-time
+          title: 'Deprecated: Use metadata.last_report instead'
+          type: string
+        metadata:
+          $ref: '#/components/schemas/goliothDeviceMetadata'
+        name:
+          title: Name of the device
+          type: string
+        status:
+          title: 'Deprecated: Use metadata.status instead'
+          type: string
+        tagIds:
+          items:
+            type: string
+          title: List of tag IDs attached to the device
+          type: array
+        updatedAt:
+          format: date-time
+          title: Timestamp of the last update to the device
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
       type: object
     goliothListDeviceResponse:
       properties:
@@ -322,45 +389,6 @@ components:
           format: int64
           title: Total number of devices matching the request
           type: integer
-      type: object
-    goliothDeviceMetadata:
-      properties:
-        lastReport:
-          format: date-time
-          title: Timestamp of latest device activity
-          type: string
-        lastSeenOffline:
-          format: date-time
-          title: Deprecated, use last_seen_online instead
-          type: string
-        lastSeenOnline:
-          format: date-time
-          title: Timestamp of when the device was last seen online
-          type: string
-        lastSettingsStatus:
-          $ref: '#/components/schemas/goliothSettingsStatus'
-        status:
-          title: Deprecated, always returns `-`
-          type: string
-        update:
-          description: Latest Firmware Update information.
-          type: object
-      type: object
-    goliothCreateDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
-      type: object
-    goliothUpdateDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
       type: object
     goliothDevicesCreateBody:
       properties:
@@ -413,6 +441,36 @@ components:
           title: Timestamp of the last settings sync
           type: string
       type: object
+    goliothDeviceMetadata:
+      properties:
+        lastReport:
+          format: date-time
+          title: Timestamp of latest device activity
+          type: string
+        lastSeenOffline:
+          format: date-time
+          title: Deprecated, use last_seen_online instead
+          type: string
+        lastSeenOnline:
+          format: date-time
+          title: Timestamp of when the device was last seen online
+          type: string
+        lastSettingsStatus:
+          $ref: '#/components/schemas/goliothSettingsStatus'
+        status:
+          title: Deprecated, always returns `-`
+          type: string
+        update:
+          description: Latest Firmware Update information.
+          type: object
+      type: object
+    goliothDeleteDeviceResponse:
+      type: object
+    goliothCreateDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
     goliothSettingError:
       properties:
         code:
@@ -444,74 +502,6 @@ components:
         key:
           title: Key of the setting that has the error
           type: string
-      type: object
-    goliothDevice:
-      properties:
-        blueprintId:
-          title: Blueprint ID assigned to the device
-          type: string
-        certificateId:
-          title: Certificate ID assigned to the device, if the device uses certificate-based authentication
-          type: string
-        cohortId:
-          title: Cohort ID of the cohort the device belongs to
-          type: string
-        createdAt:
-          format: date-time
-          title: Timestamp of device creation
-          type: string
-        data:
-          title: Requested device data
-          type: object
-        enabled:
-          title: Whether the device is enabled
-          type: boolean
-        hardwareIds:
-          items:
-            type: string
-          title: List of hardware IDs associated with the device
-          type: array
-        id:
-          title: Unique device ID
-          type: string
-        lastReport:
-          format: date-time
-          title: 'Deprecated: Use metadata.last_report instead'
-          type: string
-        metadata:
-          $ref: '#/components/schemas/goliothDeviceMetadata'
-        name:
-          title: Name of the device
-          type: string
-        status:
-          title: 'Deprecated: Use metadata.status instead'
-          type: string
-        tagIds:
-          items:
-            type: string
-          title: List of tag IDs attached to the device
-          type: array
-        updatedAt:
-          format: date-time
-          title: Timestamp of the last update to the device
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothGetDeviceResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothDevice'
       type: object
     goliothDeviceUpdate:
       properties:
@@ -559,6 +549,16 @@ components:
             type: string
           title: Full list of tag IDs to set for this device, replacing any existing ones
           type: array
+      type: object
+    goliothGetDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
+      type: object
+    goliothUpdateDeviceResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothDevice'
       type: object
   securitySchemes:
     API_Key:

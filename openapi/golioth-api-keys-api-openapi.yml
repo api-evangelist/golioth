@@ -153,10 +153,64 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothUpdateAPIKeyResponse:
+    goliothCreateAPIKeyResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothAPIKey'
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothAPIKeyType:
+      default: API_KEY
+      enum:
+      - API_KEY
+      - JWT_KEY
+      - API_KEY_V2
+      type: string
+    goliothAPIKeyUpdate:
+      properties:
+        keyTags:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/goliothAPIKeyType'
+      type: object
+    goliothDeleteAPIKeyResponse:
+      type: object
+    goliothListAPIKeyResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothAPIKey'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
       type: object
     goliothAPIKey:
       properties:
@@ -184,52 +238,6 @@ components:
         type:
           $ref: '#/components/schemas/goliothAPIKeyType'
       type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothCreateAPIKeyResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothAPIKey'
-      type: object
-    goliothListAPIKeyResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothAPIKey'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothAPIKeyType:
-      default: API_KEY
-      enum:
-      - API_KEY
-      - JWT_KEY
-      - API_KEY_V2
-      type: string
     goliothAPIKeysCreateBody:
       properties:
         keyTags:
@@ -241,18 +249,10 @@ components:
         type:
           $ref: '#/components/schemas/goliothAPIKeyType'
       type: object
-    goliothDeleteAPIKeyResponse:
-      type: object
-    goliothAPIKeyUpdate:
+    goliothUpdateAPIKeyResponse:
       properties:
-        keyTags:
-          items:
-            type: string
-          type: array
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/goliothAPIKeyType'
+        data:
+          $ref: '#/components/schemas/goliothAPIKey'
       type: object
   securitySchemes:
     API_Key:

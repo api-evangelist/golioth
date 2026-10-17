@@ -375,12 +375,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothDeleteDeviceStateResponse:
-      type: object
-    goliothGetDeviceStateResponse:
-      properties:
-        data: {}
-      type: object
     protobufAny:
       additionalProperties: {}
       properties:
@@ -398,6 +392,12 @@ components:
           type: array
         message:
           type: string
+      type: object
+    goliothDeleteDeviceStateResponse:
+      type: object
+    goliothGetDeviceStateResponse:
+      properties:
+        data: {}
       type: object
     goliothUpdateDeviceStateResponse:
       properties:

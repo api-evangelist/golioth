@@ -140,25 +140,35 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothOTAStatsEventTypeEntry:
+    goliothListOTAEventsResponse:
       properties:
-        duration:
-          format: int64
-          type: integer
-        stats:
+        list:
           items:
-            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
+            $ref: '#/components/schemas/goliothOTAEvent'
           type: array
-        timestamp:
-          format: date-time
+        nextPageToken:
+          title: Token to get the next page
+          type: string
+        prevPageToken:
+          title: Token to get the previous page
           type: string
       type: object
-    goliothOTAStatsEventTypeCount:
+    protobufAny:
+      additionalProperties: {}
       properties:
-        count:
-          format: int64
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
           type: integer
-        eventType:
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
       type: object
     goliothOTAEvent:
@@ -182,35 +192,25 @@ components:
           format: date-time
           type: string
       type: object
-    protobufAny:
-      additionalProperties: {}
+    goliothOTAStatsEventTypeCount:
       properties:
-        '@type':
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
+        count:
+          format: int64
           type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
+        eventType:
           type: string
       type: object
-    goliothListOTAEventsResponse:
+    goliothOTAStatsEventTypeEntry:
       properties:
-        list:
+        duration:
+          format: int64
+          type: integer
+        stats:
           items:
-            $ref: '#/components/schemas/goliothOTAEvent'
+            $ref: '#/components/schemas/goliothOTAStatsEventTypeCount'
           type: array
-        nextPageToken:
-          title: Token to get the next page
-          type: string
-        prevPageToken:
-          title: Token to get the previous page
+        timestamp:
+          format: date-time
           type: string
       type: object
     goliothListOTAEventStatsResponse:

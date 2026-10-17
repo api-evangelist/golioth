@@ -230,27 +230,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothDeleteTagResponse:
-      type: object
-    goliothCreateTagResponse:
+    comgoliothTag:
       properties:
-        data:
-          $ref: '#/components/schemas/comgoliothTag'
-      type: object
-    goliothTagUpdate:
-      properties:
+        createdAt:
+          format: date-time
+          type: string
+        id:
+          type: string
         name:
           type: string
-      type: object
-    goliothGetTagResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/comgoliothTag'
-      type: object
-    goliothUpdateTagResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/comgoliothTag'
+        updatedAt:
+          format: date-time
+          type: string
       type: object
     protobufAny:
       additionalProperties: {}
@@ -270,6 +261,21 @@ components:
         message:
           type: string
       type: object
+    goliothUpdateTagResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+      type: object
+    goliothTagUpdate:
+      properties:
+        name:
+          type: string
+      type: object
+    goliothGetTagResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+      type: object
     goliothListTagResponse:
       properties:
         list:
@@ -286,23 +292,17 @@ components:
           format: int64
           type: integer
       type: object
-    comgoliothTag:
-      properties:
-        createdAt:
-          format: date-time
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      type: object
     goliothTagsCreateBody:
       properties:
         name:
           type: string
+      type: object
+    goliothCreateTagResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/comgoliothTag'
+      type: object
+    goliothDeleteTagResponse:
       type: object
   securitySchemes:
     API_Key:

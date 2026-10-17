@@ -122,6 +122,60 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothGetProjectConfigResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProjectConfigSetting'
+      type: object
+    goliothProjectConfigDisabled:
+      properties:
+        description:
+          type: string
+        reason:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothProjectConfigValueRange:
+      properties:
+        max:
+          format: int32
+          type: integer
+        min:
+          format: int32
+          type: integer
+      type: object
+    goliothProjectConfigValue:
+      properties:
+        boolean:
+          type: boolean
+        integer:
+          format: int32
+          type: integer
+        string:
+          type: string
+      type: object
+    ProjectConfigSetBody:
+      properties:
+        value:
+          $ref: '#/components/schemas/goliothProjectConfigValue'
+      type: object
     goliothSetProjectConfigResponse:
       properties:
         data:
@@ -149,66 +203,12 @@ components:
         value:
           $ref: '#/components/schemas/goliothProjectConfigValue'
       type: object
-    goliothProjectConfigValue:
-      properties:
-        boolean:
-          type: boolean
-        integer:
-          format: int32
-          type: integer
-        string:
-          type: string
-      type: object
     goliothListProjectConfigsResponse:
       properties:
         list:
           items:
             $ref: '#/components/schemas/goliothProjectConfigSetting'
           type: array
-      type: object
-    ProjectConfigSetBody:
-      properties:
-        value:
-          $ref: '#/components/schemas/goliothProjectConfigValue'
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothProjectConfigDisabled:
-      properties:
-        description:
-          type: string
-        reason:
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothProjectConfigValueRange:
-      properties:
-        max:
-          format: int32
-          type: integer
-        min:
-          format: int32
-          type: integer
-      type: object
-    goliothGetProjectConfigResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProjectConfigSetting'
       type: object
   securitySchemes:
     API_Key:

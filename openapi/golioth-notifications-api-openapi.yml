@@ -58,33 +58,10 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothListNotificationsResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothNotification'
-          type: array
-      type: object
     protobufAny:
       additionalProperties: {}
       properties:
         '@type':
-          type: string
-      type: object
-    goliothNotification:
-      properties:
-        id:
-          type: string
-        level:
-          $ref: '#/components/schemas/NotificationLevel'
-        message:
-          type: string
-        scope:
-          type: string
-        timestamp:
-          format: date-time
-          type: string
-        title:
           type: string
       type: object
     rpcStatus:
@@ -106,6 +83,29 @@ components:
       - WARNING
       - ERROR
       type: string
+    goliothListNotificationsResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothNotification'
+          type: array
+      type: object
+    goliothNotification:
+      properties:
+        id:
+          type: string
+        level:
+          $ref: '#/components/schemas/NotificationLevel'
+        message:
+          type: string
+        scope:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        title:
+          type: string
+      type: object
   securitySchemes:
     API_Key:
       in: header

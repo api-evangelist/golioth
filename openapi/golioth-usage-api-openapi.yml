@@ -223,34 +223,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothListUsageResponse:
-      properties:
-        dates:
-          additionalProperties:
-            $ref: '#/components/schemas/goliothUsageSummaries'
-          type: object
-        entity:
-          $ref: '#/components/schemas/ListUsageResponseUsageEntity'
-        unit:
-          $ref: '#/components/schemas/goliothUsageUnit'
-      type: object
-    ListUsageResponseUsageEntity:
-      default: PROJECT
-      enum:
-      - PROJECT
-      - DEVICE
-      - PIPELINE
-      type: string
-    goliothUsageSummary:
-      properties:
-        id:
-          type: string
-        quantity:
-          format: uint64
-          type: string
-        service:
-          type: string
-      type: object
     protobufAny:
       additionalProperties: {}
       properties:
@@ -269,17 +241,45 @@ components:
         message:
           type: string
       type: object
-    goliothUsageUnit:
-      default: KILOBYTES
-      enum:
-      - KILOBYTES
-      type: string
     goliothUsageSummaries:
       properties:
         summaries:
           items:
             $ref: '#/components/schemas/goliothUsageSummary'
           type: array
+      type: object
+    goliothUsageSummary:
+      properties:
+        id:
+          type: string
+        quantity:
+          format: uint64
+          type: string
+        service:
+          type: string
+      type: object
+    ListUsageResponseUsageEntity:
+      default: PROJECT
+      enum:
+      - PROJECT
+      - DEVICE
+      - PIPELINE
+      type: string
+    goliothUsageUnit:
+      default: KILOBYTES
+      enum:
+      - KILOBYTES
+      type: string
+    goliothListUsageResponse:
+      properties:
+        dates:
+          additionalProperties:
+            $ref: '#/components/schemas/goliothUsageSummaries'
+          type: object
+        entity:
+          $ref: '#/components/schemas/ListUsageResponseUsageEntity'
+        unit:
+          $ref: '#/components/schemas/goliothUsageUnit'
       type: object
   securitySchemes:
     API_Key:

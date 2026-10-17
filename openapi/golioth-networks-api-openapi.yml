@@ -167,10 +167,53 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothNetwork:
+      properties:
+        deviceCount:
+          format: int64
+          type: integer
+        id:
+          type: string
+        lastDevices:
+          items:
+            $ref: '#/components/schemas/goliothRecentDevice'
+          type: array
+        lastSeen:
+          format: date-time
+          type: string
+      type: object
+    goliothListNetworksResponse:
+      properties:
+        list:
+          items:
+            $ref: '#/components/schemas/goliothNetwork'
+          type: array
+        page:
+          format: int64
+          type: integer
+        perPage:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
     protobufAny:
       additionalProperties: {}
       properties:
         '@type':
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
           type: string
       type: object
     goliothRecentDevice:
@@ -196,54 +239,11 @@ components:
           format: date-time
           type: string
       type: object
-    goliothNetwork:
-      properties:
-        deviceCount:
-          format: int64
-          type: integer
-        id:
-          type: string
-        lastDevices:
-          items:
-            $ref: '#/components/schemas/goliothRecentDevice'
-          type: array
-        lastSeen:
-          format: date-time
-          type: string
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
     goliothListNetworkDevicesResponse:
       properties:
         list:
           items:
             $ref: '#/components/schemas/goliothNetworkDevice'
-          type: array
-        page:
-          format: int64
-          type: integer
-        perPage:
-          format: int64
-          type: integer
-        total:
-          format: int64
-          type: integer
-      type: object
-    goliothListNetworksResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothNetwork'
           type: array
         page:
           format: int64

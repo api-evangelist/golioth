@@ -183,11 +183,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    goliothCreateProjectRequest:
+    goliothDeleteProjectResponse:
+      type: object
+    goliothProjectUpdate:
       properties:
         name:
           type: string
-        organizationId:
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
           type: string
       type: object
     goliothListProjectResponse:
@@ -196,6 +202,40 @@ components:
           items:
             $ref: '#/components/schemas/goliothProject'
           type: array
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothCreateProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    goliothCreateProjectRequest:
+      properties:
+        name:
+          type: string
+        organizationId:
+          type: string
+      type: object
+    goliothUpdateProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
+      type: object
+    goliothGetProjectResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothProject'
       type: object
     goliothProject:
       properties:
@@ -215,46 +255,6 @@ components:
         updatedAt:
           format: date-time
           type: string
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
-          type: string
-      type: object
-    goliothProjectUpdate:
-      properties:
-        name:
-          type: string
-      type: object
-    goliothCreateProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
-    goliothDeleteProjectResponse:
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothUpdateProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
-      type: object
-    goliothGetProjectResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothProject'
       type: object
   securitySchemes:
     API_Key:

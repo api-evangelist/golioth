@@ -317,6 +317,61 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    goliothUpdatePipelineResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/goliothPipeline'
+      type: object
+    goliothPipelineErrorCount:
+      properties:
+        errors:
+          format: int64
+          type: integer
+        id:
+          type: string
+      type: object
+    protobufAny:
+      additionalProperties: {}
+      properties:
+        '@type':
+          type: string
+      type: object
+    goliothPipelineErrorSummaries:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothPipelineErrorCount'
+          type: array
+      type: object
+    goliothPipelineUpdate:
+      properties:
+        enabled:
+          type: boolean
+        name:
+          type: string
+        pipeline:
+          format: byte
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+        message:
+          type: string
+      type: object
+    goliothPipelineErrors:
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/goliothPipelineError'
+          type: array
+      type: object
     goliothPipelineMetadata:
       properties:
         createdAt:
@@ -330,71 +385,6 @@ components:
           type: string
         updatedAt:
           format: date-time
-          type: string
-      type: object
-    goliothPipelinesCreateBody:
-      properties:
-        enabled:
-          type: boolean
-        name:
-          type: string
-        pipeline:
-          format: byte
-          type: string
-      type: object
-    goliothPipelineUnmatchedData:
-      properties:
-        contentType:
-          type: string
-        path:
-          type: string
-        timestamp:
-          format: date-time
-          type: string
-      type: object
-    goliothDeletePipelineResponse:
-      type: object
-    goliothGetErrorStatsResponse:
-      properties:
-        errors:
-          additionalProperties:
-            $ref: '#/components/schemas/goliothPipelineErrorSummaries'
-          type: object
-      type: object
-    goliothPipeline:
-      properties:
-        createdAt:
-          format: date-time
-          type: string
-        enabled:
-          type: boolean
-        name:
-          type: string
-        pipeline:
-          format: byte
-          type: string
-        pipelineId:
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      type: object
-    goliothListPipelineResponse:
-      properties:
-        list:
-          items:
-            $ref: '#/components/schemas/goliothPipelineMetadata'
-          type: array
-      type: object
-    goliothUpdatePipelineResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/goliothPipeline'
-      type: object
-    protobufAny:
-      additionalProperties: {}
-      properties:
-        '@type':
           type: string
       type: object
     goliothPipelineUnmatchedDataResponse:
@@ -419,31 +409,12 @@ components:
         type:
           type: string
       type: object
-    goliothPipelineErrorSummaries:
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/goliothPipelineErrorCount'
-          type: array
-      type: object
-    rpcStatus:
-      properties:
-        code:
-          format: int32
-          type: integer
-        details:
-          items:
-            $ref: '#/components/schemas/protobufAny'
-          type: array
-        message:
-          type: string
-      type: object
-    goliothCreatePipelineResponse:
+    goliothGetPipelineResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothPipeline'
       type: object
-    goliothPipelineUpdate:
+    goliothPipelinesCreateBody:
       properties:
         enabled:
           type: boolean
@@ -453,24 +424,53 @@ components:
           format: byte
           type: string
       type: object
-    goliothGetPipelineResponse:
+    goliothCreatePipelineResponse:
       properties:
         data:
           $ref: '#/components/schemas/goliothPipeline'
       type: object
-    goliothPipelineErrors:
+    goliothListPipelineResponse:
       properties:
-        errors:
+        list:
           items:
-            $ref: '#/components/schemas/goliothPipelineError'
+            $ref: '#/components/schemas/goliothPipelineMetadata'
           type: array
       type: object
-    goliothPipelineErrorCount:
+    goliothDeletePipelineResponse:
+      type: object
+    goliothGetErrorStatsResponse:
       properties:
         errors:
-          format: int64
-          type: integer
-        id:
+          additionalProperties:
+            $ref: '#/components/schemas/goliothPipelineErrorSummaries'
+          type: object
+      type: object
+    goliothPipelineUnmatchedData:
+      properties:
+        contentType:
+          type: string
+        path:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    goliothPipeline:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        name:
+          type: string
+        pipeline:
+          format: byte
+          type: string
+        pipelineId:
+          type: string
+        updatedAt:
+          format: date-time
           type: string
       type: object
   securitySchemes:
