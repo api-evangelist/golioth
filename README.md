@@ -1,4 +1,4 @@
-# Golioth (golioth)
+# Golioth
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,315 +66,231 @@
 
 Golioth is an IoT device management cloud and firmware SDK for connected hardware. The platform pairs an open-source Firmware SDK (Zephyr RTOS, nRF Connect SDK, ESP-IDF, ModusToolbox, Linux) with a REST Management API at api.golioth.io, a web console, and services for OTA firmware updates, device settings, remote procedure calls (RPC), structured time-series data (LightDB Stream), key/value device state (LightDB State), logs, location, and a Pipelines data-routing engine that forwards device data to downstream cloud services. Authentication to the Management API is via project-scoped API keys passed in the x-api-key header.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/golioth/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/golioth/refs/heads/main/apis.yml)
+**Areas:** IoT · Device Management · Firmware · Zephyr · OTA · Embedded · Connectivity
+
+## Golioth on APIs.io
 
-## Tags
+Everything profiled for Golioth is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/golioth/](https://apis.io/providers/golioth/)** — or go straight to one of the APIs or properties below.
 
-- IoT
-- Device Management
-- Firmware
-- Zephyr
-- OTA
-- Embedded
-- Connectivity
+### APIs (45)
 
-## Timestamps
+- [Golioth LightDB State](https://apis.io/apis/golioth/lightdb-state/) — Per-device key/value state store. Devices and cloud services read and write structured state (JSON/CBOR) that is synchronized between device and cloud over…
+- [Golioth LightDB Stream](https://apis.io/apis/golioth/lightdb-stream/) — Time-series ingest endpoint for streaming sensor and telemetry data from devices. Stored data can be queried and routed downstream via Pipelines.
+- [Golioth Remote Procedure Call (RPC)](https://apis.io/apis/golioth/rpc/) — Bidirectional remote-procedure-call service. The cloud invokes device-side methods registered by firmware and receives the response, enabling on-demand…
+- [Golioth OTA Firmware Updates](https://apis.io/apis/golioth/ota/) — Over-the-air firmware update service. Upload artifacts, group them into releases, target devices by tag or blueprint, and roll out updates with progress…
+- [Golioth Device Settings](https://apis.io/apis/golioth/settings/) — Cloud-managed settings pushed to one device, a group, or an entire fleet. Firmware subscribes to settings keys and receives updates without requiring a…
+- [Golioth Logging](https://apis.io/apis/golioth/logging/) — Centralized device logging. Firmware emits structured log lines that are collected, indexed, and made queryable via the console and API.
+- [Golioth Pipelines](https://apis.io/apis/golioth/pipelines/) — Data routing and transformation engine. Pipelines describe how data arriving from devices is filtered, transformed, and forwarded to downstream destinations…
+- [Golioth Location](https://apis.io/apis/golioth/location/) — Location service that resolves device position from cellular tower and Wi-Fi access-point observations submitted by firmware, returning latitude/longitude…
+- [Golioth Firmware SDK](https://apis.io/apis/golioth/firmware-sdk/) — Open-source firmware SDK that connects embedded devices to the Golioth cloud over CoAP. Supports Zephyr RTOS, nRF Connect SDK, ESP-IDF, and ModusToolbox.…
+- [Golioth Python Tools](https://apis.io/apis/golioth/python-tools/) — Python tooling that wraps the Management API for scripting, automation, and CLI-driven workflows against Golioth projects.
+- [Golioth Tinymcp API](https://apis.io/apis/golioth/tinymcp/) — Open-source implementation of the Model Context Protocol (MCP) for resource-constrained embedded devices, enabling large language models to observe and…
+- [Golioth Pouch](https://apis.io/apis/golioth/pouch/) — Non-IP device-to-cloud transport protocol from Golioth, with a companion Bluetooth gateway reference implementation (pouch-gateway) for relaying pouch…
+- [Golioth Access API](https://apis.io/apis/golioth/golioth-access-api/) — The Access API from Golioth — 6 operation(s) for access.
+- [Golioth API Keys API](https://apis.io/apis/golioth/golioth-api-keys-api/) — The API Keys API from Golioth — 2 operation(s) for api keys.
+- [Golioth Artifacts API](https://apis.io/apis/golioth/golioth-artifacts-api/) — The Artifacts API from Golioth — 3 operation(s) for artifacts.
+- [Golioth Billing API](https://apis.io/apis/golioth/golioth-billing-api/) — The Billing API from Golioth — 1 operation(s) for billing.
+- [Golioth Blueprints API](https://apis.io/apis/golioth/golioth-blueprints-api/) — The Blueprints API from Golioth — 2 operation(s) for blueprints.
+- [Golioth Boards API](https://apis.io/apis/golioth/golioth-boards-api/) — The Boards API from Golioth — 2 operation(s) for boards.
+- [Golioth Certificates API](https://apis.io/apis/golioth/golioth-certificates-api/) — The Certificates API from Golioth — 2 operation(s) for certificates.
+- [Golioth Cohorts API](https://apis.io/apis/golioth/golioth-cohorts-api/) — The Cohorts API from Golioth — 2 operation(s) for cohorts.
+- [Golioth Credentials API](https://apis.io/apis/golioth/golioth-credentials-api/) — The Credentials API from Golioth — 4 operation(s) for credentials.
+- [Golioth Deployments API](https://apis.io/apis/golioth/golioth-deployments-api/) — The Deployments API from Golioth — 2 operation(s) for deployments.
+- [Golioth Devices API](https://apis.io/apis/golioth/golioth-devices-api/) — The Devices API from Golioth — 2 operation(s) for devices.
+- [Golioth Firmware API](https://apis.io/apis/golioth/golioth-firmware-api/) — The Firmware API from Golioth — 1 operation(s) for firmware.
+- [Golioth Integrations API](https://apis.io/apis/golioth/golioth-integrations-api/) — The Integrations API from Golioth — 5 operation(s) for integrations.
+- [Golioth LightDB API](https://apis.io/apis/golioth/golioth-lightdb-api/) — The LightDB API from Golioth — 2 operation(s) for lightdb.
+- [Golioth LightDB Stream API](https://apis.io/apis/golioth/golioth-lightdb-stream-api/) — The LightDB Stream API from Golioth — 2 operation(s) for lightdb stream.
+- [Golioth Location API](https://apis.io/apis/golioth/golioth-location-api/) — The Location API from Golioth — 1 operation(s) for location.
+- [Golioth Logs API](https://apis.io/apis/golioth/golioth-logs-api/) — The Logs API from Golioth — 2 operation(s) for logs.
+- [Golioth Networks API](https://apis.io/apis/golioth/golioth-networks-api/) — The Networks API from Golioth — 4 operation(s) for networks.
+- [Golioth Notifications API](https://apis.io/apis/golioth/golioth-notifications-api/) — The Notifications API from Golioth — 1 operation(s) for notifications.
+- [Golioth Organizations API](https://apis.io/apis/golioth/golioth-organizations-api/) — The Organizations API from Golioth — 2 operation(s) for organizations.
+- [Golioth OTAEvents API](https://apis.io/apis/golioth/golioth-otaevents-api/) — The OTAEvents API from Golioth — 2 operation(s) for otaevents.
+- [Golioth Packages API](https://apis.io/apis/golioth/golioth-packages-api/) — The Packages API from Golioth — 2 operation(s) for packages.
+- [Golioth Pipelines API](https://apis.io/apis/golioth/golioth-pipelines-api/) — The Pipelines API from Golioth — 5 operation(s) for pipelines.
+- [Golioth PKI API](https://apis.io/apis/golioth/golioth-pki-api/) — The PKI API from Golioth — 5 operation(s) for pki.
+- [Golioth Project Config API](https://apis.io/apis/golioth/golioth-project-config-api/) — The Project Config API from Golioth — 2 operation(s) for project config.
+- [Golioth Projects API](https://apis.io/apis/golioth/golioth-projects-api/) — The Projects API from Golioth — 2 operation(s) for projects.
+- [Golioth Provisioning API](https://apis.io/apis/golioth/golioth-provisioning-api/) — The Provisioning API from Golioth — 2 operation(s) for provisioning.
+- [Golioth Releases API](https://apis.io/apis/golioth/golioth-releases-api/) — The Releases API from Golioth — 2 operation(s) for releases.
+- [Golioth Remote Procedure Call API](https://apis.io/apis/golioth/golioth-remote-procedure-call-api/) — The Remote Procedure Call API from Golioth — 1 operation(s) for remote procedure call.
+- [Golioth Secrets API](https://apis.io/apis/golioth/golioth-secrets-api/) — The Secrets API from Golioth — 2 operation(s) for secrets.
+- [Golioth Settings API](https://apis.io/apis/golioth/golioth-settings-api/) — The Settings API from Golioth — 4 operation(s) for settings.
+- [Golioth Tags API](https://apis.io/apis/golioth/golioth-tags-api/) — The Tags API from Golioth — 2 operation(s) for tags.
+- [Golioth Usage API](https://apis.io/apis/golioth/golioth-usage-api/) — The Usage API from Golioth — 5 operation(s) for usage.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-25
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Golioth Agentic Access](https://apis.io/agentic-access/golioth/golioth-agentic-access/)
 
-### Golioth Management API
+#### JSON Schema (3)
 
-REST API for managing Golioth projects, devices, credentials, blueprints, tags, settings, OTA firmware artifacts and releases, RPC, logs, and Pipelines. Documented with an OpenAPI 3 definition served by the API itself. Authenticated with a project-scoped API key in the x-api-key header.
+The data models the API reads and writes.
 
-- **Human URL:** [https://docs.golioth.io/reference/management-api/](https://docs.golioth.io/reference/management-api/)
-- **Base URL:** `https://api.golioth.io`
+- [Golioth Device](https://apis.io/schemas/golioth/golioth-device/)
+- [Golioth Release](https://apis.io/schemas/golioth/golioth-release/)
+- [Golioth Stream Record](https://apis.io/schemas/golioth/golioth-stream-record/)
 
-#### Tags
+#### JSON Structure (2)
 
-- Device Management
-- Projects
-- REST
+Data models expressed in JSON Structure.
 
-#### Properties
+- [Golioth Device Structure](https://apis.io/json-structure/golioth/golioth-device-structure/)
+- [Golioth Release Structure](https://apis.io/json-structure/golioth/golioth-release-structure/)
 
-- [Documentation](https://docs.golioth.io/reference/management-api/)
-- [OpenAPI](openapi/golioth-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [OpenAPI](https://api.golioth.io/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Swagger](https://api.golioth.io/swagger.json)
-- [Authentication](https://docs.golioth.io/reference/management-api/auth)
-- [JSON Schema](json-schema/golioth-device-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/golioth-release-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/golioth-stream-record-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/golioth-device-structure.json)
-- [JSON Structure](json-structure/golioth-release-structure.json)
-- [JSON-LD](json-ld/golioth-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Ruleset](rules/golioth-rules.yml)
-- [Example](examples/golioth-create-device-example.json)
-- [Example](examples/golioth-create-release-example.json)
-- [Example](examples/golioth-invoke-rpc-example.json)
-- [Example](examples/golioth-query-stream-example.json)
-- [Example](examples/golioth-create-pipeline-example.json)
-- [Plans](plans/golioth-plans-pricing.yml)
-- [Rate Limits](rate-limits/golioth-rate-limits.yml)
-- [Fin Ops](finops/golioth-finops.yml)
-- [Vocabulary](vocabulary/golioth-vocabulary.yml)
+#### JSON-LD (1)
 
-### Golioth LightDB State
+Linked-data contexts for the provider's vocabulary.
 
-Per-device key/value state store. Devices and cloud services read and write structured state (JSON/CBOR) that is synchronized between device and cloud over CoAP.
+- [Golioth Context](https://apis.io/jsonld/golioth/golioth-context/)
 
-- **Human URL:** [https://docs.golioth.io/application-services/lightdb/](https://docs.golioth.io/application-services/lightdb/)
-- **Base URL:** `https://api.golioth.io`
+#### Vocabulary (1)
 
-#### Tags
+The provider's domain terms, defined.
 
-- LightDB
-- State
-- Device Data
+- [Golioth Vocabulary](https://apis.io/vocabularies/golioth/golioth-vocabulary/)
 
-#### Properties
+#### Examples (5)
 
-- [Documentation](https://docs.golioth.io/application-services/lightdb/)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Example requests and responses.
 
-### Golioth LightDB Stream
+- [Golioth Create Device Example](https://apis.io/examples/golioth/golioth-create-device-example/)
+- [Golioth Create Pipeline Example](https://apis.io/examples/golioth/golioth-create-pipeline-example/)
+- [Golioth Create Release Example](https://apis.io/examples/golioth/golioth-create-release-example/)
+- [Golioth Invoke Rpc Example](https://apis.io/examples/golioth/golioth-invoke-rpc-example/)
+- [Golioth Query Stream Example](https://apis.io/examples/golioth/golioth-query-stream-example/)
 
-Time-series ingest endpoint for streaming sensor and telemetry data from devices. Stored data can be queried and routed downstream via Pipelines.
+#### Collections (34)
 
-- **Human URL:** [https://docs.golioth.io/application-services/stream/](https://docs.golioth.io/application-services/stream/)
-- **Base URL:** `https://api.golioth.io`
+Postman and Open Collection request collections.
 
-#### Tags
+- [Golioth Management API](https://apis.io/collections/golioth/open-golioth/)
+- [Golioth Management Access API](https://apis.io/collections/golioth/open-golioth-access-api/)
+- [Golioth Management Access API Keys API](https://apis.io/collections/golioth/open-golioth-api-keys-api/)
+- [Golioth Management Access Artifacts API](https://apis.io/collections/golioth/open-golioth-artifacts-api/)
+- [Golioth Management Access Billing API](https://apis.io/collections/golioth/open-golioth-billing-api/)
+- [Golioth Management Access Blueprints API](https://apis.io/collections/golioth/open-golioth-blueprints-api/)
+- [Golioth Management Access Boards API](https://apis.io/collections/golioth/open-golioth-boards-api/)
+- [Golioth Management Access Certificates API](https://apis.io/collections/golioth/open-golioth-certificates-api/)
+- [Golioth Management Access Cohorts API](https://apis.io/collections/golioth/open-golioth-cohorts-api/)
+- [Golioth Management Access Credentials API](https://apis.io/collections/golioth/open-golioth-credentials-api/)
+- [Golioth Management Access Deployments API](https://apis.io/collections/golioth/open-golioth-deployments-api/)
+- [Golioth Management Access Devices API](https://apis.io/collections/golioth/open-golioth-devices-api/)
+- [Golioth Management Access Firmware API](https://apis.io/collections/golioth/open-golioth-firmware-api/)
+- [Golioth Management Access Integrations API](https://apis.io/collections/golioth/open-golioth-integrations-api/)
+- [Golioth Management Access LightDB API](https://apis.io/collections/golioth/open-golioth-lightdb-api/)
+- [Golioth Management Access LightDB Stream API](https://apis.io/collections/golioth/open-golioth-lightdb-stream-api/)
+- [Golioth Management Access Location API](https://apis.io/collections/golioth/open-golioth-location-api/)
+- [Golioth Management Access Logs API](https://apis.io/collections/golioth/open-golioth-logs-api/)
+- [Golioth Management Access Networks API](https://apis.io/collections/golioth/open-golioth-networks-api/)
+- [Golioth Management Access Notifications API](https://apis.io/collections/golioth/open-golioth-notifications-api/)
+- [Golioth Management Access Organizations API](https://apis.io/collections/golioth/open-golioth-organizations-api/)
+- [Golioth Management Access OTAEvents API](https://apis.io/collections/golioth/open-golioth-otaevents-api/)
+- [Golioth Management Access Packages API](https://apis.io/collections/golioth/open-golioth-packages-api/)
+- [Golioth Management Access Pipelines API](https://apis.io/collections/golioth/open-golioth-pipelines-api/)
+- [Golioth Management Access PKI API](https://apis.io/collections/golioth/open-golioth-pki-api/)
+- …and 9 more published on APIs.io
 
-- Time Series
-- Telemetry
-- Stream
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://docs.golioth.io/application-services/stream/)
-- [JSON Schema](json-schema/golioth-stream-record-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Example](examples/golioth-query-stream-example.json)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Golioth — jsonschema rules](https://apis.io/rules/golioth/golioth-jsonschema-spectral-rules/)
+- [Golioth API Rules](https://apis.io/rules/golioth/golioth-rules/)
 
-### Golioth Remote Procedure Call (RPC)
+#### Security (2)
 
-Bidirectional remote-procedure-call service. The cloud invokes device-side methods registered by firmware and receives the response, enabling on-demand diagnostics and control.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.golioth.io/device-management/rpc/](https://docs.golioth.io/device-management/rpc/)
-- **Base URL:** `https://api.golioth.io`
+- [Golioth Authentication](https://apis.io/security/golioth/golioth-authentication/)
+- [Golioth Domain Security](https://apis.io/security/golioth/golioth-domain-security/)
 
-#### Tags
+#### Plans and pricing (2)
 
-- RPC
-- Device Management
-- Control
+Published plans, tiers and prices.
 
-#### Properties
+- [Golioth Plans Pricing](https://apis.io/plans/golioth/golioth-plans-pricing/)
+- [Golioth Price Estimates](https://apis.io/plans/golioth/golioth-price-estimates/)
 
-- [Documentation](https://docs.golioth.io/device-management/rpc/)
-- [Example](examples/golioth-invoke-rpc-example.json)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Golioth OTA Firmware Updates
+Published request limits.
 
-Over-the-air firmware update service. Upload artifacts, group them into releases, target devices by tag or blueprint, and roll out updates with progress tracking and rollback.
+- [Golioth Rate Limits](https://apis.io/rate-limits/golioth/golioth-rate-limits/)
 
-- **Human URL:** [https://docs.golioth.io/device-management/ota/](https://docs.golioth.io/device-management/ota/)
-- **Base URL:** `https://api.golioth.io`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- OTA
-- Firmware
-- Updates
+- [Golioth Finops](https://apis.io/finops/golioth/golioth-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.golioth.io/device-management/ota/)
-- [JSON Schema](json-schema/golioth-release-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/golioth-release-structure.json)
-- [Example](examples/golioth-create-release-example.json)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth Device Settings
-
-Cloud-managed settings pushed to one device, a group, or an entire fleet. Firmware subscribes to settings keys and receives updates without requiring a firmware release.
-
-- **Human URL:** [https://docs.golioth.io/device-management/settings/](https://docs.golioth.io/device-management/settings/)
-- **Base URL:** `https://api.golioth.io`
-
-#### Tags
-
-- Settings
-- Configuration
-- Fleet
-
-#### Properties
-
-- [Documentation](https://docs.golioth.io/device-management/settings/)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth Logging
-
-Centralized device logging. Firmware emits structured log lines that are collected, indexed, and made queryable via the console and API.
-
-- **Human URL:** [https://docs.golioth.io/device-management/logging/](https://docs.golioth.io/device-management/logging/)
-- **Base URL:** `https://api.golioth.io`
-
-#### Tags
-
-- Logs
-- Observability
-
-#### Properties
-
-- [Documentation](https://docs.golioth.io/device-management/logging/)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth Pipelines
-
-Data routing and transformation engine. Pipelines describe how data arriving from devices is filtered, transformed, and forwarded to downstream destinations such as AWS S3, GCP Pub/Sub, Azure Event Hubs, InfluxDB, MongoDB, and generic webhooks.
-
-- **Human URL:** [https://docs.golioth.io/data-routing/](https://docs.golioth.io/data-routing/)
-- **Base URL:** `https://api.golioth.io`
-
-#### Tags
-
-- Pipelines
-- Data Routing
-- Integration
-
-#### Properties
-
-- [Documentation](https://docs.golioth.io/data-routing/)
-- [Example](examples/golioth-create-pipeline-example.json)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth Location
-
-Location service that resolves device position from cellular tower and Wi-Fi access-point observations submitted by firmware, returning latitude/longitude back to the device or downstream system.
-
-- **Human URL:** [https://docs.golioth.io/application-services/location/](https://docs.golioth.io/application-services/location/)
-- **Base URL:** `https://api.golioth.io`
-
-#### Tags
-
-- Location
-- Geolocation
-- Cellular
-- WiFi
-
-#### Properties
-
-- [Documentation](https://docs.golioth.io/application-services/location/)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth Firmware SDK
-
-Open-source firmware SDK that connects embedded devices to the Golioth cloud over CoAP. Supports Zephyr RTOS, nRF Connect SDK, ESP-IDF, and ModusToolbox. Implements client APIs for LightDB State, LightDB Stream, RPC, settings, logging, and OTA.
-
-- **Human URL:** [https://github.com/golioth/golioth-firmware-sdk](https://github.com/golioth/golioth-firmware-sdk)
-- **Base URL:** `https://github.com/golioth/golioth-firmware-sdk`
-
-#### Tags
-
-- SDK
-- Firmware
-- Zephyr
-- ESP-IDF
-
-#### Properties
-
-- [Repository](https://github.com/golioth/golioth-firmware-sdk)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth Python Tools
-
-Python tooling that wraps the Management API for scripting, automation, and CLI-driven workflows against Golioth projects.
-
-- **Human URL:** [https://github.com/golioth/python-golioth-tools](https://github.com/golioth/python-golioth-tools)
-- **Base URL:** `https://github.com/golioth/python-golioth-tools`
-
-#### Tags
-
-- SDK
-- Python
-- CLI
-
-#### Properties
-
-- [Repository](https://github.com/golioth/python-golioth-tools)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth tinymcp
-
-Open-source implementation of the Model Context Protocol (MCP) for resource-constrained embedded devices, enabling large language models to observe and control firmware via MCP tools.
-
-- **Human URL:** [https://github.com/golioth/tinymcp](https://github.com/golioth/tinymcp)
-- **Base URL:** `https://github.com/golioth/tinymcp`
-
-#### Tags
-
-- MCP
-- AI
-- Embedded
-
-#### Properties
-
-- [Repository](https://github.com/golioth/tinymcp)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Golioth Pouch
-
-Non-IP device-to-cloud transport protocol from Golioth, with a companion Bluetooth gateway reference implementation (pouch-gateway) for relaying pouch traffic to the Golioth cloud.
-
-- **Human URL:** [https://github.com/golioth/pouch](https://github.com/golioth/pouch)
-- **Base URL:** `https://github.com/golioth/pouch`
-
-#### Tags
-
-- Protocol
-- Bluetooth
-- Gateway
-
-#### Properties
-
-- [Repository](https://github.com/golioth/pouch)
-- [Postman Collection](collections/golioth.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/golioth.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://golioth.io/)
 - [Documentation](https://docs.golioth.io/)
-- [Git Hub](https://github.com/golioth)
-- [Console](https://console.golioth.io/)
-- [Forum](https://forum.golioth.io/)
-- [Blog](https://blog.golioth.io/)
-- [Training](https://training.golioth.io/)
-- [Reference Designs](https://projects.golioth.io/)
 - [Pricing](https://golioth.io/pricing)
-- [LinkedIn](https://www.linkedin.com/company/golioth/)
-- [L L Ms Txt](https://docs.golioth.io/llms.txt)
+- [Blog](https://blog.golioth.io/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 45.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 62.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 42.1 |
+
+**Agent readiness 21.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/golioth/](https://apis.io/providers/golioth/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Golioth: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/golioth/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
